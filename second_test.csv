@@ -1,0 +1,6 @@
+algorithm_name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_total,Mops_per_thread,region,Instance_name,timestamp
+EP Benchmark,A,0.23,24,24,2329.80,97.07,us-east-1,c5a.12xlarge,2024-06-08 13:41:03
+EP Benchmark,A,0.28,24,24,1933.61,80.57,us-east-1,c5a.12xlarge,2024-06-08 13:41:05
+EP Benchmark,A,0.23,24,24,2298.84,95.79,us-east-1,c5a.12xlarge,2024-06-08 13:41:08
+EP Benchmark,A,0.23,24,24,2310.76,96.28,us-east-1,c5a.12xlarge,2024-06-08 13:41:10
+EP Benchmark,A,0.23,24,24,2333.15,97.21,us-east-1,c5a.12xlarge,2024-06-08 13:41:12
