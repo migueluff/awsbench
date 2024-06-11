@@ -1,7 +1,7 @@
 import boto3
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 import re
-from constants import bucket_name, columns
+from constants import bucket_nameus, columns, bucket_namesa
 from datetime import datetime
 import pandas as pd
 
@@ -14,7 +14,7 @@ def get_files_names(s3_client, bucket_name):
     files_names = []
     try:
         # Listar objetos no bucket
-        response = s3_client.list_objects_v2(Bucket=bucket_name)
+        response = s3_client.list_objects_v2(Bucket=bucket_nameus)
 
         # Verificar se o bucket contém objetos
         if 'Contents' in response:
@@ -24,7 +24,6 @@ def get_files_names(s3_client, bucket_name):
             return files_names
         else:
             print("O bucket está vazio.")
-        r
     except NoCredentialsError:
         print("Credenciais não disponíveis")
     except PartialCredentialsError:
@@ -36,7 +35,7 @@ def get_files_names(s3_client, bucket_name):
 def get_file_content(s3_client, bucket_name, file_names):
     df = pd.DataFrame(columns=columns)
     for s3_object_key in file_names:
-        file_response = s3_client.get_object(Bucket=bucket_name, Key=s3_object_key)
+        file_response = s3_client.get_object(Bucket=bucket_nameus, Key=s3_object_key)
 
         # Ler o conteúdo do arquivo
         content = file_response['Body'].read().decode('utf-8')
@@ -90,12 +89,12 @@ def extract_info_from_text(text):
     return data
 
 
-files_names = get_files_names(s3_client=s3_client, bucket_name=bucket_name)
+files_names = get_files_names(s3_client=s3_client, bucket_name=bucket_nameus)
 
-df = get_file_content(s3_client=s3_client,file_names=files_names ,bucket_name=bucket_name)
+df = get_file_content(s3_client=s3_client,file_names=files_names ,bucket_name=bucket_nameus)
 
 print(df)
 
-df.to_csv('fifth_test.csv', index=False)
+df.to_csv('11jun_us.csv', index=False)
 
-print("DataFrame saved to 'fifth_test.csv'.")
+print("DataFrame saved to '11jun_us.csv'.")

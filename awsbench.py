@@ -2,15 +2,15 @@ import boto3
 import pricing_handler as aws
 import os
 from constants import instance_info, path_private_key, imageId_sa, imageId_us, sg_sa, sg_us, key_name_sa, \
-    key_name_us, imageID_us_arm
+    key_name_us, imageID_us_arm, imageID_sa_arm , bucket_namesa, bucket_nameus, instance_infosa
 import paramiko
 import time
 from datetime import datetime
 import click
 
 instance_types, instance_cores = [], []
-for k, v in instance_info.items():
-    instance_types.append(k), instance_cores.append(v)
+
+
 
 aws_acess_key_id = os.getenv('AWS_KEY_ID')
 aws_acess_secret_key = os.getenv('AWS_SECRET_KEY')
@@ -70,6 +70,10 @@ def benchmark(region, zone, number_exec, compile):
     :param number_executions:
     :return:
     """
+
+    for k, v in instance_infosa.items():
+        instance_types.append(k), instance_cores.append(v)
+
     for i in range(len(instance_types)):
         try:
             session = boto3.Session(
@@ -91,10 +95,16 @@ def benchmark(region, zone, number_exec, compile):
                 else:
                     imageId = imageId_us
 
+                bucket_name = bucket_nameus
                 sg = sg_us
                 key_name = key_name_us
             else:
-                imageId = imageId_sa
+
+                if 'g' in instance_types[i].split('.')[0]:
+                    imageId = imageID_sa_arm
+                else:
+                    imageId = imageId_sa
+                bucket_name = bucket_namesa
                 sg = sg_sa
                 key_name = key_name_sa
 
@@ -139,7 +149,9 @@ def benchmark(region, zone, number_exec, compile):
         except Exception as e:
             print(e)
             print(f'Tipo da instância com erro: {instance_types[i]}')
-
+            waiter = ec2_client.get_waiter('instance_terminated')
+            waiter.wait(InstanceIds=[instance.id])
+            print(f"Instance terminated:{region}:{instance_types[i]} - {instance.id}")
 
 if __name__ == '__main__':
     benchmark()
