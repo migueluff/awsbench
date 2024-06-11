@@ -13,30 +13,25 @@ class AWSConfig:
     bucket_name = 'awsbenchmiguel'
 
     image_setup = {
-        'us-east-2_x86': {
-            'imageId': 'ami-09040d770ffe2224f',
-            'sg': 'sg-0a0e007b42a445d0e',
-            'key_name': 'aws_key2'
-        },
         'us-east-1_x86': {
-            'imageId': 'ami-01c525d817b06bbda',
+            'imageId': 'ami-0181593242c397dbc',
             'sg': 'sg-0552b31e4e34033d1',
-            'key_name': 'miguel_uff'
+            'key_name': 'miguel_pc_uffus'
         },
         'sa-east-1_x86': {
-            'imageId': 'ami-011a75089588f3f88',
+            'imageId': 'ami-004b93279410efd73',
             'sg': 'sg-0b37e99384d675ca2',
-            'key_name': 'miguel_uff_sa'
+            'key_name': 'miguel_pc_uffsa'
         },
         'us-east-1_arm': {
-            'imageId': 'ami-01a2cf5434bbbd75f',
+            'imageId': 'ami-082628d95a1f16ab9',
             'sg': 'sg-0552b31e4e34033d1',
-            'key_name': 'miguel_uff'
+            'key_name': 'miguel_pc_uffus'
         },
         'sa-east-1_arm': {
-            'imageId': 'ami-04c591ef4b3cdb92a',
+            'imageId': 'ami-01c82e87fdaf78361',
             'sg': 'sg-0b37e99384d675ca2',
-            'key_name': 'miguel_uff_sa'
+            'key_name': 'miguel_pc_uffsa'
         }
     }
 

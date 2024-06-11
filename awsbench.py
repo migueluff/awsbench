@@ -9,15 +9,48 @@ from datetime import datetime
 #import click
 from pathlib import Path
 import argparse
+import pandas as pd
+from datetime import datetime
+def extract_info_from_text(text):
+    data = {
+        "algorithm_name":'EP Benchmark',
+        "Class": None,
+        "Time_in_Seconds": None,
+        "Total_Threads": None,
+        "Available_Threads": None,
+        "Mops_total": None,
+        "Mops_per_thread": None,
+        "Ondemand_price": None,
+        "Spot_price": None
+    }
+
+    # Regular expressions to match each line of interest
+    regex_patterns = {
+        "Class": re.compile(r"Class\s*=\s*(\S+)"),
+        "Time_in_Seconds": re.compile(r"Time in seconds\s*=\s*([\d.]+)"),
+        "Total_Threads": re.compile(r"Total threads\s*=\s*(\d+)"),
+        "Available_Threads": re.compile(r"Avail threads\s*=\s*(\d+)"),
+        "Mops_total": re.compile(r"Mop/s\s*total\s*=\s*([\d.]+)", re.IGNORECASE),
+        "Mops_per_thread": re.compile(r"Mop/s/thread\s*=\s*([\d.]+)", re.IGNORECASE),
+        "Ondemand_price": re.compile(r"Ondemand_price:\s+([\d.]+)"),
+        "Spot_price": re.compile(r"Spot_price:\s+([\d.]+)")
+    }
+
+    for key, pattern in regex_patterns.items():
+        match = pattern.search(text)
+        if match:
+            data[key] = match.group(1)
+
+    return data
 
 
 def run_via_ssh(cmd, instance):
-    k = paramiko.RSAKey.from_private_key_file("/home/luan/aws_key2.pem")
     c = paramiko.SSHClient()
     c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    c.connect(hostname=instance.public_dns_name, 
-              username="ubuntu", 
-              pkey=k, 
+    path_key = '/home/miguel/.ssh/miguel_pc_uffsa.pem'
+    c.connect(instance.public_ip_address,
+              username="ubuntu",
+              key_filename=path_key,
               allow_agent=False, look_for_keys=False)
     stdin, stdout, stderr = c.exec_command(cmd)
     output = stdout.read().decode()
@@ -89,26 +122,39 @@ def benchmark(region, repetions, json_file):
     :param repetitions: Number of executions inside the instance
     :return:
     """
+
     json_file = Path(json_file)
 
     if not json_file.exists():
         print(f"File {json_file} not found")
         raise FileNotFoundError
     benchmark_config = BenchmarkConfig(json_file=json_file)
-    
-    for instance_type, instance_core in benchmark_config.vms.items():
-        ondemand_price = aws.get_price_ondemand(region, instance_type)
-        #spot_price = aws.get_price_spot(region, instance_type)
-        #instance = start_instance(region, instance_type)
-        instance = get_instance(region, 'i-05243c319ad6847ee')
 
+    df = pd.DataFrame(columns=benchmark_config.columns)
+    star_test = datetime.now()
+    csv_name = f"{region}_{star_test.year}-{star_test.month:02d}-{star_test.day:02d}_{star_test.strftime('%H-%M-%S')}.csv"
+
+    for instance_type, instance_core in benchmark_config.vms.items():
+
+        ondemand_price = aws.get_price_ondemand(region, instance_type)
+        spot_price = aws.get_price_spot(region, instance_type, region+AWSConfig.zone_letter)
+        instance = start_instance(region, instance_type)
+        #instance = get_instance(region, 'i-068ee0206841f4643')
+        time.sleep(5)
         for i in range(repetions):
-            output = run_via_ssh(cmd='ls', instance=instance)
+
+            output = run_via_ssh(cmd='./ep.D.x', instance=instance)
             print(output)
-        
+            info = extract_info_from_text(output)
+            info['region'] = region
+            info['Instance_name'] = instance_type
+            info['timestamp'] = datetime.now()
+            df.loc[len(df)] = info
+
+
         instance.terminate()
 
-
+    df.to_csv(csv_name, index=False)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Benchmark AWS')
