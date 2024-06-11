@@ -95,6 +95,6 @@ df = get_file_content(s3_client=s3_client,file_names=files_names ,bucket_name=bu
 
 print(df)
 
-df.to_csv('11jun_us.csv', index=False)
+df.to_csv('test.csv', index=False)
 
 print("DataFrame saved to '11jun_us.csv'.")

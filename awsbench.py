@@ -2,7 +2,7 @@ import boto3
 import pricing_handler as aws
 import os
 from constants import instance_info, path_private_key, imageId_sa, imageId_us, sg_sa, sg_us, key_name_sa, \
-    key_name_us, imageID_us_arm, imageID_sa_arm , bucket_namesa, bucket_nameus, instance_infosa
+    key_name_us, imageID_us_arm, imageID_sa_arm , bucket_namesa, bucket_nameus
 import paramiko
 import time
 from datetime import datetime
@@ -20,7 +20,7 @@ def compile_benc(host, path_private_key, user='ubuntu'):
     cliente_ssh = paramiko.SSHClient()
 
     cliente_ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
+    private_key = paramiko.RSAKey.from_private_key_file(filename=path_private_key)
     cliente_ssh.connect(hostname=host, username=user, key_filename=path_private_key)
 
     stdin, stdout, stderr = cliente_ssh.exec_command(
@@ -34,8 +34,8 @@ def run(host, path_private_key, index, user='ubuntu'):
     cliente_ssh = paramiko.SSHClient()
 
     cliente_ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-    cliente_ssh.connect(hostname=host, username=user, key_filename=path_private_key)
+    private_key = paramiko.RSAKey.from_private_key_file(filename=path_private_key)
+    cliente_ssh.connect(hostname=host, username=user, key_filename=private_key)
 
     stdin, stdout, stderr = cliente_ssh.exec_command(
         f'export OMP_NUM_THREADS={instance_cores[index]};./ep.D.x > out.out;cat out.out')
@@ -71,7 +71,7 @@ def benchmark(region, zone, number_exec, compile):
     :return:
     """
 
-    for k, v in instance_infosa.items():
+    for k, v in instance_info.items():
         instance_types.append(k), instance_cores.append(v)
 
     for i in range(len(instance_types)):
@@ -86,7 +86,7 @@ def benchmark(region, zone, number_exec, compile):
             ec2_client = session.client('ec2')
 
             ondemand_price = aws.get_price_ondemand(region, instance_types[i])
-            spot_price = aws.get_price_spot(region, instance_types[i])
+            spot_price = aws.get_price_spot(region, instance_types[i], region + zone)
 
             if region == 'us-east-1':
 
@@ -149,9 +149,9 @@ def benchmark(region, zone, number_exec, compile):
         except Exception as e:
             print(e)
             print(f'Tipo da instância com erro: {instance_types[i]}')
-            waiter = ec2_client.get_waiter('instance_terminated')
-            waiter.wait(InstanceIds=[instance.id])
-            print(f"Instance terminated:{region}:{instance_types[i]} - {instance.id}")
+            #waiter = ec2_client.get_waiter('instance_terminated')
+            #waiter.wait(InstanceIds=[instance.id])
+            #print(f"Instance terminated:{region}:{instance_types[i]} - {instance.id}")
 
 if __name__ == '__main__':
     benchmark()

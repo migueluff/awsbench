@@ -46,12 +46,13 @@ def __get_region_name(region_code):
         return default_region
 
 
-def get_price_spot(region_name, instance_type):
+def get_price_spot(region_name, instance_type, availability_zone):
     client_ec2 = boto3.client('ec2', region_name=region_name)
     response = client_ec2.describe_spot_price_history(
         ProductDescriptions=['Linux/UNIX'],
         InstanceTypes=[instance_type],
-        MaxResults=1
+        MaxResults=1,
+        AvailabilityZone=availability_zone
     )
     spot_price = response['SpotPriceHistory'][0]['SpotPrice']
     return spot_price
