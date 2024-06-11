@@ -1,54 +1,28 @@
+import aws_bench.pricing_handler as aws
+from aws_bench.constants import AWSConfig, SSHConfig, BenchmarkConfig
+
 import boto3
-import pricing_handler as aws
 import os
-from constants import instance_info, path_private_key, imageId_sa, imageId_us, sg_sa, sg_us, key_name_sa, \
-    key_name_us, imageID_us_arm, imageID_sa_arm , bucket_namesa, bucket_nameus, instance_infosa
 import paramiko
 import time
 from datetime import datetime
-import click
-
-instance_types, instance_cores = [], []
-
-
-
-aws_acess_key_id = os.getenv('AWS_KEY_ID')
-aws_acess_secret_key = os.getenv('AWS_SECRET_KEY')
+#import click
+from pathlib import Path
+import argparse
 
 
-def compile_benc(host, path_private_key, user='ubuntu'):
-    cliente_ssh = paramiko.SSHClient()
-
-    cliente_ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-    cliente_ssh.connect(hostname=host, username=user, key_filename=path_private_key)
-
-    stdin, stdout, stderr = cliente_ssh.exec_command(
-        f'cd NPB3.4.2/NPB3.4-OMP;sudo make ep CLASS=D;cp /home/ubuntu/NPB3.4.2/NPB3.4-OMP/bin/ep.D.x /home/ubuntu/;cp ~')
-    print(stdout.read().decode())
-
-    cliente_ssh.close()
-
-
-def run(host, path_private_key, index, user='ubuntu'):
-    cliente_ssh = paramiko.SSHClient()
-
-    cliente_ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-    cliente_ssh.connect(hostname=host, username=user, key_filename=path_private_key)
-
-    stdin, stdout, stderr = cliente_ssh.exec_command(
-        f'export OMP_NUM_THREADS={instance_cores[index]};./ep.D.x > out.out;cat out.out')
-
-    output = str(stdout.read().decode())
-    cliente_ssh.close()
+def run_via_ssh(cmd, instance):    
+    k = paramiko.RSAKey.from_private_key_file("/home/luan/aws_key2.pem")
+    c = paramiko.SSHClient()
+    c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    c.connect(hostname=instance.public_dns_name, 
+              username="ubuntu", 
+              pkey=k, 
+              allow_agent=False, look_for_keys=False)
+    stdin, stdout, stderr = c.exec_command(cmd)
+    output = stdout.read().decode()
+    c.close()
     return output
-
-
-def save_s3_file(content, region, bucket, file_name):
-    s3_client = boto3.client('s3', region_name=region)
-    s3_client.put_object(Body=content, Bucket=bucket, Key=file_name)
-    print(f"Content uploaded to bucket {bucket} as {file_name}")
 
 
 def get_file_name(region, instance):
@@ -57,101 +31,94 @@ def get_file_name(region, instance):
     file_name = f'{region}-{instance}-{datetime_str}.txt'
     return file_name
 
+def start_instance(region, instance_type):
+    
+    session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
+                            aws_secret_access_key=AWSConfig.aws_acess_secret_key,
+                            region_name=region)
+    
+    ec2 = session.resource('ec2')
 
-@click.command()
-@click.argument("region", default="us-east-1")
-@click.option("-z", "--zone", default="a", required=True, help="Define a availability zone")
-@click.option("-n", "--number-exec", default=5, required=True, help="Define a number of executions")
-@click.option("-c", "--compile", is_flag=True, default=False, help="If define, Save report in current directory")
-def benchmark(region, zone, number_exec, compile):
+    architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
+    dict_key = f'{region}_{architecture}'    
+
+    instances = ec2.create_instances(
+        ImageId=AWSConfig.image_setup[dict_key]['imageId'],
+        MinCount=1,
+        MaxCount=1,
+        InstanceType=instance_type,
+        KeyName=AWSConfig.image_setup[dict_key]['key_name'],
+        SecurityGroupIds=[AWSConfig.image_setup[dict_key]['sg']],
+        Placement={'AvailabilityZone': region + AWSConfig.zone_letter}
+    )
+    
+    assert len(instances) == 1 # only one instance should be created
+    
+    instance = instances[0]
+
+    
+    instance.wait_until_running()
+    instance.reload()
+    print(f'Tipo da instância: {instance_type}')
+    print(f'Instância criada com ID: {instance.id}')
+    print(f'Endereço Público: {instance.public_ip_address}')
+    print(f'Endereço Privado: {instance.private_ip_address}')
+    print(f'Endereço DNS Name: {instance.public_dns_name}')    
+
+    return instance
+   
+def get_instance(region, instance_id):
+    session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
+                            aws_secret_access_key=AWSConfig.aws_acess_secret_key,
+                            region_name=region)
+    
+    ec2 = session.resource('ec2')
+    instance = ec2.Instance(instance_id)
+    print(f'Tipo da instância: {instance.instance_type}')
+    print(f'Instância criada com ID: {instance.id}')
+    print(f'Endereço Público: {instance.public_ip_address}')
+    print(f'Endereço Privado: {instance.private_ip_address}')
+    print(f'Endereço DNS Name: {instance.public_dns_name}')   
+
+    return instance
+
+def benchmark(region, repetions, json_file):
     """
-    :param region:
-    :param availability_zone:
-    :param number_executions:
+    :param region: Define the AWS region that the instance will be created
+    :param availability_zone: Define the AWS availability zone that the instance will be created 
+    :param repetitions: Number of executions inside the instance
     :return:
     """
+    json_file = Path(json_file)
 
-    for k, v in instance_infosa.items():
-        instance_types.append(k), instance_cores.append(v)
+    if not json_file.exists():
+        print(f"File {json_file} not found")
+        raise FileNotFoundError
 
-    for i in range(len(instance_types)):
-        try:
-            session = boto3.Session(
-                aws_access_key_id=aws_acess_key_id,
-                aws_secret_access_key=aws_acess_secret_key,
-                region_name=region
-            )
+    benchmark_config = BenchmarkConfig(json_file=json_file)
+    
+    for instance_type, instance_core in benchmark_config.vms.items():
+        ondemand_price = aws.get_price_ondemand(region, instance_type)
+        #spot_price = aws.get_price_spot(region, instance_type)
+        #instance = start_instance(region, instance_type)
+        instance = get_instance(region, 'i-05243c319ad6847ee')
 
-            ec2 = session.resource('ec2')
-            ec2_client = session.client('ec2')
-
-            ondemand_price = aws.get_price_ondemand(region, instance_types[i])
-            spot_price = aws.get_price_spot(region, instance_types[i])
-
-            if region == 'us-east-1':
-
-                if 'g' in instance_types[i].split('.')[0]:
-                    imageId = imageID_us_arm
-                else:
-                    imageId = imageId_us
-
-                bucket_name = bucket_nameus
-                sg = sg_us
-                key_name = key_name_us
-            else:
-
-                if 'g' in instance_types[i].split('.')[0]:
-                    imageId = imageID_sa_arm
-                else:
-                    imageId = imageId_sa
-                bucket_name = bucket_namesa
-                sg = sg_sa
-                key_name = key_name_sa
-
-            availability_zone = region + zone
-            instances = ec2.create_instances(
-                ImageId=imageId,
-                MinCount=1,
-                MaxCount=1,
-                InstanceType=instance_types[i],
-                KeyName=key_name,
-                SecurityGroupIds=[sg],
-                Placement={'AvailabilityZone': availability_zone}
-            )
-
-            for instance in instances:
-                instance.wait_until_running()
-                instance.reload()  # Atualiza os atributos da instância
-                print(f'Tipo da instância: {instance_types[i]}')
-                print(f'Instância criada com ID: {instance.id}')
-                print(f'Endereço Público: {instance.public_ip_address}')
-                print(f'Endereço Privado: {instance.private_ip_address}')
-                print(f'Endereço DNS Name: {instance.public_dns_name}')
-
-            time.sleep(5)
-            number_exec = int(number_exec)
-            print(number_exec)
-            if compile:
-                compile_benc(host=instance.public_dns_name, path_private_key=path_private_key)
-            for j in range(number_exec):
-                content = run(host=instance.public_dns_name, index=j, path_private_key=path_private_key)
-                content = content + '\nOndemand_price: ' + str(ondemand_price) + '\nSpot_price: ' + str(
-                    spot_price) + '\n'
-                save_s3_file(content=content, region=region, bucket='awsbenchmiguel',
-                             file_name=get_file_name(region=region, instance=instance_types[i]))
-
-            response = ec2_client.terminate_instances(InstanceIds=[instance.id])
-            waiter = ec2_client.get_waiter('instance_terminated')
-            waiter.wait(InstanceIds=[instance.id])
-            print(f"Instance terminated:{region}:{instance_types[i]} - {instance.id}")
+        for i in range(repetions):
+            output = run_via_ssh(cmd='ls', instance=instance)
+            print(output)
+        
+        instance.terminate()
 
 
-        except Exception as e:
-            print(e)
-            print(f'Tipo da instância com erro: {instance_types[i]}')
-            waiter = ec2_client.get_waiter('instance_terminated')
-            waiter.wait(InstanceIds=[instance.id])
-            print(f"Instance terminated:{region}:{instance_types[i]} - {instance.id}")
 
 if __name__ == '__main__':
-    benchmark()
+    
+    parser = argparse.ArgumentParser(description='Benchmark AWS')
+    parser.add_argument('region', type=str, help='AWS region')
+    parser.add_argument('json_file', type=str, help='Json file with instances configurations')
+    parser.add_argument('--repetitions', type=int, default=5, help='Number of repetitions')    
+    args = parser.parse_args()
+    benchmark(args.region, args.repetitions, args.json_file)
+    
+    #benchmark('us-east-1', 1, 'instance_info.json')
+    #benchmark('sa-east-1', 1, 'instance_info.json')
