@@ -5,6 +5,8 @@ import os
 class SSHConfig:
     json_path = 'instance_info.json'    
     ssh_key = os.getenv('SSH_KEY_AWS')
+    path_key_us = '/home/miguelflj/.ssh/miguel_uff.pem'
+    path_key_sa = '/home/miguelflj/.ssh/miguel_uff_sa.pem'
 
 class AWSConfig:
     aws_acess_key_id = os.getenv('AWS_KEY_ID')
@@ -16,22 +18,26 @@ class AWSConfig:
         'us-east-1_x86': {
             'imageId': 'ami-0181593242c397dbc',
             'sg': 'sg-0552b31e4e34033d1',
-            'key_name': 'miguel_pc_uffus'
+            #'key_name': 'miguel_pc_uffus'
+            'key_name': 'miguel_uff'
         },
         'sa-east-1_x86': {
             'imageId': 'ami-004b93279410efd73',
             'sg': 'sg-0b37e99384d675ca2',
-            'key_name': 'miguel_pc_uffsa'
+            #'key_name': 'miguel_pc_uffsa'
+            'key_name': 'miguel_uff_sa'
         },
         'us-east-1_arm': {
             'imageId': 'ami-082628d95a1f16ab9',
             'sg': 'sg-0552b31e4e34033d1',
-            'key_name': 'miguel_pc_uffus'
+            #'key_name': 'miguel_pc_uffus'
+            'key_name': 'miguel_uff'
         },
         'sa-east-1_arm': {
             'imageId': 'ami-01c82e87fdaf78361',
             'sg': 'sg-0b37e99384d675ca2',
-            'key_name': 'miguel_pc_uffsa'
+            #'key_name': 'miguel_pc_uffsa'
+            'key_name': 'miguel_uff_sa'
         }
     }
 
