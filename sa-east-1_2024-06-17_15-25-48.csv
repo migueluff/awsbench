@@ -1,0 +1,7 @@
+algorithm_name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_total,Mops_per_thread,region,Instance_name,timestamp,Ondemand_price,Spot_price,STATUS
+EP Benchmark,D,38.42,48,48,3577.18,74.52,sa-east-1a,c5a.12xlarge,2024-06-17 15:26:51.849108,2.8320000000,0.353300,SUCCESS
+EP Benchmark,D,38.31,48,48,3587.31,74.74,sa-east-1a,c5a.12xlarge,2024-06-17 15:27:30.509260,2.8320000000,0.353300,SUCCESS
+EP Benchmark,D,38.26,48,48,3592.00,74.83,sa-east-1a,c5a.12xlarge,2024-06-17 15:28:09.126328,2.8320000000,0.353300,SUCCESS
+EP Benchmark,D,38.41,48,48,3578.47,74.55,sa-east-1a,c5a.12xlarge,2024-06-17 15:28:47.895250,2.8320000000,0.353300,SUCCESS
+EP Benchmark,D,38.37,48,48,3581.98,74.62,sa-east-1a,c5a.12xlarge,2024-06-17 15:29:26.632003,2.8320000000,0.353300,SUCCESS
+EP Benchmark,,,,,,,sa-east-1a,c5a.12xlarge,2024-06-17 15:29:26.636964,,,

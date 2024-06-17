@@ -1195,3 +1195,15 @@ Exception: Max retries reached. Could not create instance.
 2024-06-17 13:55:36 - INFO - NumExpr defaulting to 8 threads.
 2024-06-17 14:10:32 - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 2024-06-17 14:10:32 - INFO - NumExpr defaulting to 8 threads.
+2024-06-17 15:11:29 - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-06-17 15:11:29 - INFO - NumExpr defaulting to 8 threads.
+2024-06-17 15:11:29 - INFO - Start execution in sa-east-1 N=5 JsonFile=instance_infosa.json
+2024-06-17 15:11:30 - ERROR - <EC2Manager>: Error to create instance
+2024-06-17 15:11:30 - ERROR - 'InstanceMarketOptions'
+2024-06-17 15:11:35 - ERROR - An exception occurred:'NoneType' object has no attribute 'public_ip_address'
+Traceback (most recent call last):
+  File "/home/miguel/Documents/awsbench/awsbench/awsbench.py", line 224, in benchmark
+    output = run_via_ssh(cmd='./ep.D.x', instance=instance, region=region)
+  File "/home/miguel/Documents/awsbench/awsbench/awsbench.py", line 67, in run_via_ssh
+    c.connect(instance.public_ip_address,
+AttributeError: 'NoneType' object has no attribute 'public_ip_address'

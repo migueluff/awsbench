@@ -17,27 +17,31 @@ import logging
 from aws_bench.constants import LogConfig
 
 
-def extract_info_from_text(text, region, instance_type,ondemand_price,spot_price, df):
+def extract_info_from_text(text, info, df):
     data = {
-        "algorithm_name": 'EP Benchmark',
+        "Start_Time": info['Start_Time'],
+        "End_Time": info['End_Time'],
+        "Instance": info['Instance'],
+        "Ondemand_Price": info['Ondemand_Price'],
+        "Spot_Price": info['Spot_Price'],
+        "Region": info['Region'],
+        "Zone": info['Zone'],
+        "Algorithm_Name": info["Algorithm_Name"],
         "Class": None,
         "Time_in_Seconds": None,
         "Total_Threads": None,
         "Available_Threads": None,
-        "Mops_total": None,
-        "Mops_per_thread": None,
-        "Ondemand_price": None,
-        "Spot_price": None
+        "Mops_Total": None,
+        "Mops_per_Thread": None,
+        "Status": info['Status'],
     }
-
-    # Regular expressions to match each line of interest
     regex_patterns = {
         "Class": re.compile(r"Class\s*=\s*(\S+)"),
         "Time_in_Seconds": re.compile(r"Time in seconds\s*=\s*([\d.]+)"),
         "Total_Threads": re.compile(r"Total threads\s*=\s*(\d+)"),
         "Available_Threads": re.compile(r"Avail threads\s*=\s*(\d+)"),
-        "Mops_total": re.compile(r"Mop/s\s*total\s*=\s*([\d.]+)", re.IGNORECASE),
-        "Mops_per_thread": re.compile(r"Mop/s/thread\s*=\s*([\d.]+)", re.IGNORECASE)
+        "Mops_Total": re.compile(r"Mop/s\s*total\s*=\s*([\d.]+)", re.IGNORECASE),
+        "Mops_per_Thread": re.compile(r"Mop/s/thread\s*=\s*([\d.]+)", re.IGNORECASE)
 
     }
 
@@ -45,13 +49,9 @@ def extract_info_from_text(text, region, instance_type,ondemand_price,spot_price
         match = pattern.search(text)
         if match:
             data[key] = match.group(1)
+        else:
+            data[key] = None
 
-    data['region'] = region + AWSConfig.zone_letter
-    data['Instance_name'] = instance_type
-    data['timestamp'] = datetime.now()
-    data['Ondemand_price'] = ondemand_price
-    data['Spot_price'] = spot_price
-    data['STATUS'] = 'SUCCESS'
     df.loc[len(df)] = data
     return df
 
@@ -98,10 +98,10 @@ def __start_instance(region, instance_type, info={}):
                                               MaxCount=1,
                                               MinCount=1,
                                               SecurityGroupIds=[AWSConfig.image_setup[dict_key]['sg']],
-                                              InstanceMarketOptions=info['InstanceMarketOptions'],
+                                              InstanceMarketOptions=info,
                                               TagSpecifications=[{'ResourceType': 'instance',
-                                                                  'Tags': [{'Key': 'awsbench',
-                                                                            'Value': 'true'}]}])
+                                                                  'Tags': [{'Key': 'Name',
+                                                                            'Value': 'awsbench'}]}])
 
         assert len(instances) == 1  # only one instance should be created
         instance = instances[0]
@@ -115,13 +115,13 @@ def __start_instance(region, instance_type, info={}):
 
         return instance
 
-    except Exception as e:
+    except ClientError as e:
+        BenchmarkConfig.STATUS = e.response['Error']['Code']
         logging.error("<EC2Manager>: Error to create instance")
-        logging.error(e)
         return None
 
 
-def _terminate_instance(self, instance):
+def _terminate_instance(instance):
     # if instance is spot, we have to remove its request
     client = boto3.client('ec2', region_name=instance.placement['AvailabilityZone'][:-1])
 
@@ -153,22 +153,21 @@ def get_instance(region, instance_id):
     return instance
 
 
-def instance_error(region, instance_type, df):
-    data = {"algorithm_name": 'EP Benchmark', "Class": None, "Time_in_Seconds": None, "Total_Threads": None,
-            "Available_Threads": None, "Mops_total": None, "Mops_per_thread": None,
-            'region': region + AWSConfig.zone_letter,
-            'Instance_name': instance_type,'timestamp':datetime.now() ,"Ondemand_price": None, "Spot_price": None,"STATUS":BenchmarkConfig.STATUS}
-    df.loc[len(df)] = data
-    return df
+
 
 def is_available(region, instance_type):
+
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
                             aws_secret_access_key=AWSConfig.aws_acess_secret_key,
                             region_name=region)
 
     ec2 = session.client('ec2')
-    response = ec2.describe_instance_types(InstanceTypes=[instance_type])
-    return len(response['InstanceTypes']) > 0
+    try:
+        response = ec2.describe_instance_types(InstanceTypes=[instance_type])
+        return len(response['InstanceTypes']) > 0
+    except ClientError as e:
+        return False
+
 
 def benchmark(args):
     """
@@ -191,6 +190,7 @@ def benchmark(args):
     benchmark_config = BenchmarkConfig(json_file=json_file)
 
     df = pd.DataFrame(columns=benchmark_config.columns)
+
     star_test = datetime.now()
     csv_name = f"{region}_{star_test.year}-{star_test.month:02d}-{star_test.day:02d}_{star_test.strftime('%H-%M-%S')}.csv"
 
@@ -198,14 +198,14 @@ def benchmark(args):
 
         # check if the instance is available in the region
 
-        if not is_available(region, instance_type):
-            print(f"Instance {instance_type} not available in {region}")
-            continue
-        
+
+        start_time = datetime.now()
         try:
-            
-            ondemand_price = aws.get_price_ondemand(region, instance_type)
-            spot_price = aws.get_price_spot(region, instance_type, region + AWSConfig.zone_letter)
+            ondemand_price = None
+            spot_price = None
+            if is_available(region, instance_type):
+                ondemand_price = aws.get_price_ondemand(region, instance_type)
+                spot_price = aws.get_price_spot(region, instance_type, region + AWSConfig.zone_letter)
 
             info = {}
             if is_spot:
@@ -216,23 +216,47 @@ def benchmark(args):
                         'SpotInstanceType': 'persistent',
                         'InstanceInterruptionBehavior': 'terminate'}
                     }
-            
+
             instance = __start_instance(region, instance_type, info)
-            
-            time.sleep(5)
-            for i in range(repetions):
-                output = run_via_ssh(cmd='./ep.D.x', instance=instance, region=region)
-                #print(output)
-                df = extract_info_from_text(output, region, instance_type, ondemand_price, spot_price, df)
-            
-            _terminate_instance(instance)
+
+            if instance:
+
+                time.sleep(5)
+
+                for i in range(repetions):
+                    output = run_via_ssh(cmd=f'export OMP_NUM_THREADS={instance_core};./ep.D.x', instance=instance, region=region)
+                    info_output = {
+                        "Start_Time": start_time,
+                        "End_Time": datetime.now(),
+                        "Instance": instance_type,
+                        "Ondemand_Price": ondemand_price,
+                        "Spot_Price": spot_price,
+                        "Region": region,
+                        "Zone": instance.placement['AvailabilityZone'][-1:],
+                        "Algorithm_Name": 'NAS Benchmark',
+                        "Status": 'SUCCESS'
+                    }
+                    df = extract_info_from_text(output, info_output, df)
+
+                _terminate_instance(instance)
+            else:
+                raise Exception(f'Instance {instance_type} not available')
         
         except Exception as e:
-            logging.exception(f'An exception occurred:{e}')
-            df = instance_error(region, instance_type, df)
-            
+            info_output = {
+                "Start_Time": start_time,
+                "End_Time": datetime.now(),
+                "Instance": instance_type,
+                "Ondemand_Price": None,
+                "Spot_Price": None,
+                "Region": region,
+                "Zone": None,
+                "Algorithm_Name": 'NAS Benchmark',
+                "Status": benchmark_config.STATUS
+            }
+            df = extract_info_from_text('', info_output, df)
 
-
+    logging.info(f'Saving file: {csv_name}')
     df.to_csv(csv_name, index=False)
 
 
