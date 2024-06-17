@@ -117,7 +117,7 @@ def __start_instance(region, instance_type, info={}):
 
     except ClientError as e:
         BenchmarkConfig.STATUS = e.response['Error']['Code']
-        logging.error("<EC2Manager>: Error to create instance")
+        logging.error(f"<EC2Manager>: Error to create instance: {e}")
         return None
 
 
@@ -213,7 +213,7 @@ def benchmark(args):
                     'MarketType': 'spot',
                     'SpotOptions': {
                         'MaxPrice': str(ondemand_price),
-                        'SpotInstanceType': 'persistent',
+                        'SpotInstanceType': 'one-time',
                         'InstanceInterruptionBehavior': 'terminate'}
                     }
 
