@@ -1183,3 +1183,15 @@ Exception: Max retries reached. Could not create instance.
 2024-06-17 12:53:18 - INFO - NumExpr defaulting to 8 threads.
 2024-06-17 12:53:18 - INFO - Start execution in sa-east-1 N=5 JsonFile=instance_info.json
 2024-06-17 12:53:18 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-17 13:31:02 - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-06-17 13:31:02 - INFO - NumExpr defaulting to 8 threads.
+2024-06-17 13:31:02 - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-06-17 13:31:02 - INFO - NumExpr defaulting to 8 threads.
+2024-06-17 13:31:02 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-17 13:31:02 - INFO - Start execution in sa-east-1 N=5 JsonFile=instance_info.json
+2024-06-17 13:47:44 - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-06-17 13:47:44 - INFO - NumExpr defaulting to 8 threads.
+2024-06-17 13:55:36 - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-06-17 13:55:36 - INFO - NumExpr defaulting to 8 threads.
+2024-06-17 14:10:32 - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-06-17 14:10:32 - INFO - NumExpr defaulting to 8 threads.

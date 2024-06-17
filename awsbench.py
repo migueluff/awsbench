@@ -90,52 +90,33 @@ def start_instance(region, instance_type, max_retries=3, retry_backoff=2):
 
     architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
     dict_key = f'{region}_{architecture}'
-    azs = ['a','b','c']
-    retry_count = 0
-    while retry_count < max_retries:
-        for az in azs:
-            try:
-                instances = ec2.create_instances(
-                    ImageId=AWSConfig.image_setup[dict_key]['imageId'],
-                    MinCount=1,
-                    MaxCount=1,
-                    InstanceType=instance_type,
-                    KeyName=AWSConfig.image_setup[dict_key]['key_name'],
-                    SecurityGroupIds=[AWSConfig.image_setup[dict_key]['sg']],
-                    Placement={'AvailabilityZone': region+az}
-                )
 
-                assert len(instances) == 1  # only one instance should be created
+    try:
+        instances = ec2.create_instances(
+            ImageId=AWSConfig.image_setup[dict_key]['imageId'],
+            MinCount=1,
+            MaxCount=1,
+            InstanceType=instance_type,
+            KeyName=AWSConfig.image_setup[dict_key]['key_name'],
+            SecurityGroupIds=[AWSConfig.image_setup[dict_key]['sg']],
+        )
 
-                instance = instances[0]
-                AWSConfig.zone_letter = az
-                instance.wait_until_running()
-                instance.reload()
-                print(f'Tipo da instância: {instance_type}')
-                print(f'Instância criada com ID: {instance.id}')
-                print(f'Endereço Público: {instance.public_ip_address}')
-                print(f'Endereço Privado: {instance.private_ip_address}')
-                print(f'Endereço DNS Name: {instance.public_dns_name}')
+        assert len(instances) == 1  # only one instance should be created
 
-                return instance
-            except ClientError as e:
-                print(f'Error in {az}: {e}')
-                logging.exception(f'Error in {region+az}: {e}')
-                if 'InsufficientInstanceCapacity' in str(e):
-                    print('InsufficientInstanceCapacity')
-                    BenchmarkConfig.STATUS = 'InsufficientInstanceCapacity'
-                    continue
-                elif 'Unsupported' in str(e):
-                    BenchmarkConfig.STATUS = 'Unsupported'
-                    retry_count = max_retries # sai do laço, nao vai arrumar a instância
-                else:
-                    BenchmarkConfig.STATUS = 'Error'
-                    raise
-        retry_count += 1
-        wait_time = retry_backoff ** retry_count
-        print(f"Retrying in {wait_time} seconds...")
-        time.sleep(wait_time)
-        raise Exception("Max retries reached. Could not create instance.")
+        instance = instances[0]
+        AWSConfig.zone_letter = az
+        instance.wait_until_running()
+        instance.reload()
+        print(f'Tipo da instância: {instance_type}')
+        print(f'Instância criada com ID: {instance.id}')
+        print(f'Endereço Público: {instance.public_ip_address}')
+        print(f'Endereço Privado: {instance.private_ip_address}')
+        print(f'Endereço DNS Name: {instance.public_dns_name}')
+
+        return instance
+    except ClientError as e:
+        BenchmarkConfig.STATUS = e['Error']['Code']
+        logging.exception(f'Error in {region+}: {e['Error']['Code']}')
 
 
 def start_spot_instance(region, instance_type):
@@ -146,45 +127,38 @@ def start_spot_instance(region, instance_type):
     ec2_client = session.client('ec2')
     architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
     dict_key = f'{region}_{architecture}'
-    spot_request = {
-        'InstanceCount': 1,
-        'Type': 'one-time',
-        'LaunchSpecification': {
-            'ImageId': AWSConfig.image_setup[dict_key]['imageId'],
-            'InstanceType': instance_type,
-            'KeyName': AWSConfig.image_setup[dict_key]['key_name'],
-            'SecurityGroupIds': [AWSConfig.image_setup[dict_key]['sg']],
-            'Placement': {
-                'AvailabilityZone': region + AWSConfig.zone_letter
+    try:
+        response = ec2_client.request_spot_instances(
+            InstanceCount=1,
+            Type='one-time',
+            LaunchSpecification={
+                'ImageId': AWSConfig.image_setup[dict_key]['imageId'],
+                'InstanceType': instance_type,
+                'KeyName': AWSConfig.image_setup[dict_key]['key_name'],
+                'SecurityGroupIds': [AWSConfig.image_setup[dict_key]['sg']]
             }
-        }
-    }
-    response = ec2_client.request_spot_instances(**spot_request)
-    spot_instance_request_ids = [req['SpotInstanceRequestId'] for req in response['SpotInstanceRequests']]
-    print(f"Spot Instance Request IDs: {spot_instance_request_ids}")
+        )
+        spot_instance_request_ids = [req['SpotInstanceRequestId'] for req in response['SpotInstanceRequests']]
+        print(f"Spot Instance Request IDs: {spot_instance_request_ids}")
+        instance_ids = []
+        while not instance_ids:
+            describe_response = ec2_client.describe_spot_instance_requests(SpotInstanceRequestIds=spot_instance_request_ids)
+            print("Waiting for Spot Instances to be fulfilled...")
+            for request in describe_response['SpotInstanceRequests']:
+                if 'InstanceId' in request:
+                    instance_ids.append(request['InstanceId'])
+            if not instance_ids:
+                time.sleep(10)
 
+        print(f"Instance IDs: {instance_ids}")
 
-    instance_ids = []
-    while not instance_ids:
-        describe_response = ec2_client.describe_spot_instance_requests(SpotInstanceRequestIds=spot_instance_request_ids)
-        print("Waiting for Spot Instances to be fulfilled...")
-        for request in describe_response['SpotInstanceRequests']:
-            if 'InstanceId' in request:
-                instance_ids.append(request['InstanceId'])
-        if not instance_ids:
-            time.sleep(10)
-
-    print(f"Instance IDs: {instance_ids}")
-
-
-    instances = ec2_client.describe_instances(InstanceIds=instance_ids)
-
-    for reservation in instances['Reservations']:
-        for instance in reservation['Instances']:
-            instance_id = instance['InstanceId']
-            public_dns_name = instance.get('PublicDnsName', 'N/A')
-            print(f"Instance ID: {instance_id}, Public DNS Name: {public_dns_name}")
-
+        instances = ec2_client.describe_instances(InstanceIds=instance_ids)['Reservations'][0]['Instances']
+        assert len(instance_ids) == 1;
+        instance = instances[0]
+        print(f"Instance ID: {instance['InstanceId']}, PublicDnsName: {instance['PublicDnsName']}")
+        return instance
+    except ClientError as e:
+        print(e)
 
 def get_instance(region, instance_id):
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
@@ -241,7 +215,6 @@ def benchmark(region, repetions, json_file):
                 spot_price = ''
 
             instance = start_instance(region, instance_type)
-            # instance = get_instance(region, 'i-068ee0206841f4643')
             time.sleep(5)
             for i in range(repetions):
                 output = run_via_ssh(cmd='./ep.D.x', instance=instance, region=region)
@@ -265,9 +238,10 @@ if __name__ == '__main__':
     parser.add_argument('region', type=str, help='AWS region')
     parser.add_argument('json_file', type=str, help='Json file with instances configurations')
     parser.add_argument('--repetitions', type=int, default=5, help='Number of repetitions')
+    parser.add_argument('--spot', type=bool, default=False, help='If you want spot instances')
     args = parser.parse_args()
     logging.info(f"Start execution in {args.region} N={args.repetitions} JsonFile={args.json_file}")
-    #benchmark(args.region, args.repetitions, args.json_file)
-    start_spot_instance(args.region, 'c5a.12xlarge')
+    benchmark(args.region, args.repetitions, args.json_file)
+    #start_spot_instance(args.region, 'c5a.12xlarge')
     # benchmark('us-east-1', 1, 'instance_info.json')
     # benchmark('sa-east-1', 1, 'instance_info.json')
