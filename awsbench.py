@@ -13,6 +13,8 @@ import argparse
 import pandas as pd
 from datetime import datetime
 import re
+import logging
+from aws_bench.constants import LogConfig
 
 
 def extract_info_from_text(text, region, instance_type,ondemand_price,spot_price, df):
@@ -44,11 +46,12 @@ def extract_info_from_text(text, region, instance_type,ondemand_price,spot_price
         if match:
             data[key] = match.group(1)
 
-    data['region'] = region
+    data['region'] = region + AWSConfig.zone_letter
     data['Instance_name'] = instance_type
     data['timestamp'] = datetime.now()
     data['Ondemand_price'] = ondemand_price
     data['Spot_price'] = spot_price
+    data['STATUS'] = 'SUCCESS'
     df.loc[len(df)] = data
     return df
 
@@ -87,7 +90,7 @@ def start_instance(region, instance_type, max_retries=3, retry_backoff=2):
 
     architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
     dict_key = f'{region}_{architecture}'
-    azs = [f'{region}a', f'{region}b', f'{region}c']
+    azs = ['a','b','c']
     retry_count = 0
     while retry_count < max_retries:
         for az in azs:
@@ -99,13 +102,13 @@ def start_instance(region, instance_type, max_retries=3, retry_backoff=2):
                     InstanceType=instance_type,
                     KeyName=AWSConfig.image_setup[dict_key]['key_name'],
                     SecurityGroupIds=[AWSConfig.image_setup[dict_key]['sg']],
-                    Placement={'AvailabilityZone': az}
+                    Placement={'AvailabilityZone': region+az}
                 )
 
                 assert len(instances) == 1  # only one instance should be created
 
                 instance = instances[0]
-
+                AWSConfig.zone_letter = az
                 instance.wait_until_running()
                 instance.reload()
                 print(f'Tipo da instância: {instance_type}')
@@ -117,15 +120,71 @@ def start_instance(region, instance_type, max_retries=3, retry_backoff=2):
                 return instance
             except ClientError as e:
                 print(f'Error in {az}: {e}')
+                logging.exception(f'Error in {region+az}: {e}')
                 if 'InsufficientInstanceCapacity' in str(e):
+                    print('InsufficientInstanceCapacity')
+                    BenchmarkConfig.STATUS = 'InsufficientInstanceCapacity'
                     continue
+                elif 'Unsupported' in str(e):
+                    BenchmarkConfig.STATUS = 'Unsupported'
+                    retry_count = max_retries # sai do laço, nao vai arrumar a instância
                 else:
+                    BenchmarkConfig.STATUS = 'Error'
                     raise
         retry_count += 1
         wait_time = retry_backoff ** retry_count
         print(f"Retrying in {wait_time} seconds...")
         time.sleep(wait_time)
         raise Exception("Max retries reached. Could not create instance.")
+
+
+def start_spot_instance(region, instance_type):
+    session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
+                            aws_secret_access_key=AWSConfig.aws_acess_secret_key,
+                            region_name=region)
+
+    ec2_client = session.client('ec2')
+    architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
+    dict_key = f'{region}_{architecture}'
+    spot_request = {
+        'InstanceCount': 1,
+        'Type': 'one-time',
+        'LaunchSpecification': {
+            'ImageId': AWSConfig.image_setup[dict_key]['imageId'],
+            'InstanceType': instance_type,
+            'KeyName': AWSConfig.image_setup[dict_key]['key_name'],
+            'SecurityGroupIds': [AWSConfig.image_setup[dict_key]['sg']],
+            'Placement': {
+                'AvailabilityZone': region + AWSConfig.zone_letter
+            }
+        }
+    }
+    response = ec2_client.request_spot_instances(**spot_request)
+    spot_instance_request_ids = [req['SpotInstanceRequestId'] for req in response['SpotInstanceRequests']]
+    print(f"Spot Instance Request IDs: {spot_instance_request_ids}")
+
+
+    instance_ids = []
+    while not instance_ids:
+        describe_response = ec2_client.describe_spot_instance_requests(SpotInstanceRequestIds=spot_instance_request_ids)
+        print("Waiting for Spot Instances to be fulfilled...")
+        for request in describe_response['SpotInstanceRequests']:
+            if 'InstanceId' in request:
+                instance_ids.append(request['InstanceId'])
+        if not instance_ids:
+            time.sleep(10)
+
+    print(f"Instance IDs: {instance_ids}")
+
+
+    instances = ec2_client.describe_instances(InstanceIds=instance_ids)
+
+    for reservation in instances['Reservations']:
+        for instance in reservation['Instances']:
+            instance_id = instance['InstanceId']
+            public_dns_name = instance.get('PublicDnsName', 'N/A')
+            print(f"Instance ID: {instance_id}, Public DNS Name: {public_dns_name}")
+
 
 def get_instance(region, instance_id):
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
@@ -142,6 +201,14 @@ def get_instance(region, instance_id):
 
     return instance
 
+
+def instance_error(region,instance_type,df):
+    data = {"algorithm_name": 'EP Benchmark', "Class": None, "Time_in_Seconds": None, "Total_Threads": None,
+            "Available_Threads": None, "Mops_total": None, "Mops_per_thread": None,
+            'region': region + AWSConfig.zone_letter,
+            'Instance_name': instance_type,'timestamp':datetime.now() ,"Ondemand_price": None, "Spot_price": None,"STATUS":BenchmarkConfig.STATUS}
+    df.loc[len(df)] = data
+    return df
 
 def benchmark(region, repetions, json_file):
     """
@@ -169,6 +236,7 @@ def benchmark(region, repetions, json_file):
                 ondemand_price = aws.get_price_ondemand(region, instance_type)
                 spot_price = aws.get_price_spot(region, instance_type, region + AWSConfig.zone_letter)
             except Exception as e:
+                logging.exception(f'Error getting price for {instance_type}')
                 ondemand_price = ''
                 spot_price = ''
 
@@ -184,8 +252,8 @@ def benchmark(region, repetions, json_file):
             instance.wait_until_terminated()
             print(f"Instance {instance.id} has been terminated.")
         except Exception as e:
-            print(e)
-            print(len(df))
+            logging.exception(f'An exception occurred:{e}')
+            df = instance_error(region, instance_type,df)
             df.to_csv(csv_name, index=False)
 
 
@@ -198,7 +266,8 @@ if __name__ == '__main__':
     parser.add_argument('json_file', type=str, help='Json file with instances configurations')
     parser.add_argument('--repetitions', type=int, default=5, help='Number of repetitions')
     args = parser.parse_args()
-    benchmark(args.region, args.repetitions, args.json_file)
-
+    logging.info(f"Start execution in {args.region} N={args.repetitions} JsonFile={args.json_file}")
+    #benchmark(args.region, args.repetitions, args.json_file)
+    start_spot_instance(args.region, 'c5a.12xlarge')
     # benchmark('us-east-1', 1, 'instance_info.json')
     # benchmark('sa-east-1', 1, 'instance_info.json')
