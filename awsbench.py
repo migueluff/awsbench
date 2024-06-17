@@ -81,30 +81,30 @@ def get_file_name(region, instance):
     return file_name
 
 
-def start_instance(region, instance_type, max_retries=3, retry_backoff=2):
+def __start_instance(region, instance_type, info={}):
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
                             aws_secret_access_key=AWSConfig.aws_acess_secret_key,
                             region_name=region)
 
-    ec2 = session.resource('ec2')
+    resource = session.resource('ec2')
 
     architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
     dict_key = f'{region}_{architecture}'
 
     try:
-        instances = ec2.create_instances(
-            ImageId=AWSConfig.image_setup[dict_key]['imageId'],
-            MinCount=1,
-            MaxCount=1,
-            InstanceType=instance_type,
-            KeyName=AWSConfig.image_setup[dict_key]['key_name'],
-            SecurityGroupIds=[AWSConfig.image_setup[dict_key]['sg']],
-        )
+        instances = resource.create_instances(ImageId=AWSConfig.image_setup[dict_key]['imageId'],
+                                              InstanceType=instance_type,
+                                              KeyName=AWSConfig.image_setup[dict_key]['key_name'],
+                                              MaxCount=1,
+                                              MinCount=1,
+                                              SecurityGroupIds=[AWSConfig.image_setup[dict_key]['sg']],
+                                              InstanceMarketOptions=info['InstanceMarketOptions'],
+                                              TagSpecifications=[{'ResourceType': 'instance',
+                                                                  'Tags': [{'Key': 'awsbench',
+                                                                            'Value': 'true'}]}])
 
         assert len(instances) == 1  # only one instance should be created
-
         instance = instances[0]
-        AWSConfig.zone_letter = az
         instance.wait_until_running()
         instance.reload()
         print(f'Tipo da instância: {instance_type}')
@@ -114,51 +114,28 @@ def start_instance(region, instance_type, max_retries=3, retry_backoff=2):
         print(f'Endereço DNS Name: {instance.public_dns_name}')
 
         return instance
-    except ClientError as e:
-        BenchmarkConfig.STATUS = e['Error']['Code']
-        logging.exception(f'Error in {region+}: {e['Error']['Code']}')
+
+    except Exception as e:
+        logging.error("<EC2Manager>: Error to create instance")
+        logging.error(e)
+        return None
 
 
-def start_spot_instance(region, instance_type):
-    session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
-                            aws_secret_access_key=AWSConfig.aws_acess_secret_key,
-                            region_name=region)
+def _terminate_instance(self, instance):
+    # if instance is spot, we have to remove its request
+    client = boto3.client('ec2', region_name=instance.placement['AvailabilityZone'][:-1])
 
-    ec2_client = session.client('ec2')
-    architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
-    dict_key = f'{region}_{architecture}'
-    try:
-        response = ec2_client.request_spot_instances(
-            InstanceCount=1,
-            Type='one-time',
-            LaunchSpecification={
-                'ImageId': AWSConfig.image_setup[dict_key]['imageId'],
-                'InstanceType': instance_type,
-                'KeyName': AWSConfig.image_setup[dict_key]['key_name'],
-                'SecurityGroupIds': [AWSConfig.image_setup[dict_key]['sg']]
-            }
+    if instance.instance_lifecycle == 'spot':
+        client.cancel_spot_instance_requests(
+            SpotInstanceRequestIds=[
+                instance.spot_instance_request_id
+            ]
         )
-        spot_instance_request_ids = [req['SpotInstanceRequestId'] for req in response['SpotInstanceRequests']]
-        print(f"Spot Instance Request IDs: {spot_instance_request_ids}")
-        instance_ids = []
-        while not instance_ids:
-            describe_response = ec2_client.describe_spot_instance_requests(SpotInstanceRequestIds=spot_instance_request_ids)
-            print("Waiting for Spot Instances to be fulfilled...")
-            for request in describe_response['SpotInstanceRequests']:
-                if 'InstanceId' in request:
-                    instance_ids.append(request['InstanceId'])
-            if not instance_ids:
-                time.sleep(10)
+                
+    instance.terminate()
+    instance.wait_until_terminated()
+    logging.info(f"Instance {instance.id} has been terminated.")
 
-        print(f"Instance IDs: {instance_ids}")
-
-        instances = ec2_client.describe_instances(InstanceIds=instance_ids)['Reservations'][0]['Instances']
-        assert len(instance_ids) == 1;
-        instance = instances[0]
-        print(f"Instance ID: {instance['InstanceId']}, PublicDnsName: {instance['PublicDnsName']}")
-        return instance
-    except ClientError as e:
-        print(e)
 
 def get_instance(region, instance_id):
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
@@ -176,7 +153,7 @@ def get_instance(region, instance_id):
     return instance
 
 
-def instance_error(region,instance_type,df):
+def instance_error(region, instance_type, df):
     data = {"algorithm_name": 'EP Benchmark', "Class": None, "Time_in_Seconds": None, "Total_Threads": None,
             "Available_Threads": None, "Mops_total": None, "Mops_per_thread": None,
             'region': region + AWSConfig.zone_letter,
@@ -184,19 +161,33 @@ def instance_error(region,instance_type,df):
     df.loc[len(df)] = data
     return df
 
-def benchmark(region, repetions, json_file):
+def is_available(region, instance_type):
+    session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
+                            aws_secret_access_key=AWSConfig.aws_acess_secret_key,
+                            region_name=region)
+
+    ec2 = session.client('ec2')
+    response = ec2.describe_instance_types(InstanceTypes=[instance_type])
+    return len(response['InstanceTypes']) > 0
+
+def benchmark(args):
     """
     :param region: Define the AWS region that the instance will be created
     :param availability_zone: Define the AWS availability zone that the instance will be created 
     :param repetitions: Number of executions inside the instance
     :return:
     """
+    region = args.region
+    repetions = args.repetitions
+    json_file = args.json_file
+    is_spot = args.spot
 
     json_file = Path(json_file)
 
     if not json_file.exists():
         print(f"File {json_file} not found")
         raise FileNotFoundError
+    
     benchmark_config = BenchmarkConfig(json_file=json_file)
 
     df = pd.DataFrame(columns=benchmark_config.columns)
@@ -204,30 +195,42 @@ def benchmark(region, repetions, json_file):
     csv_name = f"{region}_{star_test.year}-{star_test.month:02d}-{star_test.day:02d}_{star_test.strftime('%H-%M-%S')}.csv"
 
     for instance_type, instance_core in benchmark_config.vms.items():
+
+        # check if the instance is available in the region
+
+        if not is_available(region, instance_type):
+            print(f"Instance {instance_type} not available in {region}")
+            continue
+        
         try:
+            
+            ondemand_price = aws.get_price_ondemand(region, instance_type)
+            spot_price = aws.get_price_spot(region, instance_type, region + AWSConfig.zone_letter)
 
-            try:
-                ondemand_price = aws.get_price_ondemand(region, instance_type)
-                spot_price = aws.get_price_spot(region, instance_type, region + AWSConfig.zone_letter)
-            except Exception as e:
-                logging.exception(f'Error getting price for {instance_type}')
-                ondemand_price = ''
-                spot_price = ''
-
-            instance = start_instance(region, instance_type)
+            info = {}
+            if is_spot:
+                info =  {
+                    'MarketType': 'spot',
+                    'SpotOptions': {
+                        'MaxPrice': str(ondemand_price),
+                        'SpotInstanceType': 'persistent',
+                        'InstanceInterruptionBehavior': 'terminate'}
+                    }
+            
+            instance = __start_instance(region, instance_type, info)
+            
             time.sleep(5)
             for i in range(repetions):
                 output = run_via_ssh(cmd='./ep.D.x', instance=instance, region=region)
                 #print(output)
                 df = extract_info_from_text(output, region, instance_type, ondemand_price, spot_price, df)
-
-            instance.terminate()
-            instance.wait_until_terminated()
-            print(f"Instance {instance.id} has been terminated.")
+            
+            _terminate_instance(instance)
+        
         except Exception as e:
             logging.exception(f'An exception occurred:{e}')
-            df = instance_error(region, instance_type,df)
-            df.to_csv(csv_name, index=False)
+            df = instance_error(region, instance_type, df)
+            
 
 
     df.to_csv(csv_name, index=False)
@@ -241,7 +244,7 @@ if __name__ == '__main__':
     parser.add_argument('--spot', type=bool, default=False, help='If you want spot instances')
     args = parser.parse_args()
     logging.info(f"Start execution in {args.region} N={args.repetitions} JsonFile={args.json_file}")
-    benchmark(args.region, args.repetitions, args.json_file)
+    benchmark(args)
     #start_spot_instance(args.region, 'c5a.12xlarge')
     # benchmark('us-east-1', 1, 'instance_info.json')
     # benchmark('sa-east-1', 1, 'instance_info.json')
