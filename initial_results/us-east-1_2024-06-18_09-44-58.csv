@@ -1,0 +1,9 @@
+Start_Time,End_Time,Instance,Ondemand_Price,Spot_Price,Region,Zone,Algorithm_Name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status
+2024-06-18 09:44:58.236537,2024-06-18 09:45:01.422768,c7a.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded
+2024-06-18 09:45:01.427780,2024-06-18 09:45:04.067017,c6g.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded
+2024-06-18 09:45:04.072980,2024-06-18 09:45:06.634709,c7g.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded
+2024-06-18 09:45:06.640785,2024-06-18 09:45:09.207628,c5a.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded
+2024-06-18 09:45:09.214298,2024-06-18 09:45:11.913530,c5.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded
+2024-06-18 09:45:11.919406,2024-06-18 09:45:14.488069,c6a.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded
+2024-06-18 09:45:14.496257,2024-06-18 09:45:17.137464,c7i.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded
+2024-06-18 09:45:17.143145,2024-06-18 09:45:20.550400,c6i.12xlarge,,,us-east-1,,NAS Benchmark,,,,,,,MaxSpotInstanceCountExceeded

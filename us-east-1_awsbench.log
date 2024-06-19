@@ -1,0 +1,100 @@
+2024-06-18 09:44:58 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-18 09:45:01 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:04 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:06 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:09 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:11 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:14 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:17 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:20 - ERROR - <EC2Manager>: Error to create instance: An error occurred (MaxSpotInstanceCountExceeded) when calling the RunInstances operation: Max spot instance count exceeded
+2024-06-18 09:45:20 - INFO - Saving file: us-east-1_2024-06-18_09-44-58.csv
+2024-06-18 09:47:49 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-18 09:48:13 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:48:14 - INFO - Authentication (publickey) successful!
+2024-06-18 09:48:54 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:48:55 - INFO - Authentication (publickey) successful!
+2024-06-18 09:49:59 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:50:00 - INFO - Authentication (publickey) successful!
+2024-06-18 09:51:03 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:51:04 - INFO - Authentication (publickey) successful!
+2024-06-18 09:51:42 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:51:42 - INFO - Authentication (publickey) successful!
+2024-06-18 09:54:03 - INFO - Instance i-09362d19d903e1ac1 has been terminated.
+2024-06-18 09:54:28 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:54:28 - INFO - Authentication (publickey) successful!
+2024-06-18 09:55:37 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:55:37 - INFO - Authentication (publickey) successful!
+2024-06-18 09:56:45 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:56:46 - INFO - Authentication (publickey) successful!
+2024-06-18 09:57:53 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:57:54 - INFO - Authentication (publickey) successful!
+2024-06-18 09:59:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 09:59:02 - INFO - Authentication (publickey) successful!
+2024-06-18 10:01:27 - INFO - Instance i-007c0a58aa006440c has been terminated.
+2024-06-18 10:01:52 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:01:53 - INFO - Authentication (publickey) successful!
+2024-06-18 10:02:39 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:02:39 - INFO - Authentication (publickey) successful!
+2024-06-18 10:03:25 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:03:25 - INFO - Authentication (publickey) successful!
+2024-06-18 10:04:11 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:04:11 - INFO - Authentication (publickey) successful!
+2024-06-18 10:04:56 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:04:57 - INFO - Authentication (publickey) successful!
+2024-06-18 10:07:00 - INFO - Instance i-0d3be4d20ebf6a674 has been terminated.
+2024-06-18 10:07:25 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:07:25 - INFO - Authentication (publickey) successful!
+2024-06-18 10:08:37 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:08:38 - INFO - Authentication (publickey) successful!
+2024-06-18 10:09:37 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:09:37 - INFO - Authentication (publickey) successful!
+2024-06-18 10:10:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:10:37 - INFO - Authentication (publickey) successful!
+2024-06-18 10:11:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:11:37 - INFO - Authentication (publickey) successful!
+2024-06-18 10:13:37 - INFO - Instance i-027ab0166fb554959 has been terminated.
+2024-06-18 10:14:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:14:03 - INFO - Authentication (publickey) successful!
+2024-06-18 10:15:07 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:15:08 - INFO - Authentication (publickey) successful!
+2024-06-18 10:16:11 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:16:12 - INFO - Authentication (publickey) successful!
+2024-06-18 10:17:15 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:17:15 - INFO - Authentication (publickey) successful!
+2024-06-18 10:18:19 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:18:20 - INFO - Authentication (publickey) successful!
+2024-06-18 10:19:55 - INFO - Instance i-0e69f8ea63d3dd488 has been terminated.
+2024-06-18 10:20:20 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:20:20 - INFO - Authentication (publickey) successful!
+2024-06-18 10:21:24 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:21:25 - INFO - Authentication (publickey) successful!
+2024-06-18 10:22:28 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:22:29 - INFO - Authentication (publickey) successful!
+2024-06-18 10:23:32 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:23:33 - INFO - Authentication (publickey) successful!
+2024-06-18 10:24:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:24:36 - INFO - Authentication (publickey) successful!
+2024-06-18 10:27:11 - INFO - Instance i-0607037fb0e51947c has been terminated.
+2024-06-18 10:27:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:27:37 - INFO - Authentication (publickey) successful!
+2024-06-18 10:28:38 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:28:39 - INFO - Authentication (publickey) successful!
+2024-06-18 10:29:39 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:29:39 - INFO - Authentication (publickey) successful!
+2024-06-18 10:30:39 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:30:40 - INFO - Authentication (publickey) successful!
+2024-06-18 10:31:40 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:31:40 - INFO - Authentication (publickey) successful!
+2024-06-18 10:33:30 - INFO - Instance i-0f1271359a8f2b0b3 has been terminated.
+2024-06-18 10:33:55 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:33:55 - INFO - Authentication (publickey) successful!
+2024-06-18 10:35:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:35:03 - INFO - Authentication (publickey) successful!
+2024-06-18 10:36:09 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:36:09 - INFO - Authentication (publickey) successful!
+2024-06-18 10:37:15 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:37:15 - INFO - Authentication (publickey) successful!
+2024-06-18 10:38:21 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-18 10:38:22 - INFO - Authentication (publickey) successful!
+2024-06-18 10:40:45 - INFO - Instance i-0b8add5ba92f18e85 has been terminated.
+2024-06-18 10:40:45 - INFO - Saving file: us-east-1_2024-06-18_09-47-49.csv
