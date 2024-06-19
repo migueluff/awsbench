@@ -1,0 +1,2 @@
+Start_Time,End_Time,Instance,InstanceID,Price,Market,Region,Zone,Algorithm_Name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status
+2024-06-19 16:48:27.696089,2024-06-19 16:56:02.823107,c5.xlarge,,0.2620000000,ondemand,sa-east-1,a,NAS Benchmark,D,422.40,24,24,325.38,13.56,SUCCESS

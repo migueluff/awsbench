@@ -23,6 +23,7 @@ def save_row(text, row, df, csv_file):
         "Start_Time": row['Start_Time'],
         "End_Time": row['End_Time'],
         "Instance": row['Instance'],
+        "InstanceID": row['InstanceID'],
         "Market": row['Market'],
         "Price": row['Price'],        
         "Region": row['Region'],
@@ -219,6 +220,7 @@ def benchmark(args):
                            "Zone": instance.placement['AvailabilityZone'][-1:],
                            "Algorithm_Name": 'NAS Benchmark',
                            "Status": 'SUCCESS'}
+                    print(row)
                     df = save_row(output, row, df, csv_file)
                     execution_count += 1
 

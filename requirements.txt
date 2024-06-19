@@ -3,3 +3,4 @@ boto3
 pandas
 botocore
 paramiko==3.4.0
+ipykernel
