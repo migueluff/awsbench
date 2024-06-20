@@ -155,6 +155,7 @@ def get_instance(region, instance_id):
 
 
 
+
 def is_available(region, instance_type):
 
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,

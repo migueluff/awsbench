@@ -1,3 +1,0 @@
-algorithm_name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_total,Mops_per_thread,region,Instance_name,timestamp,Ondemand_price,Spot_price,STATUS
-,,,,,,,,,,,,
-,"<re.Match object; span=(539, 581), match='Class           =                        D'>","<re.Match object; span=(671, 713), match='Time in seconds =                    59.00'>","<re.Match object; span=(715, 757), match='Total threads   =                       24'>","<re.Match object; span=(759, 801), match='Avail threads   =                       24'>",,,,,,,,

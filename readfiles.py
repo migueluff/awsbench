@@ -1,100 +1,65 @@
-import boto3
-from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
-import re
-from constants import bucket_nameus, columns, bucket_namesa
-from datetime import datetime
 import pandas as pd
+from pathlib import Path
+
+result_path_sa = 'results_sa-east-1.csv'
+result_path_us = 'results_us-east-1.csv'
 
 
-# Inicializar cliente Boto3 para S3
-s3_client = boto3.client('s3', region_name='us-east-1')
-
-
-def get_files_names(s3_client, bucket_name):
-    files_names = []
-    try:
-        # Listar objetos no bucket
-        response = s3_client.list_objects_v2(Bucket=bucket_nameus)
-
-        # Verificar se o bucket contém objetos
-        if 'Contents' in response:
-            for obj in response['Contents']:
-                # Obter o nome do objeto
-                files_names.append(obj['Key'])
-            return files_names
+def get_round_to_market(all_test_size,df):
+    current_size = all_test_size
+    round = []
+    for index, row in df.iterrows():
+        if len(round) < current_size:
+            round.append(row)
+            if ( (row['Status'] != 'SUCCESS') ):
+                current_size = current_size - 4
         else:
-            print("O bucket está vazio.")
-    except NoCredentialsError:
-        print("Credenciais não disponíveis")
-    except PartialCredentialsError:
-        print("Credenciais incompletas fornecidas")
-    except ClientError as e:
-        print(f"Erro inesperado: {e}")
+            break
+    return round
+def process_round(df):
+    new_df = df.groupby('Instance')[['Price','Time_in_Seconds','Mops_Total','Mops_per_Thread']].mean()
+    estimatize_cost = (new_df['Time_in_Seconds'] * new_df['Price']) / 3600
+    print(estimatize_cost)
 
 
-def get_file_content(s3_client, bucket_name, file_names):
-    df = pd.DataFrame(columns=columns)
-    for s3_object_key in file_names:
-        file_response = s3_client.get_object(Bucket=bucket_nameus, Key=s3_object_key)
+all_test_size = 8*5
+csv_file1 = Path(result_path_sa)
+csv_file2 = Path(result_path_us)
 
-        # Ler o conteúdo do arquivo
-        content = file_response['Body'].read().decode('utf-8')
-        #print(content)
+if not csv_file1.exists():
+    print(f"File {csv_file1} not found")
+    raise FileNotFoundError
 
-        info = extract_info_from_text(content)
-        print(info)
-        name_info = s3_object_key.split('-')
-        region = '-'.join(name_info[0:3])
-        instance_name = name_info[3]
+df1 = pd.read_csv(csv_file1)
 
-        date = name_info[4].split('.')[0]
-        timestamp_obj = datetime.strptime(date, '%Y%m%d_%H%M%S')
-        info['region'] = region
-        info['Instance_name'] = instance_name
-        info['timestamp'] = timestamp_obj
-        df.loc[len(df)] = info
+if not csv_file2.exists():
+    print(f"File {csv_file2} not found")
+    raise FileNotFoundError
 
-    return df
+df2 = pd.read_csv(csv_file2)
+dfaux1 = df1
+dfaux2 = df2
+dfaux1['Calculated_Cost'] = ((dfaux1['Time_in_Seconds'] * dfaux1['Price']) / 3600)
+dfaux2['Calculated_Cost'] = ((dfaux2['Time_in_Seconds'] * dfaux2['Price']) / 3600)
+def calculated_cost_for_periodic(dfaux1,hours):
+    shift = 24/hours
+    df = dfaux1[dfaux1['Market'] == 'ondemand'].copy()
 
-def extract_info_from_text(text):
-    data = {
-        "algorithm_name":'EP Benchmark',
-        "Class": None,
-        "Time_in_Seconds": None,
-        "Total_Threads": None,
-        "Available_Threads": None,
-        "Mops_total": None,
-        "Mops_per_thread": None,
-        "Ondemand_price": None,
-        "Spot_price": None
-    }
+    df['Cost * X'] = df['Calculated_Cost'] * shift
 
-    # Regular expressions to match each line of interest
-    regex_patterns = {
-        "Class": re.compile(r"Class\s*=\s*(\S+)"),
-        "Time_in_Seconds": re.compile(r"Time in seconds\s*=\s*([\d.]+)"),
-        "Total_Threads": re.compile(r"Total threads\s*=\s*(\d+)"),
-        "Available_Threads": re.compile(r"Avail threads\s*=\s*(\d+)"),
-        "Mops_total": re.compile(r"Mop/s\s*total\s*=\s*([\d.]+)", re.IGNORECASE),
-        "Mops_per_thread": re.compile(r"Mop/s/thread\s*=\s*([\d.]+)", re.IGNORECASE),
-        "Ondemand_price": re.compile(r"Ondemand_price:\s+([\d.]+)"),
-        "Spot_price": re.compile(r"Spot_price:\s+([\d.]+)")
-    }
+    #print(f"Estimativa de custo de testes por instância a cada: {hours}")
+    #print(df.groupby('Instance')[['Cost * X']].mean())
+    total_cost = 0
+    test = df.groupby('Instance')['Cost * X'].mean()
 
-    for key, pattern in regex_patterns.items():
-        match = pattern.search(text)
-        if match:
-            data[key] = match.group(1)
+    for idx in range(len(test)):
+        if not pd.isna(test.iloc[idx]):
+            total_cost += test.iloc[idx]
+    print(f"Custo total estimado por dia: {total_cost}")
 
-    return data
-
-
-files_names = get_files_names(s3_client=s3_client, bucket_name=bucket_nameus)
-
-df = get_file_content(s3_client=s3_client,file_names=files_names ,bucket_name=bucket_nameus)
-
-print(df)
-
-df.to_csv('test.csv', index=False)
-
-print("DataFrame saved to '11jun_us.csv'.")
+hour = 6
+print(f"Estimativa de custos com rodadas a cada: {hour} horas")
+print("SA-EAST-1:")
+calculated_cost_for_periodic(dfaux1,hour)
+print("US-EAST-1:")
+calculated_cost_for_periodic(dfaux2,hour)

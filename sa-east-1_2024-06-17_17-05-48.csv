@@ -1,3 +1,0 @@
-Start_Time,End_Time,Instance,Ondemand_Price,Spot_Price,Region,Zone,Algorithm_Name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status
-2024-06-17 17:05:48.495849,2024-06-17 17:05:49.340249,c7a.12xlarge,,,sa-east-1,,NAS Benchmark,,,,,,,Unsupported
-2024-06-17 17:05:49.341901,2024-06-17 17:05:58.174774,c5a.12xlarge,,,sa-east-1,,NAS Benchmark,,,,,,,InsufficientInstanceCapacity

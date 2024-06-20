@@ -1,3 +1,0 @@
-Start_Time,End_Time,Instance,Ondemand_Price,Spot_Price,Region,Zone,Algorithm_Name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status
-2024-06-17 16:58:24.538505,2024-06-17 16:58:25.396401,c7a.12xlarge,,,sa-east-1,,NAS Benchmark,,,,,,,Unsupported
-2024-06-17 16:58:25.397640,2024-06-17 16:59:48.026039,c5a.12xlarge,2.8320000000,0.353300,sa-east-1,b,NAS Benchmark,D,58.81,24,24,2336.84,97.37,SUCCESS

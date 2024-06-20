@@ -1,2 +1,0 @@
-algorithm_name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_total,Mops_per_thread,region,Instance_name,timestamp,Ondemand_price,Spot_price,STATUS
-EP Benchmark,,,,,,,sa-east-1a,c5a.12xlarge,2024-06-17 15:23:52.164102,,,
