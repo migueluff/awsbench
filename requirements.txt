@@ -1,38 +1,6 @@
-awscli==1.33.2
-bcrypt==4.1.3
-boto3==1.34.76
-botocore==1.34.120
-Brotli @ file:///croot/brotli-split_1714483155106/work
-cffi==1.16.0
-click @ file:///croot/click_1698129812380/work
-contourpy==1.2.0
-cryptography @ file:///croot/cryptography_1714660666131/work
-dextip @ file:///home/miguelflj/Documentos/petro_test1/meta-scheduler/external/dextip
-docutils==0.16
-elasticsearch==7.15.0
-greenlet==3.0.3
-h5py==3.10.0
-jmespath==1.0.1
-job_manager @ file:///home/miguelflj/Documentos/petro_test1/meta-scheduler
-matplotlib==3.8.3
-numpy==1.26.4
-pandas==2.2.1
+awscli
+boto3
+pandas
+botocore
 paramiko==3.4.0
-pathlib==1.0.1
-pyasn1==0.6.0
-pycparser==2.22
-PyMySQL==1.1.0
-PyNaCl @ file:///tmp/abs_72r6vcbd6t/croots/recipe/pynacl_1659620652106/work
-PySocks @ file:///home/builder/ci_310/pysocks_1640793678128/work
-python-dateutil==2.9.0.post0
-python-dotenv==1.0.1
-pytz @ file:///croot/pytz_1713974312559/work
-rsa==4.7.2
-s3transfer==0.10.1
-six @ file:///tmp/build/80754af9/six_1644875935023/work
-slurm-log-tools @ file:///home/miguelflj/Documentos/petro_test1/meta-scheduler/external/slurm-log
-SQLAlchemy==2.0.29
-typing_extensions==4.10.0
-tzdata==2024.1
-urllib3 @ file:///croot/urllib3_1715635851070/work
-websockets==12.0
+ipykernel

@@ -1,10 +1,10 @@
 {
-    "c7a.12xlarge": 24,
-    "c6g.12xlarge": 24,
-    "c7g.12xlarge": 24,
-    "c5a.12xlarge": 24,
-    "c5.12xlarge":  24,
-    "c6a.12xlarge": 24,
-    "c7i.12xlarge": 24,
-    "c6i.12xlarge": 24
+    "c7a.24xlarge": 48,
+    "c6g.12xlarge": 48,
+    "c7g.12xlarge": 48,
+    "c5a.24xlarge": 48,
+    "c5.24xlarge":  48,
+    "c6a.24xlarge": 48,
+    "c7i.24xlarge": 48,
+    "c6i.24xlarge": 48
 }

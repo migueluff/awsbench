@@ -1,39 +1,41 @@
+#!/usr/bin/env python3
+
 import aws_bench.pricing_handler as aws
 from aws_bench.constants import AWSConfig, SSHConfig, BenchmarkConfig
 
 import boto3
 from botocore.exceptions import ClientError
-import os
 import paramiko
 import time
 from datetime import datetime
-# import click
 from pathlib import Path
 import argparse
 import pandas as pd
 from datetime import datetime
 import re
 import logging
-from aws_bench.constants import LogConfig
 
 
-def extract_info_from_text(text, info, df):
+
+def save_row(text, row, df, csv_file):
+    
     data = {
-        "Start_Time": info['Start_Time'],
-        "End_Time": info['End_Time'],
-        "Instance": info['Instance'],
-        "Ondemand_Price": info['Ondemand_Price'],
-        "Spot_Price": info['Spot_Price'],
-        "Region": info['Region'],
-        "Zone": info['Zone'],
-        "Algorithm_Name": info["Algorithm_Name"],
+        "Start_Time": row['Start_Time'],
+        "End_Time": row['End_Time'],
+        "Instance": row['Instance'],
+        "InstanceID": row['InstanceID'],
+        "Market": row['Market'],
+        "Price": row['Price'],        
+        "Region": row['Region'],
+        "Zone": row['Zone'],
+        "Algorithm_Name": row["Algorithm_Name"],
         "Class": None,
         "Time_in_Seconds": None,
         "Total_Threads": None,
         "Available_Threads": None,
         "Mops_Total": None,
         "Mops_per_Thread": None,
-        "Status": info['Status'],
+        "Status": row['Status'],
     }
     regex_patterns = {
         "Class": re.compile(r"Class\s*=\s*(\S+)"),
@@ -44,6 +46,7 @@ def extract_info_from_text(text, info, df):
         "Mops_per_Thread": re.compile(r"Mop/s/thread\s*=\s*([\d.]+)", re.IGNORECASE)
 
     }
+    
 
     for key, pattern in regex_patterns.items():
         match = pattern.search(text)
@@ -53,14 +56,22 @@ def extract_info_from_text(text, info, df):
             data[key] = None
 
     df.loc[len(df)] = data
+
+    logging.info(f'Updating file: {csv_file}')
+    df.to_csv(csv_file, index=False)
+
     return df
 
 
 def run_via_ssh(cmd, instance, region):
-    if region == 'us-east-1':
-        path_key = SSHConfig.path_key_us
-    else:
-        path_key = SSHConfig.path_key_sa
+    
+    path_key = SSHConfig.path_key_us if region == 'us-east-1' else SSHConfig.path_key_sa
+
+    lifecycle = instance.instance_lifecycle
+    if lifecycle is None:
+        lifecycle = 'on-demand'
+
+    logging.info(f"Running command: {cmd} in instance {instance.id} Region: {region} Market: {lifecycle}")
 
     c = paramiko.SSHClient()
     c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -73,15 +84,7 @@ def run_via_ssh(cmd, instance, region):
     c.close()
     return output
 
-
-def get_file_name(region, instance):
-    now = datetime.now()
-    datetime_str = now.strftime("%Y%m%d_%H%M%S")
-    file_name = f'{region}-{instance}-{datetime_str}.txt'
-    return file_name
-
-
-def __start_instance(region, instance_type, info={}):
+def __start_instance(region, instance_type, info):
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
                             aws_secret_access_key=AWSConfig.aws_acess_secret_key,
                             region_name=region)
@@ -107,17 +110,13 @@ def __start_instance(region, instance_type, info={}):
         instance = instances[0]
         instance.wait_until_running()
         instance.reload()
-        print(f'Tipo da instância: {instance_type}')
-        print(f'Instância criada com ID: {instance.id}')
-        print(f'Endereço Público: {instance.public_ip_address}')
-        print(f'Endereço Privado: {instance.private_ip_address}')
-        print(f'Endereço DNS Name: {instance.public_dns_name}')
-
+        logging.info(f'Instace Type: {instance_type}')
+        logging.info(f'Instance ID: {instance.id}')        
         return instance
 
     except ClientError as e:
         BenchmarkConfig.STATUS = e.response['Error']['Code']
-        logging.error(f"<EC2Manager>: Error to create instance: {e}")
+        logging.error(f"<EC2Manager>: Error to create instance {instance_type} in region {region}: {e}")
         return None
 
 
@@ -135,24 +134,6 @@ def _terminate_instance(instance):
     instance.terminate()
     instance.wait_until_terminated()
     logging.info(f"Instance {instance.id} has been terminated.")
-
-
-def get_instance(region, instance_id):
-    session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
-                            aws_secret_access_key=AWSConfig.aws_acess_secret_key,
-                            region_name=region)
-
-    ec2 = session.resource('ec2')
-    instance = ec2.Instance(instance_id)
-    print(f'Tipo da instância: {instance.instance_type}')
-    print(f'Instância criada com ID: {instance.id}')
-    print(f'Endereço Público: {instance.public_ip_address}')
-    print(f'Endereço Privado: {instance.private_ip_address}')
-    print(f'Endereço DNS Name: {instance.public_dns_name}')
-
-    return instance
-
-
 
 
 
@@ -178,87 +159,104 @@ def benchmark(args):
     :return:
     """
     region = args.region
-    repetions = args.repetitions
-    json_file = args.json_file
+    repetions = args.repetitions  
     is_spot = args.spot
-
-    json_file = Path(json_file)
+    json_file = Path(args.json_file)
 
     if not json_file.exists():
-        print(f"File {json_file} not found")
+        logging.error(f"File {json_file} not found")
         raise FileNotFoundError
-    
+        
     benchmark_config = BenchmarkConfig(json_file=json_file)
+    market = 'spot' if is_spot else 'ondemand'    
+    csv_file = Path(args.output_folder, f"results_{region}.csv")
 
-    df = pd.DataFrame(columns=benchmark_config.columns)
+    if csv_file.exists():
+        df = pd.read_csv(csv_file)
+    else:
+        df = pd.DataFrame(columns=benchmark_config.columns)
 
-    star_test = datetime.now()
-    csv_name = f"{region}_{star_test.year}-{star_test.month:02d}-{star_test.day:02d}_{star_test.strftime('%H-%M-%S')}.csv"
-
-    for instance_type, instance_core in benchmark_config.vms.items():
-
-        # check if the instance is available in the region
-
-
+    # iterate over the instances
+    for instance_type, instance_core in benchmark_config.vms.items():        
         start_time = datetime.now()
+
         try:
-            ondemand_price = None
-            spot_price = None
+            price = None 
+        
             if is_available(region, instance_type):
-                ondemand_price = aws.get_price_ondemand(region, instance_type)
-                spot_price = aws.get_price_spot(region, instance_type, region + AWSConfig.zone_letter)
+                price_spot = aws.get_price_spot(region, instance_type, region + AWSConfig.zone_letter)
+                price_ondemand = aws.get_price_ondemand(region, instance_type)
+            
+                price = price_spot if is_spot else price_ondemand
+
 
             info = {}
+
             if is_spot:
                 info =  {
                     'MarketType': 'spot',
                     'SpotOptions': {
-                        'MaxPrice': str(ondemand_price),
+                        'MaxPrice': '10.0',
                         'SpotInstanceType': 'one-time',
                         'InstanceInterruptionBehavior': 'terminate'}
-                    }
-
+                    }   
+            
+            # start the instance
             instance = __start_instance(region, instance_type, info)
 
+            # if instance is not None, we can run the benchmark
             if instance:
-
                 time.sleep(5)
+                execution_count = 0
+                logging.info(f"Binding threads in cores")
 
-                for i in range(repetions):
-                    output = run_via_ssh(cmd=f'export OMP_NUM_THREADS={instance_core};./ep.D.x', instance=instance, region=region)
-                    info_output = {
-                        "Start_Time": start_time,
-                        "End_Time": datetime.now(),
-                        "Instance": instance_type,
-                        "Ondemand_Price": ondemand_price,
-                        "Spot_Price": spot_price,
-                        "Region": region,
-                        "Zone": instance.placement['AvailabilityZone'][-1:],
-                        "Algorithm_Name": 'NAS Benchmark',
-                        "Status": 'SUCCESS'
-                    }
-                    df = extract_info_from_text(output, info_output, df)
+                threads_list = ''
+                for idx in range(0, instance_core):
+                    if idx == 0:
+                        threads_list = str(idx)
+                    else:
+                        threads_list += ' ' + str(i)
+
+                cmd = f'export GOMP_CPU_AFFINITY="{threads_list}"'
+                run_via_ssh(cmd=cmd, instance=instance, region=region)
+
+                while execution_count < repetions:
+                    logging.info(f"Execution {execution_count + 1} of {repetions}")
+                    output = run_via_ssh(cmd=f'export OMP_NUM_THREADS={instance_core};./ep.D.x', instance=instance, region=region)                    
+                    row = {"Start_Time": start_time,
+                           "End_Time": datetime.now(),
+                           "Instance": instance_type,
+                           "InstanceID": instance.id,
+                           "Market": market,
+                           "Price":  price,                               
+                           "Region": region,
+                           "Zone": instance.placement['AvailabilityZone'][-1:],
+                           "Algorithm_Name": 'NAS Benchmark',
+                           "Status": 'SUCCESS'}
+                    print(row)
+                    df = save_row(output, row, df, csv_file)
+                    execution_count += 1
 
                 _terminate_instance(instance)
             else:
                 raise Exception(f'Instance {instance_type} not available')
         
         except Exception as e:
-            info_output = {
-                "Start_Time": start_time,
-                "End_Time": datetime.now(),
-                "Instance": instance_type,
-                "Ondemand_Price": None,
-                "Spot_Price": None,
-                "Region": region,
-                "Zone": None,
-                "Algorithm_Name": 'NAS Benchmark',
-                "Status": benchmark_config.STATUS
-            }
-            df = extract_info_from_text('', info_output, df)
+            row = { "Start_Time": start_time,
+                    "End_Time": datetime.now(),
+                    "Instance": instance_type,
+                    "InstanceID": None,
+                    "Market": market,
+                    "Price": None,                
+                    "Region": region,
+                    "Zone": None,
+                    "Algorithm_Name": 'NAS Benchmark',
+                    "Status": BenchmarkConfig.STATUS}
+            
+            df = save_row('', row, df, csv_file)
 
-    logging.info(f'Saving file: {csv_name}')
-    df.to_csv(csv_name, index=False)
+        
+        
 
 
 if __name__ == '__main__':
@@ -266,10 +264,22 @@ if __name__ == '__main__':
     parser.add_argument('region', type=str, help='AWS region')
     parser.add_argument('json_file', type=str, help='Json file with instances configurations')
     parser.add_argument('--repetitions', type=int, default=5, help='Number of repetitions')
-    parser.add_argument('--spot', type=bool, default=False, help='If you want spot instances')
+    parser.add_argument('--output_folder', type=str, default='.', help='Output folder')
+    parser.add_argument('--spot', action='store_true', help='Use spot instances')
+    parser.add_argument('--log', action='store_true', help='Log file')
+
     args = parser.parse_args()
+
+    if args.log:
+        # write the log in the stdout
+        logging.basicConfig(level=logging.INFO,  # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+                            format='%(asctime)s - %(levelname)s - %(message)s',  # Log message format
+                            datefmt='%Y-%m-%d %H:%M:%S')
+    else:
+        logging.basicConfig(filename=f'{args.output_folder}/{args.region}_awsbench.log',  # Name of the log file
+                            level=logging.INFO,  # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+                            format='%(asctime)s - %(levelname)s - %(message)s',  # Log message format
+                            datefmt='%Y-%m-%d %H:%M:%S')
+        
     logging.info(f"Start execution in {args.region} N={args.repetitions} JsonFile={args.json_file}")
     benchmark(args)
-    #start_spot_instance(args.region, 'c5a.12xlarge')
-    # benchmark('us-east-1', 1, 'instance_info.json')
-    # benchmark('sa-east-1', 1, 'instance_info.json')
