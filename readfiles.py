@@ -1,8 +1,8 @@
 import pandas as pd
 from pathlib import Path
 
-result_path_sa = 'results_sa-east-1.csv'
-result_path_us = 'results_us-east-1.csv'
+result_path_sa = 'results/data_test02/results_sa-east-1.csv'
+result_path_us = 'results/data_test02/results_us-east-1.csv'
 
 
 def get_round_to_market(all_test_size,df):
