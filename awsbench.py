@@ -210,19 +210,13 @@ def benchmark(args):
                 execution_count = 0
                 logging.info(f"Binding threads in cores")
 
-                threads_list = ''
-                for idx in range(0, instance_core):
-                    if idx == 0:
-                        threads_list = str(idx)
-                    else:
-                        threads_list += ' ' + str(i)
-
-                cmd = f'export GOMP_CPU_AFFINITY="{threads_list}"'
-                run_via_ssh(cmd=cmd, instance=instance, region=region)
+                #binding_threads = 'export GOMP_CPU_AFFINITY="' + ' '.join(str(i) for i in range(instance_core)) + '"'
 
                 while execution_count < repetions:
                     logging.info(f"Execution {execution_count + 1} of {repetions}")
-                    output = run_via_ssh(cmd=f'export OMP_NUM_THREADS={instance_core};./ep.D.x', instance=instance, region=region)                    
+                    output = run_via_ssh(cmd=f'export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export '
+                                             f'OMP_NUM_THREADS={instance_core};./ep.D.x', instance=instance,
+                                         region=region)
                     row = {"Start_Time": start_time,
                            "End_Time": datetime.now(),
                            "Instance": instance_type,

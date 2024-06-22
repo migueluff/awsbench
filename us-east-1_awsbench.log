@@ -1,0 +1,872 @@
+2024-06-21 10:51:49 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-21 10:52:04 - ERROR - <EC2Manager>: Error to create instance c7a.24xlarge in region us-east-1: An error occurred (InsufficientInstanceCapacity) when calling the RunInstances operation (reached max retries: 4): We currently do not have sufficient c7a.24xlarge capacity in zones with support for 'gp3' volumes. Our system will be working on provisioning additional capacity.
+2024-06-21 10:52:04 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 10:52:23 - INFO - Instace Type: c6g.12xlarge
+2024-06-21 10:52:23 - INFO - Instance ID: i-0fa886cdd90e92e11
+2024-06-21 10:52:28 - INFO - Binding threads in cores
+2024-06-21 10:52:28 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 10:52:48 - INFO - Instace Type: c7g.12xlarge
+2024-06-21 10:52:48 - INFO - Instance ID: i-0d7439d7b7926ebf2
+2024-06-21 10:52:53 - INFO - Binding threads in cores
+2024-06-21 10:52:53 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 10:52:56 - ERROR - <EC2Manager>: Error to create instance c5a.24xlarge in region us-east-1: An error occurred (VcpuLimitExceeded) when calling the RunInstances operation: You have requested more vCPU capacity than your current vCPU limit of 128 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.
+2024-06-21 10:52:56 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 10:52:58 - ERROR - <EC2Manager>: Error to create instance c5.24xlarge in region us-east-1: An error occurred (VcpuLimitExceeded) when calling the RunInstances operation: You have requested more vCPU capacity than your current vCPU limit of 128 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.
+2024-06-21 10:52:58 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 10:53:01 - ERROR - <EC2Manager>: Error to create instance c6a.24xlarge in region us-east-1: An error occurred (VcpuLimitExceeded) when calling the RunInstances operation: You have requested more vCPU capacity than your current vCPU limit of 128 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.
+2024-06-21 10:53:01 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 10:53:04 - ERROR - <EC2Manager>: Error to create instance c7i.24xlarge in region us-east-1: An error occurred (VcpuLimitExceeded) when calling the RunInstances operation: You have requested more vCPU capacity than your current vCPU limit of 128 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.
+2024-06-21 10:53:04 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 10:53:07 - ERROR - <EC2Manager>: Error to create instance c6i.24xlarge in region us-east-1: An error occurred (VcpuLimitExceeded) when calling the RunInstances operation: You have requested more vCPU capacity than your current vCPU limit of 128 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.
+2024-06-21 10:53:07 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 14:51:26 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-21 14:51:39 - ERROR - <EC2Manager>: Error to create instance c7a.12xlarge in region us-east-1: An error occurred (InsufficientInstanceCapacity) when calling the RunInstances operation (reached max retries: 4): We currently do not have sufficient c7a.12xlarge capacity in zones with support for 'gp3' volumes. Our system will be working on provisioning additional capacity.
+2024-06-21 14:51:39 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 14:51:58 - INFO - Instace Type: c6g.12xlarge
+2024-06-21 14:51:58 - INFO - Instance ID: i-0275ec7b36f7b354f
+2024-06-21 14:52:03 - INFO - Binding threads in cores
+2024-06-21 14:52:03 - INFO - Execution 1 of 5
+2024-06-21 14:52:03 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0275ec7b36f7b354f Region: us-east-1 Market: on-demand
+2024-06-21 14:52:03 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 14:52:04 - INFO - Authentication (publickey) successful!
+2024-06-21 14:53:13 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 14:53:13 - INFO - Execution 2 of 5
+2024-06-21 14:53:13 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0275ec7b36f7b354f Region: us-east-1 Market: on-demand
+2024-06-21 14:53:13 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 14:53:14 - INFO - Authentication (publickey) successful!
+2024-06-21 14:54:22 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 14:54:22 - INFO - Execution 3 of 5
+2024-06-21 14:54:22 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0275ec7b36f7b354f Region: us-east-1 Market: on-demand
+2024-06-21 14:54:22 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 14:54:23 - INFO - Authentication (publickey) successful!
+2024-06-21 14:55:30 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 14:55:30 - INFO - Execution 4 of 5
+2024-06-21 14:55:30 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0275ec7b36f7b354f Region: us-east-1 Market: on-demand
+2024-06-21 14:55:31 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 14:55:31 - INFO - Authentication (publickey) successful!
+2024-06-21 14:56:39 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 14:56:39 - INFO - Execution 5 of 5
+2024-06-21 14:56:39 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0275ec7b36f7b354f Region: us-east-1 Market: on-demand
+2024-06-21 14:56:39 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 14:56:40 - INFO - Authentication (publickey) successful!
+2024-06-21 14:57:48 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 14:59:21 - INFO - Instance i-0275ec7b36f7b354f has been terminated.
+2024-06-21 14:59:41 - INFO - Instace Type: c7g.12xlarge
+2024-06-21 14:59:41 - INFO - Instance ID: i-040fbc969191b4475
+2024-06-21 14:59:46 - INFO - Binding threads in cores
+2024-06-21 14:59:46 - INFO - Execution 1 of 5
+2024-06-21 14:59:46 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-040fbc969191b4475 Region: us-east-1 Market: on-demand
+2024-06-21 14:59:46 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 14:59:47 - INFO - Authentication (publickey) successful!
+2024-06-21 15:00:33 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:00:33 - INFO - Execution 2 of 5
+2024-06-21 15:00:33 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-040fbc969191b4475 Region: us-east-1 Market: on-demand
+2024-06-21 15:00:33 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:00:34 - INFO - Authentication (publickey) successful!
+2024-06-21 15:01:19 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:01:19 - INFO - Execution 3 of 5
+2024-06-21 15:01:19 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-040fbc969191b4475 Region: us-east-1 Market: on-demand
+2024-06-21 15:01:19 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:01:20 - INFO - Authentication (publickey) successful!
+2024-06-21 15:02:05 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:02:05 - INFO - Execution 4 of 5
+2024-06-21 15:02:05 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-040fbc969191b4475 Region: us-east-1 Market: on-demand
+2024-06-21 15:02:06 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:02:06 - INFO - Authentication (publickey) successful!
+2024-06-21 15:02:52 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:02:52 - INFO - Execution 5 of 5
+2024-06-21 15:02:52 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-040fbc969191b4475 Region: us-east-1 Market: on-demand
+2024-06-21 15:02:52 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:02:53 - INFO - Authentication (publickey) successful!
+2024-06-21 15:03:38 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:04:10 - INFO - Instance i-040fbc969191b4475 has been terminated.
+2024-06-21 15:04:29 - INFO - Instace Type: c5a.12xlarge
+2024-06-21 15:04:29 - INFO - Instance ID: i-0e92b929225de1cf9
+2024-06-21 15:04:34 - INFO - Binding threads in cores
+2024-06-21 15:04:34 - INFO - Execution 1 of 5
+2024-06-21 15:04:34 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e92b929225de1cf9 Region: us-east-1 Market: on-demand
+2024-06-21 15:04:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:04:35 - INFO - Authentication (publickey) successful!
+2024-06-21 15:05:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:05:35 - INFO - Execution 2 of 5
+2024-06-21 15:05:35 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e92b929225de1cf9 Region: us-east-1 Market: on-demand
+2024-06-21 15:05:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:05:36 - INFO - Authentication (publickey) successful!
+2024-06-21 15:06:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:06:35 - INFO - Execution 3 of 5
+2024-06-21 15:06:35 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e92b929225de1cf9 Region: us-east-1 Market: on-demand
+2024-06-21 15:06:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:06:36 - INFO - Authentication (publickey) successful!
+2024-06-21 15:07:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:07:35 - INFO - Execution 4 of 5
+2024-06-21 15:07:35 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e92b929225de1cf9 Region: us-east-1 Market: on-demand
+2024-06-21 15:07:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:07:36 - INFO - Authentication (publickey) successful!
+2024-06-21 15:08:34 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:08:34 - INFO - Execution 5 of 5
+2024-06-21 15:08:34 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e92b929225de1cf9 Region: us-east-1 Market: on-demand
+2024-06-21 15:08:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:08:35 - INFO - Authentication (publickey) successful!
+2024-06-21 15:09:34 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:10:36 - INFO - Instance i-0e92b929225de1cf9 has been terminated.
+2024-06-21 15:10:56 - INFO - Instace Type: c5.12xlarge
+2024-06-21 15:10:56 - INFO - Instance ID: i-0bf8b8dd8f09d3951
+2024-06-21 15:11:01 - INFO - Binding threads in cores
+2024-06-21 15:11:01 - INFO - Execution 1 of 5
+2024-06-21 15:11:01 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bf8b8dd8f09d3951 Region: us-east-1 Market: on-demand
+2024-06-21 15:11:01 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:11:02 - INFO - Authentication (publickey) successful!
+2024-06-21 15:12:06 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:12:06 - INFO - Execution 2 of 5
+2024-06-21 15:12:06 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bf8b8dd8f09d3951 Region: us-east-1 Market: on-demand
+2024-06-21 15:12:06 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:12:07 - INFO - Authentication (publickey) successful!
+2024-06-21 15:13:09 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:13:09 - INFO - Execution 3 of 5
+2024-06-21 15:13:09 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bf8b8dd8f09d3951 Region: us-east-1 Market: on-demand
+2024-06-21 15:13:09 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:13:10 - INFO - Authentication (publickey) successful!
+2024-06-21 15:13:57 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:13:57 - INFO - Execution 4 of 5
+2024-06-21 15:13:57 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bf8b8dd8f09d3951 Region: us-east-1 Market: on-demand
+2024-06-21 15:13:57 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:13:57 - INFO - Authentication (publickey) successful!
+2024-06-21 15:15:01 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:15:01 - INFO - Execution 5 of 5
+2024-06-21 15:15:01 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bf8b8dd8f09d3951 Region: us-east-1 Market: on-demand
+2024-06-21 15:15:01 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:15:02 - INFO - Authentication (publickey) successful!
+2024-06-21 15:16:04 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:16:51 - INFO - Instance i-0bf8b8dd8f09d3951 has been terminated.
+2024-06-21 15:17:11 - INFO - Instace Type: c6a.12xlarge
+2024-06-21 15:17:11 - INFO - Instance ID: i-0ceac3f6c22bb5570
+2024-06-21 15:17:16 - INFO - Binding threads in cores
+2024-06-21 15:17:16 - INFO - Execution 1 of 5
+2024-06-21 15:17:16 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ceac3f6c22bb5570 Region: us-east-1 Market: on-demand
+2024-06-21 15:17:16 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:17:17 - INFO - Authentication (publickey) successful!
+2024-06-21 15:18:21 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:18:21 - INFO - Execution 2 of 5
+2024-06-21 15:18:21 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ceac3f6c22bb5570 Region: us-east-1 Market: on-demand
+2024-06-21 15:18:21 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:18:22 - INFO - Authentication (publickey) successful!
+2024-06-21 15:19:24 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:19:24 - INFO - Execution 3 of 5
+2024-06-21 15:19:24 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ceac3f6c22bb5570 Region: us-east-1 Market: on-demand
+2024-06-21 15:19:25 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:19:25 - INFO - Authentication (publickey) successful!
+2024-06-21 15:20:18 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:20:18 - INFO - Execution 4 of 5
+2024-06-21 15:20:18 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ceac3f6c22bb5570 Region: us-east-1 Market: on-demand
+2024-06-21 15:20:18 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:20:19 - INFO - Authentication (publickey) successful!
+2024-06-21 15:21:22 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:21:22 - INFO - Execution 5 of 5
+2024-06-21 15:21:22 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ceac3f6c22bb5570 Region: us-east-1 Market: on-demand
+2024-06-21 15:21:22 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:21:23 - INFO - Authentication (publickey) successful!
+2024-06-21 15:22:26 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:23:13 - INFO - Instance i-0ceac3f6c22bb5570 has been terminated.
+2024-06-21 15:23:33 - INFO - Instace Type: c7i.12xlarge
+2024-06-21 15:23:33 - INFO - Instance ID: i-0b4daa98d54de08fa
+2024-06-21 15:23:38 - INFO - Binding threads in cores
+2024-06-21 15:23:38 - INFO - Execution 1 of 5
+2024-06-21 15:23:38 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b4daa98d54de08fa Region: us-east-1 Market: on-demand
+2024-06-21 15:23:38 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:23:39 - INFO - Authentication (publickey) successful!
+2024-06-21 15:24:37 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:24:37 - INFO - Execution 2 of 5
+2024-06-21 15:24:37 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b4daa98d54de08fa Region: us-east-1 Market: on-demand
+2024-06-21 15:24:38 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:24:38 - INFO - Authentication (publickey) successful!
+2024-06-21 15:25:36 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:25:36 - INFO - Execution 3 of 5
+2024-06-21 15:25:36 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b4daa98d54de08fa Region: us-east-1 Market: on-demand
+2024-06-21 15:25:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:25:37 - INFO - Authentication (publickey) successful!
+2024-06-21 15:26:34 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:26:34 - INFO - Execution 4 of 5
+2024-06-21 15:26:34 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b4daa98d54de08fa Region: us-east-1 Market: on-demand
+2024-06-21 15:26:34 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:26:35 - INFO - Authentication (publickey) successful!
+2024-06-21 15:27:06 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:27:06 - INFO - Execution 5 of 5
+2024-06-21 15:27:06 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b4daa98d54de08fa Region: us-east-1 Market: on-demand
+2024-06-21 15:27:06 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:27:07 - INFO - Authentication (publickey) successful!
+2024-06-21 15:28:04 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:29:06 - INFO - Instance i-0b4daa98d54de08fa has been terminated.
+2024-06-21 15:29:26 - INFO - Instace Type: c6i.12xlarge
+2024-06-21 15:29:26 - INFO - Instance ID: i-0d78341e9a97dbce4
+2024-06-21 15:29:31 - INFO - Binding threads in cores
+2024-06-21 15:29:31 - INFO - Execution 1 of 5
+2024-06-21 15:29:31 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0d78341e9a97dbce4 Region: us-east-1 Market: on-demand
+2024-06-21 15:29:31 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:29:32 - INFO - Authentication (publickey) successful!
+2024-06-21 15:30:41 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:30:41 - INFO - Execution 2 of 5
+2024-06-21 15:30:41 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0d78341e9a97dbce4 Region: us-east-1 Market: on-demand
+2024-06-21 15:30:42 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:30:42 - INFO - Authentication (publickey) successful!
+2024-06-21 15:31:48 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:31:48 - INFO - Execution 3 of 5
+2024-06-21 15:31:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0d78341e9a97dbce4 Region: us-east-1 Market: on-demand
+2024-06-21 15:31:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:31:49 - INFO - Authentication (publickey) successful!
+2024-06-21 15:32:57 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:32:57 - INFO - Execution 4 of 5
+2024-06-21 15:32:57 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0d78341e9a97dbce4 Region: us-east-1 Market: on-demand
+2024-06-21 15:32:57 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:32:58 - INFO - Authentication (publickey) successful!
+2024-06-21 15:34:03 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:34:03 - INFO - Execution 5 of 5
+2024-06-21 15:34:03 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0d78341e9a97dbce4 Region: us-east-1 Market: on-demand
+2024-06-21 15:34:04 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 15:34:05 - INFO - Authentication (publickey) successful!
+2024-06-21 15:35:10 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 15:36:28 - INFO - Instance i-0d78341e9a97dbce4 has been terminated.
+2024-06-21 16:06:44 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-21 16:07:02 - ERROR - <EC2Manager>: Error to create instance c7a.12xlarge in region us-east-1: An error occurred (InsufficientInstanceCapacity) when calling the RunInstances operation (reached max retries: 4): There is no Spot capacity available that matches your request.
+2024-06-21 16:07:02 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:07:21 - INFO - Instace Type: c6g.12xlarge
+2024-06-21 16:07:21 - INFO - Instance ID: i-02d33047acb9c56ba
+2024-06-21 16:07:26 - INFO - Binding threads in cores
+2024-06-21 16:07:26 - INFO - Execution 1 of 5
+2024-06-21 16:07:26 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-02d33047acb9c56ba Region: us-east-1 Market: spot
+2024-06-21 16:07:27 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:07:27 - INFO - Authentication (publickey) successful!
+2024-06-21 16:08:36 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:08:36 - INFO - Execution 2 of 5
+2024-06-21 16:08:36 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-02d33047acb9c56ba Region: us-east-1 Market: spot
+2024-06-21 16:08:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:08:37 - INFO - Authentication (publickey) successful!
+2024-06-21 16:09:45 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:09:45 - INFO - Execution 3 of 5
+2024-06-21 16:09:45 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-02d33047acb9c56ba Region: us-east-1 Market: spot
+2024-06-21 16:09:45 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:09:46 - INFO - Authentication (publickey) successful!
+2024-06-21 16:10:53 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:10:53 - INFO - Execution 4 of 5
+2024-06-21 16:10:53 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-02d33047acb9c56ba Region: us-east-1 Market: spot
+2024-06-21 16:10:54 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:10:54 - INFO - Authentication (publickey) successful!
+2024-06-21 16:12:02 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:12:02 - INFO - Execution 5 of 5
+2024-06-21 16:12:02 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-02d33047acb9c56ba Region: us-east-1 Market: spot
+2024-06-21 16:12:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:12:03 - INFO - Authentication (publickey) successful!
+2024-06-21 16:13:11 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:14:14 - INFO - Instance i-02d33047acb9c56ba has been terminated.
+2024-06-21 16:14:34 - INFO - Instace Type: c7g.12xlarge
+2024-06-21 16:14:34 - INFO - Instance ID: i-059a80c801b552443
+2024-06-21 16:14:39 - INFO - Binding threads in cores
+2024-06-21 16:14:39 - INFO - Execution 1 of 5
+2024-06-21 16:14:39 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-059a80c801b552443 Region: us-east-1 Market: spot
+2024-06-21 16:15:43 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:15:44 - INFO - Authentication (publickey) successful!
+2024-06-21 16:16:30 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:16:30 - INFO - Execution 2 of 5
+2024-06-21 16:16:30 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-059a80c801b552443 Region: us-east-1 Market: spot
+2024-06-21 16:16:30 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:16:31 - INFO - Authentication (publickey) successful!
+2024-06-21 16:17:16 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:17:16 - INFO - Execution 3 of 5
+2024-06-21 16:17:16 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-059a80c801b552443 Region: us-east-1 Market: spot
+2024-06-21 16:17:16 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:17:17 - INFO - Authentication (publickey) successful!
+2024-06-21 16:18:02 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:18:02 - INFO - Execution 4 of 5
+2024-06-21 16:18:02 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-059a80c801b552443 Region: us-east-1 Market: spot
+2024-06-21 16:18:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:18:03 - INFO - Authentication (publickey) successful!
+2024-06-21 16:18:48 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:18:48 - INFO - Execution 5 of 5
+2024-06-21 16:18:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-059a80c801b552443 Region: us-east-1 Market: spot
+2024-06-21 16:18:49 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:18:49 - INFO - Authentication (publickey) successful!
+2024-06-21 16:19:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:20:23 - INFO - Instance i-059a80c801b552443 has been terminated.
+2024-06-21 16:20:42 - INFO - Instace Type: c5a.12xlarge
+2024-06-21 16:20:42 - INFO - Instance ID: i-0824178cc9d9494fc
+2024-06-21 16:20:47 - INFO - Binding threads in cores
+2024-06-21 16:20:47 - INFO - Execution 1 of 5
+2024-06-21 16:20:47 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0824178cc9d9494fc Region: us-east-1 Market: spot
+2024-06-21 16:20:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:20:48 - INFO - Authentication (publickey) successful!
+2024-06-21 16:21:48 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:21:48 - INFO - Execution 2 of 5
+2024-06-21 16:21:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0824178cc9d9494fc Region: us-east-1 Market: spot
+2024-06-21 16:21:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:21:49 - INFO - Authentication (publickey) successful!
+2024-06-21 16:22:48 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:22:48 - INFO - Execution 3 of 5
+2024-06-21 16:22:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0824178cc9d9494fc Region: us-east-1 Market: spot
+2024-06-21 16:22:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:22:49 - INFO - Authentication (publickey) successful!
+2024-06-21 16:23:48 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:23:48 - INFO - Execution 4 of 5
+2024-06-21 16:23:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0824178cc9d9494fc Region: us-east-1 Market: spot
+2024-06-21 16:23:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:23:49 - INFO - Authentication (publickey) successful!
+2024-06-21 16:24:49 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:24:49 - INFO - Execution 5 of 5
+2024-06-21 16:24:49 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0824178cc9d9494fc Region: us-east-1 Market: spot
+2024-06-21 16:24:49 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:24:50 - INFO - Authentication (publickey) successful!
+2024-06-21 16:25:50 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:27:23 - INFO - Instance i-0824178cc9d9494fc has been terminated.
+2024-06-21 16:27:43 - INFO - Instace Type: c5.12xlarge
+2024-06-21 16:27:43 - INFO - Instance ID: i-0ac150eeaafeeae34
+2024-06-21 16:27:48 - INFO - Binding threads in cores
+2024-06-21 16:27:48 - INFO - Execution 1 of 5
+2024-06-21 16:27:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ac150eeaafeeae34 Region: us-east-1 Market: spot
+2024-06-21 16:27:49 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:27:49 - INFO - Authentication (publickey) successful!
+2024-06-21 16:28:53 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:28:53 - INFO - Execution 2 of 5
+2024-06-21 16:28:53 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ac150eeaafeeae34 Region: us-east-1 Market: spot
+2024-06-21 16:28:53 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:28:54 - INFO - Authentication (publickey) successful!
+2024-06-21 16:29:42 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:29:42 - INFO - Execution 3 of 5
+2024-06-21 16:29:42 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ac150eeaafeeae34 Region: us-east-1 Market: spot
+2024-06-21 16:29:42 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:29:43 - INFO - Authentication (publickey) successful!
+2024-06-21 16:30:45 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:30:45 - INFO - Execution 4 of 5
+2024-06-21 16:30:45 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ac150eeaafeeae34 Region: us-east-1 Market: spot
+2024-06-21 16:30:46 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:30:46 - INFO - Authentication (publickey) successful!
+2024-06-21 16:31:48 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:31:48 - INFO - Execution 5 of 5
+2024-06-21 16:31:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0ac150eeaafeeae34 Region: us-east-1 Market: spot
+2024-06-21 16:31:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:31:49 - INFO - Authentication (publickey) successful!
+2024-06-21 16:32:51 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:33:54 - INFO - Instance i-0ac150eeaafeeae34 has been terminated.
+2024-06-21 16:34:14 - INFO - Instace Type: c6a.12xlarge
+2024-06-21 16:34:14 - INFO - Instance ID: i-080ed20f6e9d407ba
+2024-06-21 16:34:19 - INFO - Binding threads in cores
+2024-06-21 16:34:19 - INFO - Execution 1 of 5
+2024-06-21 16:34:19 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-080ed20f6e9d407ba Region: us-east-1 Market: spot
+2024-06-21 16:34:19 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:34:20 - INFO - Authentication (publickey) successful!
+2024-06-21 16:35:24 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:35:24 - INFO - Execution 2 of 5
+2024-06-21 16:35:24 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-080ed20f6e9d407ba Region: us-east-1 Market: spot
+2024-06-21 16:35:24 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:35:25 - INFO - Authentication (publickey) successful!
+2024-06-21 16:36:17 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:36:17 - INFO - Execution 3 of 5
+2024-06-21 16:36:17 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-080ed20f6e9d407ba Region: us-east-1 Market: spot
+2024-06-21 16:36:18 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:36:19 - INFO - Authentication (publickey) successful!
+2024-06-21 16:37:11 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:37:11 - INFO - Execution 4 of 5
+2024-06-21 16:37:11 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-080ed20f6e9d407ba Region: us-east-1 Market: spot
+2024-06-21 16:37:11 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:37:12 - INFO - Authentication (publickey) successful!
+2024-06-21 16:38:16 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:38:16 - INFO - Execution 5 of 5
+2024-06-21 16:38:16 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-080ed20f6e9d407ba Region: us-east-1 Market: spot
+2024-06-21 16:38:17 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:38:17 - INFO - Authentication (publickey) successful!
+2024-06-21 16:39:20 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:40:23 - INFO - Instance i-080ed20f6e9d407ba has been terminated.
+2024-06-21 16:40:43 - INFO - Instace Type: c7i.12xlarge
+2024-06-21 16:40:43 - INFO - Instance ID: i-0576ace07daed8ee2
+2024-06-21 16:40:48 - INFO - Binding threads in cores
+2024-06-21 16:40:48 - INFO - Execution 1 of 5
+2024-06-21 16:40:48 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0576ace07daed8ee2 Region: us-east-1 Market: spot
+2024-06-21 16:40:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:40:49 - INFO - Authentication (publickey) successful!
+2024-06-21 16:41:52 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:41:52 - INFO - Execution 2 of 5
+2024-06-21 16:41:52 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0576ace07daed8ee2 Region: us-east-1 Market: spot
+2024-06-21 16:41:52 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:41:53 - INFO - Authentication (publickey) successful!
+2024-06-21 16:42:54 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:42:54 - INFO - Execution 3 of 5
+2024-06-21 16:42:54 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0576ace07daed8ee2 Region: us-east-1 Market: spot
+2024-06-21 16:42:54 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:42:55 - INFO - Authentication (publickey) successful!
+2024-06-21 16:43:30 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:43:30 - INFO - Execution 4 of 5
+2024-06-21 16:43:30 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0576ace07daed8ee2 Region: us-east-1 Market: spot
+2024-06-21 16:43:30 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:43:31 - INFO - Authentication (publickey) successful!
+2024-06-21 16:44:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:44:35 - INFO - Execution 5 of 5
+2024-06-21 16:44:35 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0576ace07daed8ee2 Region: us-east-1 Market: spot
+2024-06-21 16:44:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:44:36 - INFO - Authentication (publickey) successful!
+2024-06-21 16:45:38 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:46:41 - INFO - Instance i-0576ace07daed8ee2 has been terminated.
+2024-06-21 16:47:01 - INFO - Instace Type: c6i.12xlarge
+2024-06-21 16:47:01 - INFO - Instance ID: i-0e34e3830cdbefc3f
+2024-06-21 16:47:06 - INFO - Binding threads in cores
+2024-06-21 16:47:06 - INFO - Execution 1 of 5
+2024-06-21 16:47:06 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e34e3830cdbefc3f Region: us-east-1 Market: spot
+2024-06-21 16:47:06 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:47:07 - INFO - Authentication (publickey) successful!
+2024-06-21 16:48:14 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:48:14 - INFO - Execution 2 of 5
+2024-06-21 16:48:14 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e34e3830cdbefc3f Region: us-east-1 Market: spot
+2024-06-21 16:48:14 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:48:15 - INFO - Authentication (publickey) successful!
+2024-06-21 16:49:21 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:49:21 - INFO - Execution 3 of 5
+2024-06-21 16:49:21 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e34e3830cdbefc3f Region: us-east-1 Market: spot
+2024-06-21 16:49:21 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:49:22 - INFO - Authentication (publickey) successful!
+2024-06-21 16:50:27 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:50:27 - INFO - Execution 4 of 5
+2024-06-21 16:50:27 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e34e3830cdbefc3f Region: us-east-1 Market: spot
+2024-06-21 16:50:28 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:50:28 - INFO - Authentication (publickey) successful!
+2024-06-21 16:51:34 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:51:34 - INFO - Execution 5 of 5
+2024-06-21 16:51:34 - INFO - Running command: export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23";export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e34e3830cdbefc3f Region: us-east-1 Market: spot
+2024-06-21 16:51:34 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 16:51:35 - INFO - Authentication (publickey) successful!
+2024-06-21 16:52:41 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 16:53:44 - INFO - Instance i-0e34e3830cdbefc3f has been terminated.
+2024-06-21 18:18:50 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-21 18:19:10 - INFO - Instace Type: c7a.12xlarge
+2024-06-21 18:19:10 - INFO - Instance ID: i-0cb71da8be9e3162e
+2024-06-21 18:19:15 - INFO - Binding threads in cores
+2024-06-21 18:19:15 - INFO - Execution 1 of 5
+2024-06-21 18:19:15 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0cb71da8be9e3162e Region: us-east-1 Market: on-demand
+2024-06-21 18:19:15 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:19:16 - INFO - Authentication (publickey) successful!
+2024-06-21 18:20:21 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:20:21 - INFO - Execution 2 of 5
+2024-06-21 18:20:21 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0cb71da8be9e3162e Region: us-east-1 Market: on-demand
+2024-06-21 18:20:21 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:20:22 - INFO - Authentication (publickey) successful!
+2024-06-21 18:21:26 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:21:26 - INFO - Execution 3 of 5
+2024-06-21 18:21:26 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0cb71da8be9e3162e Region: us-east-1 Market: on-demand
+2024-06-21 18:21:26 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:21:27 - INFO - Authentication (publickey) successful!
+2024-06-21 18:22:30 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:22:30 - INFO - Execution 4 of 5
+2024-06-21 18:22:30 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0cb71da8be9e3162e Region: us-east-1 Market: on-demand
+2024-06-21 18:22:31 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:22:31 - INFO - Authentication (publickey) successful!
+2024-06-21 18:23:36 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:23:36 - INFO - Execution 5 of 5
+2024-06-21 18:23:36 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0cb71da8be9e3162e Region: us-east-1 Market: on-demand
+2024-06-21 18:23:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:23:37 - INFO - Authentication (publickey) successful!
+2024-06-21 18:24:42 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:25:29 - INFO - Instance i-0cb71da8be9e3162e has been terminated.
+2024-06-21 18:25:49 - INFO - Instace Type: c6g.12xlarge
+2024-06-21 18:25:49 - INFO - Instance ID: i-0bb9e00a3ee89196b
+2024-06-21 18:25:54 - INFO - Binding threads in cores
+2024-06-21 18:25:54 - INFO - Execution 1 of 5
+2024-06-21 18:25:54 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bb9e00a3ee89196b Region: us-east-1 Market: on-demand
+2024-06-21 18:25:54 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:25:55 - INFO - Authentication (publickey) successful!
+2024-06-21 18:27:03 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:27:03 - INFO - Execution 2 of 5
+2024-06-21 18:27:03 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bb9e00a3ee89196b Region: us-east-1 Market: on-demand
+2024-06-21 18:27:04 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:27:04 - INFO - Authentication (publickey) successful!
+2024-06-21 18:28:12 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:28:12 - INFO - Execution 3 of 5
+2024-06-21 18:28:12 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bb9e00a3ee89196b Region: us-east-1 Market: on-demand
+2024-06-21 18:28:12 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:28:13 - INFO - Authentication (publickey) successful!
+2024-06-21 18:29:21 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:29:21 - INFO - Execution 4 of 5
+2024-06-21 18:29:21 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bb9e00a3ee89196b Region: us-east-1 Market: on-demand
+2024-06-21 18:29:21 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:29:22 - INFO - Authentication (publickey) successful!
+2024-06-21 18:30:30 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:30:30 - INFO - Execution 5 of 5
+2024-06-21 18:30:30 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bb9e00a3ee89196b Region: us-east-1 Market: on-demand
+2024-06-21 18:30:30 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:30:31 - INFO - Authentication (publickey) successful!
+2024-06-21 18:31:39 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:32:11 - INFO - Instance i-0bb9e00a3ee89196b has been terminated.
+2024-06-21 18:32:30 - INFO - Instace Type: c7g.12xlarge
+2024-06-21 18:32:30 - INFO - Instance ID: i-0f75826883c18ff2f
+2024-06-21 18:32:35 - INFO - Binding threads in cores
+2024-06-21 18:32:35 - INFO - Execution 1 of 5
+2024-06-21 18:32:35 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f75826883c18ff2f Region: us-east-1 Market: on-demand
+2024-06-21 18:32:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:32:36 - INFO - Authentication (publickey) successful!
+2024-06-21 18:33:22 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:33:22 - INFO - Execution 2 of 5
+2024-06-21 18:33:22 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f75826883c18ff2f Region: us-east-1 Market: on-demand
+2024-06-21 18:33:22 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:33:23 - INFO - Authentication (publickey) successful!
+2024-06-21 18:34:08 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:34:08 - INFO - Execution 3 of 5
+2024-06-21 18:34:08 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f75826883c18ff2f Region: us-east-1 Market: on-demand
+2024-06-21 18:34:09 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:34:09 - INFO - Authentication (publickey) successful!
+2024-06-21 18:34:55 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:34:55 - INFO - Execution 4 of 5
+2024-06-21 18:34:55 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f75826883c18ff2f Region: us-east-1 Market: on-demand
+2024-06-21 18:34:55 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:34:56 - INFO - Authentication (publickey) successful!
+2024-06-21 18:35:41 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:35:41 - INFO - Execution 5 of 5
+2024-06-21 18:35:41 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f75826883c18ff2f Region: us-east-1 Market: on-demand
+2024-06-21 18:35:41 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:35:42 - INFO - Authentication (publickey) successful!
+2024-06-21 18:36:27 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:37:30 - INFO - Instance i-0f75826883c18ff2f has been terminated.
+2024-06-21 18:37:49 - INFO - Instace Type: c5a.12xlarge
+2024-06-21 18:37:49 - INFO - Instance ID: i-0884b431d1e613240
+2024-06-21 18:37:54 - INFO - Binding threads in cores
+2024-06-21 18:37:54 - INFO - Execution 1 of 5
+2024-06-21 18:37:54 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0884b431d1e613240 Region: us-east-1 Market: on-demand
+2024-06-21 18:37:54 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:37:55 - INFO - Authentication (publickey) successful!
+2024-06-21 18:38:55 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:38:55 - INFO - Execution 2 of 5
+2024-06-21 18:38:55 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0884b431d1e613240 Region: us-east-1 Market: on-demand
+2024-06-21 18:38:56 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:38:56 - INFO - Authentication (publickey) successful!
+2024-06-21 18:39:55 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:39:55 - INFO - Execution 3 of 5
+2024-06-21 18:39:55 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0884b431d1e613240 Region: us-east-1 Market: on-demand
+2024-06-21 18:39:55 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:39:56 - INFO - Authentication (publickey) successful!
+2024-06-21 18:40:55 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:40:55 - INFO - Execution 4 of 5
+2024-06-21 18:40:55 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0884b431d1e613240 Region: us-east-1 Market: on-demand
+2024-06-21 18:40:55 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:40:56 - INFO - Authentication (publickey) successful!
+2024-06-21 18:41:54 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:41:54 - INFO - Execution 5 of 5
+2024-06-21 18:41:54 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0884b431d1e613240 Region: us-east-1 Market: on-demand
+2024-06-21 18:41:55 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:41:55 - INFO - Authentication (publickey) successful!
+2024-06-21 18:42:54 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:43:57 - INFO - Instance i-0884b431d1e613240 has been terminated.
+2024-06-21 18:44:17 - INFO - Instace Type: c5.12xlarge
+2024-06-21 18:44:17 - INFO - Instance ID: i-000f82e391248f7a3
+2024-06-21 18:44:22 - INFO - Binding threads in cores
+2024-06-21 18:44:22 - INFO - Execution 1 of 5
+2024-06-21 18:44:22 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-000f82e391248f7a3 Region: us-east-1 Market: on-demand
+2024-06-21 18:44:22 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:44:23 - INFO - Authentication (publickey) successful!
+2024-06-21 18:45:26 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:45:26 - INFO - Execution 2 of 5
+2024-06-21 18:45:26 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-000f82e391248f7a3 Region: us-east-1 Market: on-demand
+2024-06-21 18:45:26 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:45:27 - INFO - Authentication (publickey) successful!
+2024-06-21 18:46:31 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:46:31 - INFO - Execution 3 of 5
+2024-06-21 18:46:31 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-000f82e391248f7a3 Region: us-east-1 Market: on-demand
+2024-06-21 18:46:31 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:46:32 - INFO - Authentication (publickey) successful!
+2024-06-21 18:47:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:47:35 - INFO - Execution 4 of 5
+2024-06-21 18:47:35 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-000f82e391248f7a3 Region: us-east-1 Market: on-demand
+2024-06-21 18:47:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:47:36 - INFO - Authentication (publickey) successful!
+2024-06-21 18:48:40 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:48:40 - INFO - Execution 5 of 5
+2024-06-21 18:48:40 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-000f82e391248f7a3 Region: us-east-1 Market: on-demand
+2024-06-21 18:48:40 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:48:41 - INFO - Authentication (publickey) successful!
+2024-06-21 18:49:28 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:50:00 - INFO - Instance i-000f82e391248f7a3 has been terminated.
+2024-06-21 18:50:20 - INFO - Instace Type: c6a.12xlarge
+2024-06-21 18:50:20 - INFO - Instance ID: i-0596f14e54bc1c7f6
+2024-06-21 18:50:25 - INFO - Binding threads in cores
+2024-06-21 18:50:25 - INFO - Execution 1 of 5
+2024-06-21 18:50:25 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0596f14e54bc1c7f6 Region: us-east-1 Market: on-demand
+2024-06-21 18:50:25 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:50:26 - INFO - Authentication (publickey) successful!
+2024-06-21 18:51:30 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:51:30 - INFO - Execution 2 of 5
+2024-06-21 18:51:30 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0596f14e54bc1c7f6 Region: us-east-1 Market: on-demand
+2024-06-21 18:51:30 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:51:31 - INFO - Authentication (publickey) successful!
+2024-06-21 18:52:23 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:52:23 - INFO - Execution 3 of 5
+2024-06-21 18:52:23 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0596f14e54bc1c7f6 Region: us-east-1 Market: on-demand
+2024-06-21 18:52:24 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:52:24 - INFO - Authentication (publickey) successful!
+2024-06-21 18:53:27 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:53:27 - INFO - Execution 4 of 5
+2024-06-21 18:53:27 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0596f14e54bc1c7f6 Region: us-east-1 Market: on-demand
+2024-06-21 18:53:27 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:53:28 - INFO - Authentication (publickey) successful!
+2024-06-21 18:54:21 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:54:21 - INFO - Execution 5 of 5
+2024-06-21 18:54:21 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0596f14e54bc1c7f6 Region: us-east-1 Market: on-demand
+2024-06-21 18:54:21 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:54:22 - INFO - Authentication (publickey) successful!
+2024-06-21 18:55:24 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:56:12 - INFO - Instance i-0596f14e54bc1c7f6 has been terminated.
+2024-06-21 18:56:32 - INFO - Instace Type: c7i.12xlarge
+2024-06-21 18:56:32 - INFO - Instance ID: i-0049bd0f280b52e6e
+2024-06-21 18:56:37 - INFO - Binding threads in cores
+2024-06-21 18:56:37 - INFO - Execution 1 of 5
+2024-06-21 18:56:37 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0049bd0f280b52e6e Region: us-east-1 Market: on-demand
+2024-06-21 18:56:38 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:56:38 - INFO - Authentication (publickey) successful!
+2024-06-21 18:57:38 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:57:38 - INFO - Execution 2 of 5
+2024-06-21 18:57:38 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0049bd0f280b52e6e Region: us-east-1 Market: on-demand
+2024-06-21 18:57:38 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:57:39 - INFO - Authentication (publickey) successful!
+2024-06-21 18:58:36 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:58:36 - INFO - Execution 3 of 5
+2024-06-21 18:58:36 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0049bd0f280b52e6e Region: us-east-1 Market: on-demand
+2024-06-21 18:58:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:58:37 - INFO - Authentication (publickey) successful!
+2024-06-21 18:59:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 18:59:35 - INFO - Execution 4 of 5
+2024-06-21 18:59:35 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0049bd0f280b52e6e Region: us-east-1 Market: on-demand
+2024-06-21 18:59:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 18:59:36 - INFO - Authentication (publickey) successful!
+2024-06-21 19:00:33 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:00:33 - INFO - Execution 5 of 5
+2024-06-21 19:00:33 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0049bd0f280b52e6e Region: us-east-1 Market: on-demand
+2024-06-21 19:00:33 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:00:34 - INFO - Authentication (publickey) successful!
+2024-06-21 19:01:34 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:02:37 - INFO - Instance i-0049bd0f280b52e6e has been terminated.
+2024-06-21 19:02:56 - INFO - Instace Type: c6i.12xlarge
+2024-06-21 19:02:56 - INFO - Instance ID: i-033f32acc9bf2422a
+2024-06-21 19:03:01 - INFO - Binding threads in cores
+2024-06-21 19:03:01 - INFO - Execution 1 of 5
+2024-06-21 19:03:01 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-033f32acc9bf2422a Region: us-east-1 Market: on-demand
+2024-06-21 19:03:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:03:02 - INFO - Authentication (publickey) successful!
+2024-06-21 19:04:09 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:04:09 - INFO - Execution 2 of 5
+2024-06-21 19:04:09 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-033f32acc9bf2422a Region: us-east-1 Market: on-demand
+2024-06-21 19:04:10 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:04:10 - INFO - Authentication (publickey) successful!
+2024-06-21 19:05:16 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:05:16 - INFO - Execution 3 of 5
+2024-06-21 19:05:16 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-033f32acc9bf2422a Region: us-east-1 Market: on-demand
+2024-06-21 19:05:16 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:05:17 - INFO - Authentication (publickey) successful!
+2024-06-21 19:06:23 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:06:23 - INFO - Execution 4 of 5
+2024-06-21 19:06:23 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-033f32acc9bf2422a Region: us-east-1 Market: on-demand
+2024-06-21 19:06:23 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:06:24 - INFO - Authentication (publickey) successful!
+2024-06-21 19:07:07 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:07:07 - INFO - Execution 5 of 5
+2024-06-21 19:07:07 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-033f32acc9bf2422a Region: us-east-1 Market: on-demand
+2024-06-21 19:07:07 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:07:08 - INFO - Authentication (publickey) successful!
+2024-06-21 19:07:51 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:08:23 - INFO - Instance i-033f32acc9bf2422a has been terminated.
+2024-06-21 19:48:05 - INFO - Start execution in us-east-1 N=5 JsonFile=instance_info.json
+2024-06-21 19:48:19 - ERROR - <EC2Manager>: Error to create instance c7a.12xlarge in region us-east-1: An error occurred (InsufficientInstanceCapacity) when calling the RunInstances operation (reached max retries: 4): We currently do not have sufficient c7a.12xlarge capacity in zones with support for 'gp3' volumes. Our system will be working on provisioning additional capacity.
+2024-06-21 19:48:19 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:48:38 - INFO - Instace Type: c6g.12xlarge
+2024-06-21 19:48:38 - INFO - Instance ID: i-0f4def34b7fc8fafc
+2024-06-21 19:48:43 - INFO - Binding threads in cores
+2024-06-21 19:48:43 - INFO - Execution 1 of 5
+2024-06-21 19:48:43 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f4def34b7fc8fafc Region: us-east-1 Market: spot
+2024-06-21 19:48:44 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:48:44 - INFO - Authentication (publickey) successful!
+2024-06-21 19:49:53 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:49:53 - INFO - Execution 2 of 5
+2024-06-21 19:49:53 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f4def34b7fc8fafc Region: us-east-1 Market: spot
+2024-06-21 19:49:53 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:49:54 - INFO - Authentication (publickey) successful!
+2024-06-21 19:51:02 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:51:02 - INFO - Execution 3 of 5
+2024-06-21 19:51:02 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f4def34b7fc8fafc Region: us-east-1 Market: spot
+2024-06-21 19:51:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:51:02 - INFO - Authentication (publickey) successful!
+2024-06-21 19:52:10 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:52:10 - INFO - Execution 4 of 5
+2024-06-21 19:52:10 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f4def34b7fc8fafc Region: us-east-1 Market: spot
+2024-06-21 19:52:11 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:52:11 - INFO - Authentication (publickey) successful!
+2024-06-21 19:53:19 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:53:19 - INFO - Execution 5 of 5
+2024-06-21 19:53:19 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0f4def34b7fc8fafc Region: us-east-1 Market: spot
+2024-06-21 19:53:19 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:53:20 - INFO - Authentication (publickey) successful!
+2024-06-21 19:54:28 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:55:46 - INFO - Instance i-0f4def34b7fc8fafc has been terminated.
+2024-06-21 19:56:06 - INFO - Instace Type: c7g.12xlarge
+2024-06-21 19:56:06 - INFO - Instance ID: i-0e1bf29c1ba5c7164
+2024-06-21 19:56:11 - INFO - Binding threads in cores
+2024-06-21 19:56:11 - INFO - Execution 1 of 5
+2024-06-21 19:56:11 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e1bf29c1ba5c7164 Region: us-east-1 Market: spot
+2024-06-21 19:56:11 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:56:12 - INFO - Authentication (publickey) successful!
+2024-06-21 19:56:58 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:56:58 - INFO - Execution 2 of 5
+2024-06-21 19:56:58 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e1bf29c1ba5c7164 Region: us-east-1 Market: spot
+2024-06-21 19:56:58 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:56:59 - INFO - Authentication (publickey) successful!
+2024-06-21 19:57:44 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:57:44 - INFO - Execution 3 of 5
+2024-06-21 19:57:44 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e1bf29c1ba5c7164 Region: us-east-1 Market: spot
+2024-06-21 19:57:45 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:57:45 - INFO - Authentication (publickey) successful!
+2024-06-21 19:58:31 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:58:31 - INFO - Execution 4 of 5
+2024-06-21 19:58:31 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e1bf29c1ba5c7164 Region: us-east-1 Market: spot
+2024-06-21 19:58:31 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:58:32 - INFO - Authentication (publickey) successful!
+2024-06-21 19:59:17 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 19:59:17 - INFO - Execution 5 of 5
+2024-06-21 19:59:17 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0e1bf29c1ba5c7164 Region: us-east-1 Market: spot
+2024-06-21 19:59:17 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 19:59:18 - INFO - Authentication (publickey) successful!
+2024-06-21 20:00:03 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:00:51 - INFO - Instance i-0e1bf29c1ba5c7164 has been terminated.
+2024-06-21 20:01:11 - INFO - Instace Type: c5a.12xlarge
+2024-06-21 20:01:11 - INFO - Instance ID: i-0b760509eeeceec65
+2024-06-21 20:01:16 - INFO - Binding threads in cores
+2024-06-21 20:01:16 - INFO - Execution 1 of 5
+2024-06-21 20:01:16 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b760509eeeceec65 Region: us-east-1 Market: spot
+2024-06-21 20:01:16 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:01:17 - INFO - Authentication (publickey) successful!
+2024-06-21 20:02:17 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:02:17 - INFO - Execution 2 of 5
+2024-06-21 20:02:17 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b760509eeeceec65 Region: us-east-1 Market: spot
+2024-06-21 20:02:18 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:02:18 - INFO - Authentication (publickey) successful!
+2024-06-21 20:03:17 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:03:17 - INFO - Execution 3 of 5
+2024-06-21 20:03:17 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b760509eeeceec65 Region: us-east-1 Market: spot
+2024-06-21 20:03:17 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:03:18 - INFO - Authentication (publickey) successful!
+2024-06-21 20:04:17 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:04:17 - INFO - Execution 4 of 5
+2024-06-21 20:04:17 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b760509eeeceec65 Region: us-east-1 Market: spot
+2024-06-21 20:04:17 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:04:18 - INFO - Authentication (publickey) successful!
+2024-06-21 20:05:17 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:05:17 - INFO - Execution 5 of 5
+2024-06-21 20:05:17 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0b760509eeeceec65 Region: us-east-1 Market: spot
+2024-06-21 20:05:17 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:05:18 - INFO - Authentication (publickey) successful!
+2024-06-21 20:06:17 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:07:35 - INFO - Instance i-0b760509eeeceec65 has been terminated.
+2024-06-21 20:07:55 - INFO - Instace Type: c5.12xlarge
+2024-06-21 20:07:55 - INFO - Instance ID: i-0bd16bd3f36b7b16f
+2024-06-21 20:08:00 - INFO - Binding threads in cores
+2024-06-21 20:08:00 - INFO - Execution 1 of 5
+2024-06-21 20:08:00 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bd16bd3f36b7b16f Region: us-east-1 Market: spot
+2024-06-21 20:08:01 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:08:01 - INFO - Authentication (publickey) successful!
+2024-06-21 20:09:06 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:09:06 - INFO - Execution 2 of 5
+2024-06-21 20:09:06 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bd16bd3f36b7b16f Region: us-east-1 Market: spot
+2024-06-21 20:09:06 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:09:07 - INFO - Authentication (publickey) successful!
+2024-06-21 20:10:10 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:10:10 - INFO - Execution 3 of 5
+2024-06-21 20:10:10 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bd16bd3f36b7b16f Region: us-east-1 Market: spot
+2024-06-21 20:10:11 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:10:11 - INFO - Authentication (publickey) successful!
+2024-06-21 20:11:15 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:11:15 - INFO - Execution 4 of 5
+2024-06-21 20:11:15 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bd16bd3f36b7b16f Region: us-east-1 Market: spot
+2024-06-21 20:11:15 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:11:16 - INFO - Authentication (publickey) successful!
+2024-06-21 20:12:19 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:12:19 - INFO - Execution 5 of 5
+2024-06-21 20:12:19 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0bd16bd3f36b7b16f Region: us-east-1 Market: spot
+2024-06-21 20:12:20 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:12:20 - INFO - Authentication (publickey) successful!
+2024-06-21 20:13:13 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:14:00 - INFO - Instance i-0bd16bd3f36b7b16f has been terminated.
+2024-06-21 20:14:20 - INFO - Instace Type: c6a.12xlarge
+2024-06-21 20:14:20 - INFO - Instance ID: i-036a793ba8c255ea9
+2024-06-21 20:14:25 - INFO - Binding threads in cores
+2024-06-21 20:14:25 - INFO - Execution 1 of 5
+2024-06-21 20:14:25 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-036a793ba8c255ea9 Region: us-east-1 Market: spot
+2024-06-21 20:14:26 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:14:26 - INFO - Authentication (publickey) successful!
+2024-06-21 20:15:30 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:15:30 - INFO - Execution 2 of 5
+2024-06-21 20:15:30 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-036a793ba8c255ea9 Region: us-east-1 Market: spot
+2024-06-21 20:15:31 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:15:31 - INFO - Authentication (publickey) successful!
+2024-06-21 20:16:34 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:16:34 - INFO - Execution 3 of 5
+2024-06-21 20:16:34 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-036a793ba8c255ea9 Region: us-east-1 Market: spot
+2024-06-21 20:16:34 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:16:35 - INFO - Authentication (publickey) successful!
+2024-06-21 20:17:27 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:17:27 - INFO - Execution 4 of 5
+2024-06-21 20:17:27 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-036a793ba8c255ea9 Region: us-east-1 Market: spot
+2024-06-21 20:17:28 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:17:28 - INFO - Authentication (publickey) successful!
+2024-06-21 20:18:31 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:18:31 - INFO - Execution 5 of 5
+2024-06-21 20:18:31 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-036a793ba8c255ea9 Region: us-east-1 Market: spot
+2024-06-21 20:18:31 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:18:32 - INFO - Authentication (publickey) successful!
+2024-06-21 20:19:35 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:20:38 - INFO - Instance i-036a793ba8c255ea9 has been terminated.
+2024-06-21 20:20:58 - INFO - Instace Type: c7i.12xlarge
+2024-06-21 20:20:58 - INFO - Instance ID: i-093151e1b01aa433e
+2024-06-21 20:21:03 - INFO - Binding threads in cores
+2024-06-21 20:21:03 - INFO - Execution 1 of 5
+2024-06-21 20:21:03 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-093151e1b01aa433e Region: us-east-1 Market: spot
+2024-06-21 20:21:03 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:21:04 - INFO - Authentication (publickey) successful!
+2024-06-21 20:22:03 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:22:03 - INFO - Execution 2 of 5
+2024-06-21 20:22:03 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-093151e1b01aa433e Region: us-east-1 Market: spot
+2024-06-21 20:22:04 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:22:04 - INFO - Authentication (publickey) successful!
+2024-06-21 20:23:03 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:23:03 - INFO - Execution 3 of 5
+2024-06-21 20:23:03 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-093151e1b01aa433e Region: us-east-1 Market: spot
+2024-06-21 20:23:03 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:23:04 - INFO - Authentication (publickey) successful!
+2024-06-21 20:24:02 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:24:02 - INFO - Execution 4 of 5
+2024-06-21 20:24:02 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-093151e1b01aa433e Region: us-east-1 Market: spot
+2024-06-21 20:24:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:24:03 - INFO - Authentication (publickey) successful!
+2024-06-21 20:25:01 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:25:01 - INFO - Execution 5 of 5
+2024-06-21 20:25:01 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-093151e1b01aa433e Region: us-east-1 Market: spot
+2024-06-21 20:25:01 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:25:02 - INFO - Authentication (publickey) successful!
+2024-06-21 20:26:01 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:27:04 - INFO - Instance i-093151e1b01aa433e has been terminated.
+2024-06-21 20:27:23 - INFO - Instace Type: c6i.12xlarge
+2024-06-21 20:27:23 - INFO - Instance ID: i-0de9b01d57cda13a9
+2024-06-21 20:27:28 - INFO - Binding threads in cores
+2024-06-21 20:27:28 - INFO - Execution 1 of 5
+2024-06-21 20:27:28 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0de9b01d57cda13a9 Region: us-east-1 Market: spot
+2024-06-21 20:27:29 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:27:29 - INFO - Authentication (publickey) successful!
+2024-06-21 20:28:36 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:28:36 - INFO - Execution 2 of 5
+2024-06-21 20:28:36 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0de9b01d57cda13a9 Region: us-east-1 Market: spot
+2024-06-21 20:28:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:28:37 - INFO - Authentication (publickey) successful!
+2024-06-21 20:29:43 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:29:43 - INFO - Execution 3 of 5
+2024-06-21 20:29:43 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0de9b01d57cda13a9 Region: us-east-1 Market: spot
+2024-06-21 20:29:43 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:29:44 - INFO - Authentication (publickey) successful!
+2024-06-21 20:30:27 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:30:27 - INFO - Execution 4 of 5
+2024-06-21 20:30:27 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0de9b01d57cda13a9 Region: us-east-1 Market: spot
+2024-06-21 20:30:27 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:30:28 - INFO - Authentication (publickey) successful!
+2024-06-21 20:31:34 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:31:34 - INFO - Execution 5 of 5
+2024-06-21 20:31:34 - INFO - Running command: export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export OMP_NUM_THREADS=24;./ep.D.x in instance i-0de9b01d57cda13a9 Region: us-east-1 Market: spot
+2024-06-21 20:31:34 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-21 20:31:35 - INFO - Authentication (publickey) successful!
+2024-06-21 20:32:40 - INFO - Updating file: results_us-east-1.csv
+2024-06-21 20:33:28 - INFO - Instance i-0de9b01d57cda13a9 has been terminated.
