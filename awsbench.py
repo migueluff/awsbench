@@ -120,6 +120,62 @@ def __start_instance(region, instance_type, info):
         return None
 
 
+def run_via_ssh_MPI(cmd, instances, region):
+
+
+    path_key = SSHConfig.path_key_us if region == 'us-east-1' else SSHConfig.path_key_sa
+
+    lifecycle = 'on-demand'
+
+    #logging.info(f"Running command: {cmd} in instance {instance.id} Region: {region} Market: {lifecycle}")
+
+    public_dns_names = [instance.public_dns_name for instance in instances]
+
+    ssh_client = paramiko.SSHClient()
+    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+
+
+    ssh_client.connect(hostname=public_dns_names[0],username="ubuntu",
+              key_filename=path_key,
+              allow_agent=False, look_for_keys=False)
+
+    ips = ",".join([instance.private_ip_address for instance in instances])
+
+    run_mpi_command = f"mpiexec -hosts {ips} -np {3*24} ./ft.D.x "
+
+    stdin, stdout, stderr = ssh_client.exec_command(run_mpi_command)
+    print(stdout.read().decode())
+    print(stderr.read().decode())
+    ssh_client.close()
+
+def __start_instances_to_MPI_(region, instance_type):
+    session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
+                            aws_secret_access_key=AWSConfig.aws_acess_secret_key,
+                            region_name=region)
+    resource = session.resource('ec2')
+
+
+    architecture = 'arm' if 'g' in instance_type.split('.')[0] else 'x86'
+    dict_key = f'{region}_{architecture}'
+    instances = resource.create_instances(
+        ImageId='ami-0bb23a7a7bae7b414',
+        InstanceType=instance_type,
+        KeyName=AWSConfig.image_setup[dict_key]['key_name'],
+        MinCount=2,
+        MaxCount=2,
+        SecurityGroupIds=['sg-02959f29d2c58f14e']
+    )
+    # Wait for i   nstances to initialize
+    for instance in instances:
+        instance.wait_until_running()
+
+    # Reload instance attributes
+    for instance in instances:
+        instance.reload()
+
+    return instances
+
 def _terminate_instance(instance):
     # if instance is spot, we have to remove its request
     client = boto3.client('ec2', region_name=instance.placement['AvailabilityZone'][:-1])
@@ -149,6 +205,33 @@ def is_available(region, instance_type):
         return len(response['InstanceTypes']) > 0
     except ClientError as e:
         return False
+
+def benchmark_test(args):
+    region = args.region
+    repetions = args.repetitions
+    is_spot = args.spot
+    json_file = Path(args.json_file)
+
+    if not json_file.exists():
+        logging.error(f"File {json_file} not found")
+        raise FileNotFoundError
+
+    benchmark_config = BenchmarkConfig(json_file=json_file)
+    market = 'spot' if is_spot else 'ondemand'
+
+    # iterate over the instances
+    for instance_type, instance_core in benchmark_config.vms.items():
+
+        instances = __start_instances_to_MPI_(region, instance_type)
+
+        # if instance is not None, we can run the benchmark
+        if instances:
+                output = run_via_ssh_MPI(cmd='cg.A.x', instances=instances, region=region)
+                print(output)
+        else:
+            raise Exception(f'Instance {instance_type} not available')
+
+
 
 
 def benchmark(args):
@@ -276,4 +359,5 @@ if __name__ == '__main__':
                             datefmt='%Y-%m-%d %H:%M:%S')
         
     logging.info(f"Start execution in {args.region} N={args.repetitions} JsonFile={args.json_file}")
-    benchmark(args)
+    #benchmark(args)
+    benchmark_test(args)

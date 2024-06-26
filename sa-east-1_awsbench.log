@@ -910,3 +910,48 @@
 2024-06-21 19:46:21 - INFO - Authentication (publickey) successful!
 2024-06-21 19:47:03 - INFO - Updating file: results_sa-east-1.csv
 2024-06-21 19:48:05 - INFO - Instance i-0191a8aad3b89d0ef has been terminated.
+2024-06-25 14:58:45 - INFO - Start execution in sa-east-1 N=1 JsonFile=instance_infosa.json
+2024-06-25 15:00:43 - INFO - Start execution in sa-east-1 N=1 JsonFile=instance_infosa.json
+2024-06-25 15:02:41 - INFO - Start execution in sa-east-1 N=1 JsonFile=instance_infosa.json
+2024-06-25 15:04:29 - INFO - Start execution in sa-east-1 N=1 JsonFile=instance_infosa.json
+2024-06-25 15:07:44 - INFO - Start execution in sa-east-1 N=1 JsonFile=instance_infosa.json
+2024-06-25 15:08:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:08:02 - INFO - Authentication (publickey) successful!
+2024-06-25 15:08:03 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 15:08:03 - INFO - [chan 0] sftp session closed.
+2024-06-25 15:08:03 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:08:03 - INFO - Authentication (publickey) successful!
+2024-06-25 15:08:04 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 15:08:04 - INFO - [chan 0] sftp session closed.
+2024-06-25 15:08:05 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:08:05 - INFO - Authentication (publickey) successful!
+2024-06-25 15:08:06 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 15:08:06 - INFO - [chan 0] sftp session closed.
+2024-06-25 15:08:06 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:08:06 - INFO - Authentication (publickey) successful!
+2024-06-25 15:15:57 - INFO - Start execution in sa-east-1 N=1 JsonFile=instance_infosa.json
+2024-06-25 15:16:15 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:16:15 - INFO - Authentication (publickey) successful!
+2024-06-25 15:16:16 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 15:16:16 - INFO - [chan 0] sftp session closed.
+2024-06-25 15:16:16 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:16:16 - INFO - Authentication (publickey) successful!
+2024-06-25 15:16:17 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 15:16:17 - INFO - [chan 0] sftp session closed.
+2024-06-25 15:16:17 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:16:17 - INFO - Authentication (publickey) successful!
+2024-06-25 15:16:18 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 15:16:18 - INFO - [chan 0] sftp session closed.
+2024-06-25 15:16:18 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 15:16:18 - INFO - Authentication (publickey) successful!
+2024-06-25 16:04:05 - INFO - Start execution in sa-east-1 N=1 JsonFile=instance_infosa.json
+2024-06-25 16:04:22 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 16:04:23 - INFO - Authentication (publickey) successful!
+2024-06-25 16:04:23 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 16:04:23 - INFO - [chan 0] sftp session closed.
+2024-06-25 16:04:24 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 16:04:24 - INFO - Authentication (publickey) successful!
+2024-06-25 16:04:24 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-06-25 16:04:25 - INFO - [chan 0] sftp session closed.
+2024-06-25 16:04:25 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-06-25 16:04:25 - INFO - Authentication (publickey) successful!
