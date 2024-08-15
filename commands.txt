@@ -1,0 +1,4 @@
+python awsbench.py sa-east-1 instance_info.json
+python awsbench.py us-east-1 instance_info.json
+python awsbench.py sa-east-1 instance_info.json --spot
+python awsbench.py us-east-1 instance_info.json --spot
