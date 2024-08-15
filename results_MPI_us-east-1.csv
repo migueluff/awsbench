@@ -1,0 +1,24 @@
+Start_Time,End_Time,Instance,InstanceID,Price,Market,Region,Zone,Algorithm_Name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status,Cores
+2024-08-15 20:38:23.252196,2024-08-15 20:38:51.073155,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:39:02.587789,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:39:14.124188,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:39:25.638816,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:39:37.147577,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:39:48.670279,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:40:00.471770,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - ft.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:40:11.955894,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - ft.C.x,,,,,,,SUCCESS,
+2024-08-15 20:38:23.252196,2024-08-15 20:40:23.436403,c5.xlarge,i-0e50344d00c5e8c0c,0.17,ondemand,us-east-1,d,NAS Benchmark - ft.C.x,,,,,,,SUCCESS,
+2024-08-15 20:48:40.989105,2024-08-15 20:49:08.432913,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,8.0
+2024-08-15 20:48:40.989105,2024-08-15 20:49:19.920633,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,16.0
+2024-08-15 20:48:40.989105,2024-08-15 20:49:31.439151,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,24.0
+2024-08-15 20:48:40.989105,2024-08-15 20:49:42.903864,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,8.0
+2024-08-15 20:48:40.989105,2024-08-15 20:49:54.384848,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,16.0
+2024-08-15 20:48:40.989105,2024-08-15 20:50:05.876446,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,24.0
+2024-08-15 20:48:40.989105,2024-08-15 20:50:17.659733,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - ft.C.x,,,,,,,SUCCESS,8.0
+2024-08-15 20:48:40.989105,2024-08-15 20:50:29.145738,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - ft.C.x,,,,,,,SUCCESS,16.0
+2024-08-15 20:48:40.989105,2024-08-15 20:50:40.598891,c5.xlarge,i-03f8b85cecea213dd,0.17,ondemand,us-east-1,d,NAS Benchmark - ft.C.x,,,,,,,SUCCESS,24.0
+2024-08-15 20:54:37.604668,2024-08-15 20:55:04.352278,c5.xlarge,i-0ffcf6a18cb7f0f6c,0.1700000000,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,8.0
+2024-08-15 20:54:37.604668,2024-08-15 20:55:15.811071,c5.xlarge,i-0ffcf6a18cb7f0f6c,0.1700000000,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,16.0
+2024-08-15 20:54:37.604668,2024-08-15 20:55:27.309055,c5.xlarge,i-0ffcf6a18cb7f0f6c,0.1700000000,ondemand,us-east-1,d,NAS Benchmark - cg.C.x,,,,,,,SUCCESS,24.0
+2024-08-15 20:54:37.604668,2024-08-15 20:55:38.793052,c5.xlarge,i-0ffcf6a18cb7f0f6c,0.1700000000,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,8.0
+2024-08-15 20:54:37.604668,2024-08-15 20:55:50.290879,c5.xlarge,i-0ffcf6a18cb7f0f6c,0.1700000000,ondemand,us-east-1,d,NAS Benchmark - mg.C.x,,,,,,,SUCCESS,16.0

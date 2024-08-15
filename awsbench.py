@@ -36,7 +36,9 @@ def save_row(text, row, df, csv_file):
         "Mops_Total": None,
         "Mops_per_Thread": None,
         "Status": row['Status'],
+        "Cores": row['Cores']
     }
+    print(text)
     regex_patterns = {
         "Class": re.compile(r"Class\s*=\s*(\S+)"),
         "Time_in_Seconds": re.compile(r"Time in seconds\s*=\s*([\d.]+)"),
@@ -291,16 +293,19 @@ def benchmark(args):
             if instance:
                 time.sleep(5)
                 execution_count = 0
-                logging.info(f"Binding threads in cores")
+                #logging.info(f"Binding threads in cores")
 
                 #binding_threads = 'export GOMP_CPU_AFFINITY="' + ' '.join(str(i) for i in range(instance_core)) + '"'
-                run_via_ssh(cmd=f'python3 rprof-host.py -d -m -n -c -u -i 2.0 &', instance=instance, region=region)
+
+                #metrics = run_via_ssh(cmd=f'python3 rprof-host.py -d -m -n -c -u -i 2.0 &', instance=instance, region=region)
 
                 while execution_count < repetions:
                     logging.info(f"Execution {execution_count + 1} of {repetions}")
                     for bench in ['cg', 'mg','ft']:
-                        for cores in [1,2,4,8,16,24]:
-                            output= run_via_ssh(cmd=f'mpiexec -np {cores} ./{bench}.C.x', instance=instance, region=region)
+                        for c in [8,16,24]:
+                            logging.info(f"Running benchmark {bench} with {c} processors")
+                            output = run_via_ssh(cmd=f'python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np {c} ./{bench}.C.x', instance=instance, region=region)
+
                             '''
                             output = run_via_ssh(cmd=f'export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export '
                                                      f'OMP_NUM_THREADS={instance_core};./ep.D.x', instance=instance,
@@ -316,12 +321,34 @@ def benchmark(args):
                                    "Zone": instance.placement['AvailabilityZone'][-1:],
                                    "Algorithm_Name": f'NAS Benchmark - {bench}.C.x',
                                    "Status": 'SUCCESS',
-                                   "Cores": cores}
+                                   "Cores": c}
                             print(row)
                             df = save_row(output, row, df, csv_file)
-                            execution_count += 1
+                            logging.info(f"Waiting 10 seconds.")
+                            time.sleep(10)
+                    execution_count += 1
 
-                _terminate_instance(instance)
+                output = run_via_ssh(cmd=f'cat cpu.csv', instance=instance, region=region)
+                arq = open(f'cpu_MPI_{instance}.csv', 'a')
+                arq.write(output)
+                arq.close()
+                output = run_via_ssh(cmd=f'cat cpu_usage.csv', instance=instance, region=region)
+                arq = open(f'cpu_usage_MPI_{instance}.csv', 'a')
+                arq.write(output)
+                arq.close()
+                output = run_via_ssh(cmd=f'cat disk.csv', instance=instance, region=region)
+                arq = open(f'disk_MPI_{instance}.csv', 'a')
+                arq.write(output)
+                arq.close()
+                output = run_via_ssh(cmd=f'cat memory.csv', instance=instance, region=region)
+                arq = open(f'memory_MPI_{instance}.csv', 'a')
+                arq.write(output)
+                arq.close()
+                output = run_via_ssh(cmd=f'cat network.csv', instance=instance, region=region)
+                arq = open(f'network_MPI_{instance}.csv', 'a')
+                arq.write(output)
+                arq.close()
+                #_terminate_instance(instance)
             else:
                 raise Exception(f'Instance {instance_type} not available')
         
@@ -366,5 +393,5 @@ if __name__ == '__main__':
                             datefmt='%Y-%m-%d %H:%M:%S')
         
     logging.info(f"Start execution in {args.region} N={args.repetitions} JsonFile={args.json_file}")
-    #benchmark(args)
-    benchmark_test(args)
+    benchmark(args)
+    #benchmark_test(args)

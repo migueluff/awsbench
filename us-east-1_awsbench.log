@@ -876,3 +876,215 @@
 2024-08-15 17:29:40 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_info.json
 2024-08-15 17:30:32 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
 2024-08-15 17:30:34 - INFO - Authentication (publickey) successful!
+2024-08-15 17:45:19 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_info.json
+2024-08-15 17:47:26 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_info.json
+2024-08-15 17:56:11 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 17:56:29 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 17:56:30 - INFO - Authentication (publickey) successful!
+2024-08-15 18:03:56 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 18:04:26 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 18:06:28 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 18:10:32 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 18:10:52 - INFO - Instace Type: c5.xlarge
+2024-08-15 18:10:52 - INFO - Instance ID: i-0eb5ae1609d6f280a
+2024-08-15 18:10:57 - INFO - Binding threads in cores
+2024-08-15 18:10:57 - INFO - Execution 1 of 1
+2024-08-15 18:10:57 - INFO - Running command: mpiexec -np 1 ./cg.C.x in instance i-0eb5ae1609d6f280a Region: us-east-1 Market: on-demand
+2024-08-15 18:10:58 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 18:10:58 - INFO - Authentication (publickey) successful!
+2024-08-15 18:15:51 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:21:07 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 20:21:27 - INFO - Instace Type: c5.xlarge
+2024-08-15 20:21:27 - INFO - Instance ID: i-0d343401912c9158c
+2024-08-15 20:21:32 - INFO - Binding threads in cores
+2024-08-15 20:21:32 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 & in instance i-0d343401912c9158c Region: us-east-1 Market: on-demand
+2024-08-15 20:21:32 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:21:33 - INFO - Authentication (publickey) successful!
+2024-08-15 20:30:32 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 20:30:52 - INFO - Instace Type: c5.xlarge
+2024-08-15 20:30:52 - INFO - Instance ID: i-0505d7cd1f0efe5c7
+2024-08-15 20:30:57 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 & in instance i-0505d7cd1f0efe5c7 Region: us-east-1 Market: on-demand
+2024-08-15 20:30:57 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:30:58 - INFO - Authentication (publickey) successful!
+2024-08-15 20:38:23 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 20:38:42 - INFO - Instace Type: c5.xlarge
+2024-08-15 20:38:42 - INFO - Instance ID: i-0e50344d00c5e8c0c
+2024-08-15 20:38:47 - INFO - Execution 1 of 1
+2024-08-15 20:38:47 - INFO - Running benchmark cg with 8 processors
+2024-08-15 20:38:47 - INFO - Running command: mpiexec -np 8 ./cg.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:38:48 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:38:49 - INFO - Authentication (publickey) successful!
+2024-08-15 20:38:51 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:38:51 - INFO - Waiting 10 seconds.
+2024-08-15 20:39:01 - INFO - Running benchmark cg with 16 processors
+2024-08-15 20:39:01 - INFO - Running command: mpiexec -np 16 ./cg.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:39:01 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:39:02 - INFO - Authentication (publickey) successful!
+2024-08-15 20:39:02 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:39:02 - INFO - Waiting 10 seconds.
+2024-08-15 20:39:12 - INFO - Running benchmark cg with 24 processors
+2024-08-15 20:39:12 - INFO - Running command: mpiexec -np 24 ./cg.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:39:12 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:39:13 - INFO - Authentication (publickey) successful!
+2024-08-15 20:39:14 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:39:14 - INFO - Waiting 10 seconds.
+2024-08-15 20:39:24 - INFO - Running benchmark mg with 8 processors
+2024-08-15 20:39:24 - INFO - Running command: mpiexec -np 8 ./mg.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:39:24 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:39:25 - INFO - Authentication (publickey) successful!
+2024-08-15 20:39:25 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:39:25 - INFO - Waiting 10 seconds.
+2024-08-15 20:39:35 - INFO - Running benchmark mg with 16 processors
+2024-08-15 20:39:35 - INFO - Running command: mpiexec -np 16 ./mg.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:39:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:39:36 - INFO - Authentication (publickey) successful!
+2024-08-15 20:39:37 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:39:37 - INFO - Waiting 10 seconds.
+2024-08-15 20:39:47 - INFO - Running benchmark mg with 24 processors
+2024-08-15 20:39:47 - INFO - Running command: mpiexec -np 24 ./mg.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:39:47 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:39:48 - INFO - Authentication (publickey) successful!
+2024-08-15 20:39:48 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:39:48 - INFO - Waiting 10 seconds.
+2024-08-15 20:39:58 - INFO - Running benchmark ft with 8 processors
+2024-08-15 20:39:58 - INFO - Running command: mpiexec -np 8 ./ft.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:39:58 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:39:59 - INFO - Authentication (publickey) successful!
+2024-08-15 20:40:00 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:40:00 - INFO - Waiting 10 seconds.
+2024-08-15 20:40:10 - INFO - Running benchmark ft with 16 processors
+2024-08-15 20:40:10 - INFO - Running command: mpiexec -np 16 ./ft.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:40:10 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:40:11 - INFO - Authentication (publickey) successful!
+2024-08-15 20:40:11 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:40:11 - INFO - Waiting 10 seconds.
+2024-08-15 20:40:21 - INFO - Running benchmark ft with 24 processors
+2024-08-15 20:40:21 - INFO - Running command: mpiexec -np 24 ./ft.C.x in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:40:22 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:40:22 - INFO - Authentication (publickey) successful!
+2024-08-15 20:40:23 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:40:23 - INFO - Waiting 10 seconds.
+2024-08-15 20:40:33 - INFO - Running command: cat cpu.csv in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:40:33 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:40:34 - INFO - Authentication (publickey) successful!
+2024-08-15 20:40:34 - INFO - Running command: cat cpu_usage.csv in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:40:35 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:40:35 - INFO - Authentication (publickey) successful!
+2024-08-15 20:40:36 - INFO - Running command: cat disk.csv in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:40:36 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:40:37 - INFO - Authentication (publickey) successful!
+2024-08-15 20:40:37 - INFO - Running command: cat memory.csv in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:40:38 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:40:38 - INFO - Authentication (publickey) successful!
+2024-08-15 20:40:39 - INFO - Running command: cat network.csv in instance i-0e50344d00c5e8c0c Region: us-east-1 Market: on-demand
+2024-08-15 20:40:39 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:40:40 - INFO - Authentication (publickey) successful!
+2024-08-15 20:41:12 - INFO - Instance i-0e50344d00c5e8c0c has been terminated.
+2024-08-15 20:48:40 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 20:49:00 - INFO - Instace Type: c5.xlarge
+2024-08-15 20:49:00 - INFO - Instance ID: i-03f8b85cecea213dd
+2024-08-15 20:49:05 - INFO - Execution 1 of 1
+2024-08-15 20:49:05 - INFO - Running benchmark cg with 8 processors
+2024-08-15 20:49:05 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 8 ./cg.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:49:05 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:49:06 - INFO - Authentication (publickey) successful!
+2024-08-15 20:49:08 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:49:08 - INFO - Waiting 10 seconds.
+2024-08-15 20:49:18 - INFO - Running benchmark cg with 16 processors
+2024-08-15 20:49:18 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 16 ./cg.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:49:18 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:49:19 - INFO - Authentication (publickey) successful!
+2024-08-15 20:49:19 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:49:19 - INFO - Waiting 10 seconds.
+2024-08-15 20:49:29 - INFO - Running benchmark cg with 24 processors
+2024-08-15 20:49:29 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 24 ./cg.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:49:30 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:49:30 - INFO - Authentication (publickey) successful!
+2024-08-15 20:49:31 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:49:31 - INFO - Waiting 10 seconds.
+2024-08-15 20:49:41 - INFO - Running benchmark mg with 8 processors
+2024-08-15 20:49:41 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 8 ./mg.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:49:41 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:49:42 - INFO - Authentication (publickey) successful!
+2024-08-15 20:49:42 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:49:42 - INFO - Waiting 10 seconds.
+2024-08-15 20:49:52 - INFO - Running benchmark mg with 16 processors
+2024-08-15 20:49:52 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 16 ./mg.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:49:53 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:49:53 - INFO - Authentication (publickey) successful!
+2024-08-15 20:49:54 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:49:54 - INFO - Waiting 10 seconds.
+2024-08-15 20:50:04 - INFO - Running benchmark mg with 24 processors
+2024-08-15 20:50:04 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 24 ./mg.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:04 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:05 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:05 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:50:05 - INFO - Waiting 10 seconds.
+2024-08-15 20:50:15 - INFO - Running benchmark ft with 8 processors
+2024-08-15 20:50:15 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 8 ./ft.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:16 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:16 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:17 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:50:17 - INFO - Waiting 10 seconds.
+2024-08-15 20:50:27 - INFO - Running benchmark ft with 16 processors
+2024-08-15 20:50:27 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 16 ./ft.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:27 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:28 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:29 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:50:29 - INFO - Waiting 10 seconds.
+2024-08-15 20:50:39 - INFO - Running benchmark ft with 24 processors
+2024-08-15 20:50:39 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 24 ./ft.C.x in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:39 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:40 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:40 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:50:40 - INFO - Waiting 10 seconds.
+2024-08-15 20:50:50 - INFO - Running command: cat cpu.csv in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:50 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:51 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:52 - INFO - Running command: cat cpu_usage.csv in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:52 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:53 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:53 - INFO - Running command: cat disk.csv in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:53 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:54 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:54 - INFO - Running command: cat memory.csv in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:55 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:55 - INFO - Authentication (publickey) successful!
+2024-08-15 20:50:56 - INFO - Running command: cat network.csv in instance i-03f8b85cecea213dd Region: us-east-1 Market: on-demand
+2024-08-15 20:50:56 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:50:57 - INFO - Authentication (publickey) successful!
+2024-08-15 20:52:15 - INFO - Instance i-03f8b85cecea213dd has been terminated.
+2024-08-15 20:54:37 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_infosa.json
+2024-08-15 20:54:57 - INFO - Instace Type: c5.xlarge
+2024-08-15 20:54:57 - INFO - Instance ID: i-0ffcf6a18cb7f0f6c
+2024-08-15 20:55:02 - INFO - Execution 1 of 1
+2024-08-15 20:55:02 - INFO - Running benchmark cg with 8 processors
+2024-08-15 20:55:02 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 8 ./cg.C.x in instance i-0ffcf6a18cb7f0f6c Region: us-east-1 Market: on-demand
+2024-08-15 20:55:02 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:55:03 - INFO - Authentication (publickey) successful!
+2024-08-15 20:55:04 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:55:04 - INFO - Waiting 10 seconds.
+2024-08-15 20:55:14 - INFO - Running benchmark cg with 16 processors
+2024-08-15 20:55:14 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 16 ./cg.C.x in instance i-0ffcf6a18cb7f0f6c Region: us-east-1 Market: on-demand
+2024-08-15 20:55:14 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:55:15 - INFO - Authentication (publickey) successful!
+2024-08-15 20:55:15 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:55:15 - INFO - Waiting 10 seconds.
+2024-08-15 20:55:25 - INFO - Running benchmark cg with 24 processors
+2024-08-15 20:55:25 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 24 ./cg.C.x in instance i-0ffcf6a18cb7f0f6c Region: us-east-1 Market: on-demand
+2024-08-15 20:55:26 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:55:26 - INFO - Authentication (publickey) successful!
+2024-08-15 20:55:27 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:55:27 - INFO - Waiting 10 seconds.
+2024-08-15 20:55:37 - INFO - Running benchmark mg with 8 processors
+2024-08-15 20:55:37 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 8 ./mg.C.x in instance i-0ffcf6a18cb7f0f6c Region: us-east-1 Market: on-demand
+2024-08-15 20:55:37 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:55:38 - INFO - Authentication (publickey) successful!
+2024-08-15 20:55:38 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:55:38 - INFO - Waiting 10 seconds.
+2024-08-15 20:55:48 - INFO - Running benchmark mg with 16 processors
+2024-08-15 20:55:48 - INFO - Running command: python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np 16 ./mg.C.x in instance i-0ffcf6a18cb7f0f6c Region: us-east-1 Market: on-demand
+2024-08-15 20:55:49 - INFO - Connected (version 2.0, client OpenSSH_9.6p1)
+2024-08-15 20:55:49 - INFO - Authentication (publickey) successful!
+2024-08-15 20:55:50 - INFO - Updating file: results_MPI_us-east-1.csv
+2024-08-15 20:55:50 - INFO - Waiting 10 seconds.

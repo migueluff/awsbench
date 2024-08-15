@@ -21,7 +21,6 @@ class AWSConfig:
         'us-east-1_x86': {
             'imageId': 'ami-01f4e37b183434fde',
             'sg': 'sg-0552b31e4e34033d1',
-            'sg': 'sg-0552b31e4e34033d1',
             'key_name': SSHConfig.key_name_us
         },
         'sa-east-1_x86': {
