@@ -39,6 +39,7 @@ def save_row(text, row, df, csv_file):
         "Cores": row['Cores']
     }
     print(text)
+
     regex_patterns = {
         "Class": re.compile(r"Class\s*=\s*(\S+)"),
         "Time_in_Seconds": re.compile(r"Time in seconds\s*=\s*([\d.]+)"),
@@ -253,7 +254,7 @@ def benchmark(args):
         raise FileNotFoundError
         
     benchmark_config = BenchmarkConfig(json_file=json_file)
-    market = 'spot' if is_spot else 'ondemand'    
+    market = 'spot' if is_spot else 'ondemand'
     csv_file = Path(args.output_folder, f"results_MPI_{region}.csv")
 
     if csv_file.exists():

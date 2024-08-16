@@ -870,6 +870,7 @@
 2024-06-21 20:31:35 - INFO - Authentication (publickey) successful!
 2024-06-21 20:32:40 - INFO - Updating file: results_us-east-1.csv
 2024-06-21 20:33:28 - INFO - Instance i-0de9b01d57cda13a9 has been terminated.
+<<<<<<< HEAD
 2024-08-15 17:25:40 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_info.json
 2024-08-15 17:28:43 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_info.json
 2024-08-15 17:29:19 - INFO - Start execution in us-east-1 N=1 JsonFile=instance_info.json
@@ -1088,3 +1089,5 @@
 2024-08-15 20:55:49 - INFO - Authentication (publickey) successful!
 2024-08-15 20:55:50 - INFO - Updating file: results_MPI_us-east-1.csv
 2024-08-15 20:55:50 - INFO - Waiting 10 seconds.
+=======
+>>>>>>> a9c2f8c0de85663958bd1a442de5e779b8a50bc7

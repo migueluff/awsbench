@@ -63,6 +63,7 @@ class BenchmarkConfig:
         "Mops_per_Thread",
         "Status",
         "Cores"
+
     ]
     def __init__(self, json_file: Path) -> None:
         # load json file
