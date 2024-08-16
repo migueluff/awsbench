@@ -348,7 +348,7 @@ def benchmark(args):
                 arq = open(f'network_MPI_{instance}.csv', 'a')
                 arq.write(output)
                 arq.close()
-                #_terminate_instance(instance)
+                #   _terminate_instance(instance)
             else:
                 raise Exception(f'Instance {instance_type} not available')
         
