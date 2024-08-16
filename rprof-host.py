@@ -15,6 +15,7 @@ option_function = {
     'memory': 'virtual_memory()',
     'cpu': 'cpu_times()',
     'cpu_usage': 'cpu_percent(interval=None, percpu=True)',
+    'cpu_frequency': 'cpu_freq(percpu=True)',
     'network': 'net_io_counters()',
 }
  
@@ -27,6 +28,7 @@ def config():
     parser.add_argument('-n', '--network', action='store_true', help='Collect network metrics')
     parser.add_argument('-c', '--cpu', action='store_true', help='Collect cpu metrics')
     parser.add_argument('-u', '--cpu_usage', action='store_true', help='Collect cpu usage per core')
+    parser.add_argument('-f', '--cpu_frequency', action='store_true', help='Collect cpu frequency per core')
     parser.add_argument('-o', '--output_dir', default='.', help='The output dir for the metrics file')
     parser.add_argument('-i', '--interval', type=float, default=1.5, help='Interval in seconds between each metric collection')
  
@@ -61,6 +63,14 @@ def collect_data(args, create=False):
                     write_data(['timestamp, usage'], f'{args.output_dir}/{option}.csv', 'w')
                 else:
                     write_data([timestamp, data], f'{args.output_dir}/{option}.csv', 'a')
+            elif option == 'cpu_frequency':
+
+                data = eval(f'psutil.{option_function[option]}')
+                data_current = [x.current for x in data]
+                if create:
+                    write_data(['timestamp, frequency_per_core'], f'{args.output_dir}/{option}.csv', 'w')
+                else:
+                    write_data([timestamp, data_current], f'{args.output_dir}/{option}.csv', 'a')
             else:
                 data = eval(f'psutil.{option_function[option]}._asdict()')
  
