@@ -19,7 +19,7 @@ class AWSConfig:
 
     image_setup = {
         'us-east-1_x86': {
-            'imageId': 'ami-01f4e37b183434fde',
+            'imageId': 'ami-06c787521e3166e00',
             'sg': 'sg-0552b31e4e34033d1',
             'key_name': SSHConfig.key_name_us
         },
@@ -29,7 +29,7 @@ class AWSConfig:
             'key_name': SSHConfig.key_name_sa
         },
         'us-east-1_arm': {
-            'imageId': 'ami-082628d95a1f16ab9',
+            'imageId': 'ami-0e228b069b4c786c4',
             'sg': 'sg-0552b31e4e34033d1',
              'key_name': SSHConfig.key_name_us
         },
@@ -61,6 +61,7 @@ class BenchmarkConfig:
         "Available_Threads",
         "Mops_Total",
         "Mops_per_Thread",
+
         "Status",
         "Cores"
 

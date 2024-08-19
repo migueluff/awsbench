@@ -38,7 +38,7 @@ def save_row(text, row, df, csv_file):
         "Status": row['Status'],
         "Cores": row['Cores']
     }
-    print(text)
+    #print(text)
 
     regex_patterns = {
         "Class": re.compile(r"Class\s*=\s*(\S+)"),
@@ -46,10 +46,10 @@ def save_row(text, row, df, csv_file):
         "Total_Threads": re.compile(r"Total threads\s*=\s*(\d+)"),
         "Available_Threads": re.compile(r"Avail threads\s*=\s*(\d+)"),
         "Mops_Total": re.compile(r"Mop/s\s*total\s*=\s*([\d.]+)", re.IGNORECASE),
-        "Mops_per_Thread": re.compile(r"Mop/s/thread\s*=\s*([\d.]+)", re.IGNORECASE)
+        "Mops_per_Thread": re.compile(r"Mop/s/process\s*=\s*([\d.]+)", re.IGNORECASE)
+
 
     }
-    
 
     for key, pattern in regex_patterns.items():
         match = pattern.search(text)
@@ -59,7 +59,7 @@ def save_row(text, row, df, csv_file):
             data[key] = None
 
     df.loc[len(df)] = data
-
+    #print(df)
     logging.info(f'Updating file: {csv_file}')
     df.to_csv(csv_file, index=False)
 
@@ -82,7 +82,13 @@ def run_via_ssh(cmd, instance, region):
               username="ubuntu",
               key_filename=path_key,
               allow_agent=False, look_for_keys=False)
+
+
     stdin, stdout, stderr = c.exec_command(cmd)
+    if( ('python3' in cmd) or ( 'rm' in cmd) ):
+        c.close()
+        return "Background"
+
     output = stdout.read().decode()
     c.close()
     return output
@@ -195,7 +201,6 @@ def _terminate_instance(instance):
     logging.info(f"Instance {instance.id} has been terminated.")
 
 
-
 def is_available(region, instance_type):
 
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
@@ -255,7 +260,7 @@ def benchmark(args):
         
     benchmark_config = BenchmarkConfig(json_file=json_file)
     market = 'spot' if is_spot else 'ondemand'
-    csv_file = Path(args.output_folder, f"results_MPI_{region}.csv")
+    csv_file = Path(args.output_folder, f"results_MPI_round03_{region}.csv")
 
     if csv_file.exists():
         df = pd.read_csv(csv_file)
@@ -292,20 +297,21 @@ def benchmark(args):
 
             # if instance is not None, we can run the benchmark
             if instance:
+                print(instance_type)
                 time.sleep(5)
                 execution_count = 0
                 #logging.info(f"Binding threads in cores")
 
                 #binding_threads = 'export GOMP_CPU_AFFINITY="' + ' '.join(str(i) for i in range(instance_core)) + '"'
 
-                #metrics = run_via_ssh(cmd=f'python3 rprof-host.py -d -m -n -c -u -i 2.0 &', instance=instance, region=region)
-
+                run_via_ssh(cmd=f'python3 rprof-host.py -d -m -n -c -f -u -i 2.0 &', instance=instance, region=region)
+                #print(f"passouuu: {metrics}")
                 while execution_count < repetions:
                     logging.info(f"Execution {execution_count + 1} of {repetions}")
-                    for bench in ['cg', 'mg','ft']:
-                        for c in [8,16,24]:
+                    for bench in ['cg','mg','ft']:
+                        for c in [1,2,4,8,16]:
                             logging.info(f"Running benchmark {bench} with {c} processors")
-                            output = run_via_ssh(cmd=f'python3 rprof-host.py -d -m -n -c -u -i 2.0 &;mpiexec -np {c} ./{bench}.C.x', instance=instance, region=region)
+                            output = run_via_ssh(cmd=f'mpiexec -np {c} ./{bench}.C.x', instance=instance, region=region)
 
                             '''
                             output = run_via_ssh(cmd=f'export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export '
@@ -323,37 +329,54 @@ def benchmark(args):
                                    "Algorithm_Name": f'NAS Benchmark - {bench}.C.x',
                                    "Status": 'SUCCESS',
                                    "Cores": c}
-                            print(row)
+                            #print(output)
                             df = save_row(output, row, df, csv_file)
-                            logging.info(f"Waiting 10 seconds.")
-                            time.sleep(10)
+                            #logging.info(f"Waiting 10 seconds.")
+                            #time.sleep(5)
+
+
+                            output = run_via_ssh(cmd=f'cat cpu.csv', instance=instance, region=region)
+                            #print(output)
+                            arq = open(f'cpu_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
+                            arq.write(output)
+                            arq.close()
+
+                            output = run_via_ssh(cmd=f'cat cpu_usage.csv', instance=instance, region=region)
+                            arq = open(f'cpu_usage_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
+                            arq.write(output)
+                            arq.close()
+
+                            output = run_via_ssh(cmd=f'cat disk.csv', instance=instance, region=region)
+                            arq = open(f'disk_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
+                            arq.write(output)
+                            arq.close()
+
+                            output = run_via_ssh(cmd=f'cat memory.csv', instance=instance, region=region)
+                            arq = open(f'memory_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
+                            arq.write(output)
+                            arq.close()
+
+                            output = run_via_ssh(cmd=f'cat network.csv', instance=instance, region=region)
+                            arq = open(f'network_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
+                            arq.write(output)
+                            arq.close()
+
+                            output = run_via_ssh(cmd=f'cat cpu_frequency.csv', instance=instance, region=region)
+                            arq = open(f'cpu_frequency_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
+                            arq.write(output)
+                            arq.close()
+
+                            run_via_ssh(cmd=f'rm -rf *.csv', instance=instance, region=region)
+
                     execution_count += 1
 
-                output = run_via_ssh(cmd=f'cat cpu.csv', instance=instance, region=region)
-                arq = open(f'cpu_MPI_{instance}.csv', 'a')
-                arq.write(output)
-                arq.close()
-                output = run_via_ssh(cmd=f'cat cpu_usage.csv', instance=instance, region=region)
-                arq = open(f'cpu_usage_MPI_{instance}.csv', 'a')
-                arq.write(output)
-                arq.close()
-                output = run_via_ssh(cmd=f'cat disk.csv', instance=instance, region=region)
-                arq = open(f'disk_MPI_{instance}.csv', 'a')
-                arq.write(output)
-                arq.close()
-                output = run_via_ssh(cmd=f'cat memory.csv', instance=instance, region=region)
-                arq = open(f'memory_MPI_{instance}.csv', 'a')
-                arq.write(output)
-                arq.close()
-                output = run_via_ssh(cmd=f'cat network.csv', instance=instance, region=region)
-                arq = open(f'network_MPI_{instance}.csv', 'a')
-                arq.write(output)
-                arq.close()
-                #   _terminate_instance(instance)
+                _terminate_instance(instance)
+                print(f"Terminated instance: {instance_type}")
             else:
                 raise Exception(f'Instance {instance_type} not available')
         
         except Exception as e:
+            print(e)
             row = { "Start_Time": start_time,
                     "End_Time": datetime.now(),
                     "Instance": instance_type,
@@ -363,8 +386,8 @@ def benchmark(args):
                     "Region": region,
                     "Zone": None,
                     "Algorithm_Name": 'NAS Benchmark',
-                    "Status": BenchmarkConfig.STATUS}
-            
+                    "Status": BenchmarkConfig.STATUS,
+                    "Cores": None}
             df = save_row('', row, df, csv_file)
 
         

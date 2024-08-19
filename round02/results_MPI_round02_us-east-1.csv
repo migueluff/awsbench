@@ -1,0 +1,26 @@
+Start_Time,End_Time,Instance,InstanceID,Price,Market,Region,Zone,Algorithm_Name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status,Cores
+2024-08-19 11:24:51.661467,2024-08-19 11:25:17.680609,c7a.12xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,,
+2024-08-19 11:25:17.684340,2024-08-19 11:26:33.335259,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - cg.C.x,C,22.41,,,6397.41,799.68,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:26:58.740981,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - cg.C.x,C,12.38,,,11582.93,723.93,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:27:18.045466,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - mg.C.x,C,5.56,,,28013.43,3501.68,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:27:35.057222,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - mg.C.x,C,3.91,,,39829.25,2489.33,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:28:12.080980,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - ft.C.x,C,22.87,,,17330.34,2166.29,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:28:38.257855,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - ft.C.x,C,12.42,,,31920.44,1995.03,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:29:14.157120,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - cg.C.x,C,22.57,,,6351.81,793.98,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:29:39.728496,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - cg.C.x,C,12.36,,,11596.06,724.75,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:29:58.618050,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - mg.C.x,C,5.57,,,27954.67,3494.33,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:30:15.546894,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - mg.C.x,C,3.79,,,41130.41,2570.65,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:30:52.810842,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - ft.C.x,C,22.86,,,17338.35,2167.29,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:31:18.843518,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - ft.C.x,C,12.45,,,31842.02,1990.13,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:31:54.681330,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - cg.C.x,C,22.47,,,6380.93,797.62,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:32:20.235079,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - cg.C.x,C,12.49,,,11473.98,717.12,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:32:39.507996,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - mg.C.x,C,5.68,,,27403.63,3425.45,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:32:56.795360,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - mg.C.x,C,4.03,,,38656.02,2416.00,SUCCESS,16
+2024-08-19 11:25:17.684340,2024-08-19 11:33:34.181161,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - ft.C.x,C,23.13,,,17134.70,2141.84,SUCCESS,8
+2024-08-19 11:25:17.684340,2024-08-19 11:34:00.753602,c6g.12xlarge,i-062d6ff1da9eca397,1.6320000000,ondemand,us-east-1,a,NAS Benchmark - ft.C.x,C,12.66,,,31307.01,1956.69,SUCCESS,16
+2024-08-19 11:35:15.212282,2024-08-19 11:35:44.333456,c7g.12xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,,
+2024-08-19 11:35:44.340034,2024-08-19 11:35:47.365165,c5a.12xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,VcpuLimitExceeded,
+2024-08-19 11:35:47.368108,2024-08-19 11:35:50.291283,c5.12xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,VcpuLimitExceeded,
+2024-08-19 11:35:50.294165,2024-08-19 11:35:53.182535,c6a.12xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,VcpuLimitExceeded,
+2024-08-19 11:35:53.185876,2024-08-19 11:35:56.098145,c7i.12xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,VcpuLimitExceeded,
+2024-08-19 11:35:56.102416,2024-08-19 11:35:59.049903,c6i.12xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,VcpuLimitExceeded,
