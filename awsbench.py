@@ -260,7 +260,7 @@ def benchmark(args):
         
     benchmark_config = BenchmarkConfig(json_file=json_file)
     market = 'spot' if is_spot else 'ondemand'
-    csv_file = Path(args.output_folder, f"results_MPI_round03_{region}.csv")
+    csv_file = Path(args.output_folder, f"results_MPI_round05_{region}.csv")
 
     if csv_file.exists():
         df = pd.read_csv(csv_file)
@@ -335,38 +335,38 @@ def benchmark(args):
                             #time.sleep(5)
 
 
-                            output = run_via_ssh(cmd=f'cat cpu.csv', instance=instance, region=region)
-                            #print(output)
-                            arq = open(f'cpu_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
-                            arq.write(output)
-                            arq.close()
+                        output = run_via_ssh(cmd=f'cat cpu.csv', instance=instance, region=region)
+                        #print(output)
+                        arq = open(f'cpu_MPI_{instance_type}_{execution_count}_alg:{bench}.csv', 'a')
+                        arq.write(output)
+                        arq.close()
 
-                            output = run_via_ssh(cmd=f'cat cpu_usage.csv', instance=instance, region=region)
-                            arq = open(f'cpu_usage_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
-                            arq.write(output)
-                            arq.close()
+                        output = run_via_ssh(cmd=f'cat cpu_usage.csv', instance=instance, region=region)
+                        arq = open(f'cpu_usage_MPI_{instance_type}_{execution_count}_alg:{bench}.csv', 'a')
+                        arq.write(output)
+                        arq.close()
 
-                            output = run_via_ssh(cmd=f'cat disk.csv', instance=instance, region=region)
-                            arq = open(f'disk_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
-                            arq.write(output)
-                            arq.close()
+                        output = run_via_ssh(cmd=f'cat disk.csv', instance=instance, region=region)
+                        arq = open(f'disk_MPI_{instance_type}_{execution_count}_alg:{bench}.csv', 'a')
+                        arq.write(output)
+                        arq.close()
 
-                            output = run_via_ssh(cmd=f'cat memory.csv', instance=instance, region=region)
-                            arq = open(f'memory_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
-                            arq.write(output)
-                            arq.close()
+                        output = run_via_ssh(cmd=f'cat memory.csv', instance=instance, region=region)
+                        arq = open(f'memory_MPI_{instance_type}_{execution_count}_alg:{bench}.csv', 'a')
+                        arq.write(output)
+                        arq.close()
 
-                            output = run_via_ssh(cmd=f'cat network.csv', instance=instance, region=region)
-                            arq = open(f'network_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
-                            arq.write(output)
-                            arq.close()
+                        output = run_via_ssh(cmd=f'cat network.csv', instance=instance, region=region)
+                        arq = open(f'network_MPI_{instance_type}_{execution_count}_alg:{bench}.csv', 'a')
+                        arq.write(output)
+                        arq.close()
 
-                            output = run_via_ssh(cmd=f'cat cpu_frequency.csv', instance=instance, region=region)
-                            arq = open(f'cpu_frequency_MPI_{instance_type}_{execution_count}_alg:{bench}_cores:{c}.csv', 'a')
-                            arq.write(output)
-                            arq.close()
+                        output = run_via_ssh(cmd=f'cat cpu_frequency.csv', instance=instance, region=region)
+                        arq = open(f'cpu_frequency_MPI_{instance_type}_{execution_count}_alg:{bench}.csv', 'a')
+                        arq.write(output)
+                        arq.close()
 
-                            run_via_ssh(cmd=f'rm -rf *.csv', instance=instance, region=region)
+                        run_via_ssh(cmd=f'rm -rf *.csv', instance=instance, region=region)
 
                     execution_count += 1
 
