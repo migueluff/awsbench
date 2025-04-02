@@ -41,7 +41,24 @@ class AWSConfig:
         }
     }
 
-
+    INSTANCES_BY_REGION = {
+    'us-east-1': [
+        'c5.2xlarge-4', 'c5a.2xlarge-4', 'c5n.18xlarge-36', 'c5.24xlarge-48', 'c5a.24xlarge-48', 'c5ad.24xlarge-48', 
+        'c5d.24xlarge-48', 'c6a.24xlarge-48', 'c6id.24xlarge-48', 'c6in.24xlarge-48', 'm5.24xlarge-48', 'm5a.24xlarge-48', 
+        'm5ad.24xlarge-48', 'm5d.24xlarge-48', 'm5dn.24xlarge-48', 'm5n.24xlarge-48', 'm6a.24xlarge-48', 'm6i.24xlarge-48', 
+        'm6in.24xlarge-48', 'm7a.24xlarge-48', 'm7i.24xlarge-48', 'r5.24xlarge-48', 'r5a.24xlarge-48', 'r5ad.24xlarge-48', 
+        'r5b.24xlarge-48', 'r5d.24xlarge-48', 'r5dn.24xlarge-48', 'r5n.24xlarge-48', 'r6a.24xlarge-48', 'r6i.24xlarge-48', 
+        'r6id.24xlarge-48', 'r6idn.24xlarge-48', 'r6in.24xlarge-48', 'r7a.24xlarge-48', 'r7i.24xlarge-48', 'c6i.32xlarge-64', 
+        'c7a.48xlarge-96', 'c7i.48xlarge-96'
+    ],
+    'sa-east-1': [
+        'c5.2xlarge-4', 'c5a.2xlarge-4', 'c5n.18xlarge-36', 'c5.24xlarge-48', 'c5a.24xlarge-48', 'c5ad.24xlarge-48', 
+        'c5d.24xlarge-48', 'c6a.24xlarge-48', 'c6id.24xlarge-48', 'c6in.24xlarge-48', 'm5.24xlarge-48', 'm5a.24xlarge-48', 
+        'm5ad.24xlarge-48', 'm5d.24xlarge-48', 'm6a.24xlarge-48', 'm6i.24xlarge-48', 'm7i.24xlarge-48', 'r5.24xlarge-48', 
+        'r5a.24xlarge-48', 'r5ad.24xlarge-48', 'r5b.24xlarge-48', 'r5d.24xlarge-48', 'r5n.24xlarge-48', 'r6i.24xlarge-48', 
+        'r7i.24xlarge-48', 'c6i.32xlarge-64', 'c7i.48xlarge-96'
+    ]
+}
 
 
 class BenchmarkConfig:
@@ -56,6 +73,7 @@ class BenchmarkConfig:
         "Region",
         "Zone",
         "Algorithm_Name",
+        "Allocation_Strategy",
         "Class",
         "Time_in_Seconds",
         "Total_Threads",
@@ -64,9 +82,10 @@ class BenchmarkConfig:
         "Mops_per_Thread",
         "Status"
     ]
+    '''
     def __init__(self, json_file: Path) -> None:
         # load json file
         with open(json_file, 'r') as file:
             self.vms = json.load(file)
-
+    '''
   

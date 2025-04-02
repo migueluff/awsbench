@@ -1,0 +1,8 @@
+Start_Time,End_Time,Instance,InstanceID,Price,Market,Region,Zone,Algorithm_Name,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status
+2025-04-01 22:34:46.732882,2025-04-01 22:34:53.718967,c5a.2xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,
+2025-04-01 22:35:28.350879,2025-04-01 22:35:35.292556,c5a.2xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,
+2025-04-01 22:38:54.452512,2025-04-01 22:39:03.562913,c5a.2xlarge,,,ondemand,us-east-1,,NAS Benchmark,,,,,,,
+2025-04-01 22:42:07.389144,2025-04-01 22:42:28.438939,c5a.2xlarge,i-0f696fc6c2fc99d32,0.308,ondemand,us-east-1,f,NAS Benchmark,A,1.6,4.0,4.0,336.18,84.05,SUCCESS
+2025-04-01 23:27:09.170763,2025-04-01 23:27:19.467271,c5a.2xlarge,i-06350a88405ffe6a2,0.308,ondemand,us-east-1,f,NAS Benchmark,B,5.96,4.0,4.0,360.35,90.09,SUCCESS
+2025-04-01 23:28:44.900356,2025-04-01 23:34:53.690847,c5a.2xlarge,i-07bf41959c043d0ce,0.308,ondemand,us-east-1,f,NAS Benchmark,D,364.97,4.0,4.0,376.57,94.14,SUCCESS
+2025-04-02 08:18:47.448457,2025-04-02 08:24:57.569132,c5a.2xlarge,i-0624d04aff918e608,0.140900,spot,us-east-1,f,ep.D.x,D,365.31,4,4,376.23,94.06,SUCCESS

@@ -1,0 +1,4 @@
+Start_Time,End_Time,Instance,InstanceID,Price,Market,Region,Zone,Algorithm_Name,Allocation_Strategy,Class,Time_in_Seconds,Total_Threads,Available_Threads,Mops_Total,Mops_per_Thread,Status
+2025-04-02 08:39:48.738868,2025-04-02 08:44:44.906808,c5.2xlarge,i-0fba26f61838b4730,0.1776,spot,sa-east-1,c,ep.D.x,,D,289.85,4,4,474.17,118.54,SUCCESS
+2025-04-02 08:46:04.652004,2025-04-02 08:50:39.815691,c5.2xlarge,i-0cf5b92bfbaf6ceeb,0.1776,spot,sa-east-1,c,ep.D.x,,D,272.67,4,4,504.05,126.01,SUCCESS
+2025-04-02 08:52:06.462160,2025-04-02 08:52:09.913292,c5.2xlarge,i-040437b930640c9c6,0.177600,spot,sa-east-1,c,ep.A.x,,A,1.10,4,4,487.42,121.85,SUCCESS

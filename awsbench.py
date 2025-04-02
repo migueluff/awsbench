@@ -64,25 +64,28 @@ def save_row(text, row, df, csv_file):
 
 
 def run_via_ssh(cmd, instance, region):
-    
-    path_key = SSHConfig.path_key_us if region == 'us-east-1' else SSHConfig.path_key_sa
+    try:
+        path_key = SSHConfig.path_key_us if region == 'us-east-1' else SSHConfig.path_key_sa
 
-    lifecycle = instance.instance_lifecycle
-    if lifecycle is None:
-        lifecycle = 'on-demand'
+        lifecycle = instance.instance_lifecycle
+        if lifecycle is None:
+            lifecycle = 'on-demand'
 
-    logging.info(f"Running command: {cmd} in instance {instance.id} Region: {region} Market: {lifecycle}")
+        logging.info(f"Running command: {cmd} in instance {instance.id} Region: {region} Market: {lifecycle}")
 
-    c = paramiko.SSHClient()
-    c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    c.connect(instance.public_ip_address,
-              username="ubuntu",
-              key_filename=path_key,
-              allow_agent=False, look_for_keys=False)
-    stdin, stdout, stderr = c.exec_command(cmd)
-    output = stdout.read().decode()
-    c.close()
-    return output
+        c = paramiko.SSHClient()
+        c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        c.connect(instance.public_ip_address,
+                username="ubuntu",
+                key_filename=path_key,
+                allow_agent=False, look_for_keys=False)
+        stdin, stdout, stderr = c.exec_command(cmd)
+        output = stdout.read().decode()
+        c.close()
+        return output
+    except Exception as e:
+        logging.error(f"Error running command in instance {instance.id}: {e}")
+        return None
 
 def __start_instance(region, instance_type, info):
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
@@ -136,7 +139,6 @@ def _terminate_instance(instance):
     logging.info(f"Instance {instance.id} has been terminated.")
 
 
-
 def is_available(region, instance_type):
 
     session = boto3.Session(aws_access_key_id=AWSConfig.aws_acess_key_id,
@@ -151,6 +153,80 @@ def is_available(region, instance_type):
         return False
 
 
+def create_fleet(region, cluster_size, allocation_strategy, target_capacity):
+    """
+    Cria uma frota de instâncias EC2 usando `create_fleet`.
+
+    :param region: Região AWS onde a frota será criada
+    :param cluster_size: Número de instâncias a serem lançadas
+    :param allocation_strategy: Estratégia de alocação (ex: 'lowest-price', 'capacity-optimized')
+    :param target_capacity: Capacidade alvo da frota
+    :return: Lista de instâncias iniciadas
+    """
+    overrides = []
+    for instance in AWSConfig.INSTANCES_BY_REGION[region]:
+            overrides.append({'InstanceType': instance.split("-")[0]})
+            
+    session = boto3.Session(
+        aws_access_key_id=AWSConfig.aws_acess_key_id,
+        aws_secret_access_key=AWSConfig.aws_acess_secret_key,
+        region_name=region
+    )
+    
+    ec2_client = session.client("ec2")
+    ec2_resource = session.resource("ec2")
+
+    launch_template_config = [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "Spotfleet_Launch",
+                "Version": "$Latest"
+            },
+            "Overrides": overrides  
+        }
+    ]
+
+    fleet_config = {
+        "LaunchTemplateConfigs": launch_template_config,
+        "TargetCapacitySpecification": {
+            "TotalTargetCapacity": target_capacity,
+            "DefaultTargetCapacityType": "spot"
+        },
+        "SpotOptions": {
+            "AllocationStrategy": allocation_strategy
+            #"MaxTotalPrice": str(spot_price) if spot_price else None
+        },
+        "Type": "instant",
+        "TagSpecifications" : [{
+                'ResourceType': 'instance',
+                'Tags':[{'Key': 'Name', 'Value': 'SpotFleet-SSCAD'}]
+        }]
+    }
+
+    try:
+        response = ec2_client.create_fleet(**fleet_config)
+        #print(response)
+        instance_ids = [inst for fleet in response.get("Instances", []) for inst in fleet["InstanceIds"]]
+        
+        if instance_ids:
+            logging.info(f"Fleet created with instances: {instance_ids}")
+        else:
+            logging.warning("No instances were launched.")
+            return []
+   
+        instances = list(ec2_resource.instances.filter(InstanceIds=instance_ids))
+        for instance in instances:
+            instance.wait_until_running()
+            instance.reload()
+
+        return instances
+    
+    except ClientError as e:
+        logging.error(f"Error creating fleet in region {region}: {e}")
+        return []
+
+
+
 def benchmark(args):
     """
     :param region: Define the AWS region that the instance will be created
@@ -159,15 +235,18 @@ def benchmark(args):
     :return:
     """
     region = args.region
-    repetions = args.repetitions  
-    is_spot = args.spot
-    json_file = Path(args.json_file)
-
+    #repetions = args.repetitions  
+    is_spot = True
+    app = args.benchmark
+    #json_file = Path(args.json_file)
+    allocation_strategy = args.strategy
+    nodes = int(args.nodes)
+    '''
     if not json_file.exists():
         logging.error(f"File {json_file} not found")
         raise FileNotFoundError
-        
-    benchmark_config = BenchmarkConfig(json_file=json_file)
+    ''' 
+    benchmark_config = BenchmarkConfig()
     market = 'spot' if is_spot else 'ondemand'    
     csv_file = Path(args.output_folder, f"results_{region}.csv")
 
@@ -176,9 +255,25 @@ def benchmark(args):
     else:
         df = pd.DataFrame(columns=benchmark_config.columns)
 
-    # iterate over the instances
-    for instance_type, instance_core in benchmark_config.vms.items():        
+   
+        
+
+    instances = create_fleet(region,cluster_size=nodes, allocation_strategy=allocation_strategy, target_capacity=nodes)
+
+    if instances:
+        logging.info(f"Instâncias iniciadas: {instances}")
+    else:
+        logging.error("Falha ao iniciar instâncias.")
+        return 0
+   
+    for instance in instances:
         start_time = datetime.now()
+
+        instance_type = instance.instance_type
+
+        for instance_verify in AWSConfig.INSTANCES_BY_REGION[region]:
+            if instance_type in instance_verify:
+                instance_core = instance_verify.split("-")[1]
 
         try:
             price = None 
@@ -201,40 +296,39 @@ def benchmark(args):
                         'InstanceInterruptionBehavior': 'terminate'}
                     }   
             
-            # start the instance
-            instance = __start_instance(region, instance_type, info)
-
-            # if instance is not None, we can run the benchmark
-            if instance:
-                time.sleep(5)
-                execution_count = 0
-                logging.info(f"Binding threads in cores")
-
-                #binding_threads = 'export GOMP_CPU_AFFINITY="' + ' '.join(str(i) for i in range(instance_core)) + '"'
-
-                while execution_count < repetions:
-                    logging.info(f"Execution {execution_count + 1} of {repetions}")
-                    output = run_via_ssh(cmd=f'export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export '
-                                             f'OMP_NUM_THREADS={instance_core};./ep.D.x', instance=instance,
-                                         region=region)
-                    row = {"Start_Time": start_time,
-                           "End_Time": datetime.now(),
-                           "Instance": instance_type,
-                           "InstanceID": instance.id,
-                           "Market": market,
-                           "Price":  price,                               
-                           "Region": region,
-                           "Zone": instance.placement['AvailabilityZone'][-1:],
-                           "Algorithm_Name": 'NAS Benchmark',
-                           "Status": 'SUCCESS'}
-                    print(row)
-                    df = save_row(output, row, df, csv_file)
-                    execution_count += 1
-
-                _terminate_instance(instance)
-            else:
-                raise Exception(f'Instance {instance_type} not available')
         
+            # if instance is not None, we can run the benchmark
+        
+            #time.sleep(15)
+                
+            logging.info(f"Binding threads in cores, instance have {instance_core} cores")
+
+            #app = 'ep.D.x'
+            output = run_via_ssh(cmd=f'export OMP_PLACES=cores;export OMP_PROC_BIND=spread;export '
+                                        f'OMP_NUM_THREADS={instance_core};./{app}', instance=instance,
+                                            region=region)
+                    
+            print(output)
+
+            row = {"Start_Time": start_time,
+                    "End_Time": datetime.now(),
+                    "Instance": instance_type,
+                    "InstanceID": instance.id,
+                    "Market": market,
+                    "Price":  price,                               
+                    "Region": region,
+                    "Zone": instance.placement['AvailabilityZone'][-1:],
+                    "Algorithm_Name": app,
+                    "Allocation_Strategy": allocation_strategy,
+                    "Status": 'SUCCESS'}
+            
+            print(row)
+            df = save_row(output, row, df, csv_file)
+            #execution_count += 1
+
+            _terminate_instance(instance)
+
+
         except Exception as e:
             row = { "Start_Time": start_time,
                     "End_Time": datetime.now(),
@@ -244,22 +338,26 @@ def benchmark(args):
                     "Price": None,                
                     "Region": region,
                     "Zone": None,
-                    "Algorithm_Name": 'NAS Benchmark',
+                    "Algorithm_Name": {app},
+                    "Allocation_Strategy": allocation_strategy,
                     "Status": BenchmarkConfig.STATUS}
             
             df = save_row('', row, df, csv_file)
 
-        
+                
         
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Benchmark AWS')
     parser.add_argument('region', type=str, help='AWS region')
-    parser.add_argument('json_file', type=str, help='Json file with instances configurations')
-    parser.add_argument('--repetitions', type=int, default=5, help='Number of repetitions')
+    #parser.add_argument('json_file', type=str, help='Json file with instances configurations')
+    parser.add_argument('strategy', type=str, default='lowest-price', choices=['lowest-price', 'diversified', 'capacity-optimized', 'capacity-optimized-prioritized', 'price-capacity-optimized'], help='Allocation Strategy')
+    parser.add_argument('benchmark', type=str,default='ep.D.x', choices=['ep.A.x','ep.B.x','ep.D.x','ep.E.x'])
+    #parser.add_argument('--repetitions', type=int, default=5, help='Number of repetitions')
+    parser.add_argument('--nodes', type=int, default=1, help='Number of repetitions')
     parser.add_argument('--output_folder', type=str, default='.', help='Output folder')
-    parser.add_argument('--spot', action='store_true', help='Use spot instances')
+    #parser.add_argument('--spot', action='store_true', help='Use spot instances')
     parser.add_argument('--log', action='store_true', help='Log file')
 
     args = parser.parse_args()
@@ -275,5 +373,5 @@ if __name__ == '__main__':
                             format='%(asctime)s - %(levelname)s - %(message)s',  # Log message format
                             datefmt='%Y-%m-%d %H:%M:%S')
         
-    logging.info(f"Start execution in {args.region} N={args.repetitions} JsonFile={args.json_file}")
+    logging.info(f"Start execution in {args.region} Nodes={args.nodes} Benchmark={args.benchmark} Allocation Strategy={args.strategy}") 
     benchmark(args)
